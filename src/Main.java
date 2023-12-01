@@ -1,4 +1,4 @@
-import day.y2022.Day01;
+import day.y2023.Day01;
 
 import java.util.Arrays;
 
