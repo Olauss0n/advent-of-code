@@ -7,17 +7,16 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
         if (args.length == 1) {
-            Integer argument = Arrays.stream(args).map(Integer::parseInt).findFirst().orElseThrow();
+            int argument = Arrays.stream(args).map(Integer::parseInt).findFirst().orElseThrow();
 
             System.out.printf("Today's date is %s December and the answer is: %n", argument);
 
-            switch (argument) {
-                case 1:
-                    Day01.run();
-                case 2:
-                    Day02.run();
-                case 4:
-                    Day04.run();
+            if (argument == 1) {
+                Day01.run();
+            } else if (argument == 2) {
+                Day02.run();
+            } else if (argument == 4) {
+                Day04.run();
             }
         }
     }
