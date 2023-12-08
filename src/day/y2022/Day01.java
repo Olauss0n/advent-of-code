@@ -32,7 +32,7 @@ public class Day01 {
     }
 
     private static ArrayList<Integer> commonPart() {
-        String input = Reader.readFile("y2022", "01");
+        String input = Reader.readFileAsString("y2022", "01");
 
         ArrayList<Integer> calorieList = new ArrayList<>();
 

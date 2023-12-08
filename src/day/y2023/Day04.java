@@ -16,7 +16,7 @@ public class Day04 {
     }
 
     private static void runPartOne() {
-        String input = Reader.readFile("y2023", "04");
+        String input = Reader.readFileAsString("y2023", "04");
 
         List<Card> cards = Arrays.stream(input.split("\n")).map(Card::new).toList();
 
@@ -24,7 +24,7 @@ public class Day04 {
     }
 
     private static void runPartTwo() {
-        String input = Reader.readFile("y2023", "04");
+        String input = Reader.readFileAsString("y2023", "04");
 
         List<Card> cards = Arrays.stream(input.split("\n")).map(Card::new).toList();
 
@@ -37,7 +37,7 @@ public class Day04 {
     }
 
     private static void runPartOneWithOutCardClass() {
-        String input = Reader.readFile("y2023", "04");
+        String input = Reader.readFileAsString("y2023", "04");
 
         List<String> cards = Arrays.asList(input.split("\n"));
 

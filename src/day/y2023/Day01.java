@@ -20,7 +20,7 @@ public class Day01 {
     }
 
     public static void runPartOne() {
-        String input = Reader.readFile("y2023", "01");
+        String input = Reader.readFileAsString("y2023", "01");
 
         String newInput = input.replaceAll("[a-zA-Z]", "");
 
@@ -46,7 +46,7 @@ public class Day01 {
     }
 
     private static void runPartTwoWithOverlaps() {
-        String input = Reader.readFile("y2023", "01");
+        String input = Reader.readFileAsString("y2023", "01");
 
         String newInput = input.replaceAll("one", "o1e").replaceAll("two", "t2o")
                 .replaceAll("three", "t3e").replaceAll("four", "f4r")
@@ -71,7 +71,7 @@ public class Day01 {
     }
 
     private static void runPartTwoWithoutOverlaps() {
-        String input = Reader.readFile("y2023", "01");
+        String input = Reader.readFileAsString("y2023", "01");
 
         Map<String, String> replacements = new HashMap<>() {{
             put("one", "1");
