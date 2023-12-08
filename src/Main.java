@@ -9,6 +9,7 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
+        long start = System.currentTimeMillis();
         if (args.length == 1) {
             int argument = Arrays.stream(args).map(Integer::parseInt).findFirst().orElseThrow();
 
@@ -28,5 +29,6 @@ public class Main {
                 Day07.run();
             }
         }
+        System.out.println("Evaluation took: " + (System.currentTimeMillis() - start) + " ms");
     }
 }
