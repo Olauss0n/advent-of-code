@@ -17,7 +17,7 @@ public class Day05 {
     private static HashMap<String, List<Map>> hashMap = new HashMap<>();
 
     public static void run() {
-        String input = Reader.readFile("y2023/input-05");
+        String input = Reader.readFile("y2023", "05");
 
         List<String> inputList = Arrays.asList(input.split("\n\n"));
 

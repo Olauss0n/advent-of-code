@@ -7,11 +7,14 @@ import java.util.Scanner;
 public class Reader {
 
     private static final String INPUT_PATH = "src/input/";
+    private static final String PATH_DIVIDER = "/";
+    private static final String INPUT_START = "input-";
     private static final String TXT_EXTENSION = ".txt";
 
-    public static String readFile(String fileName) {
+    public static String readFile(String directory, String inputNumber) {
+        String fileName = directory + PATH_DIVIDER + INPUT_START + inputNumber + TXT_EXTENSION;
         StringBuilder textFile = new StringBuilder();
-        File openFile = new File(INPUT_PATH + fileName + TXT_EXTENSION);
+        File openFile = new File(INPUT_PATH + directory + PATH_DIVIDER + INPUT_START + inputNumber + TXT_EXTENSION);
         try {
             Scanner scanner = new Scanner(openFile);
             while (scanner.hasNextLine()) {
