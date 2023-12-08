@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Day07 {
@@ -18,12 +19,11 @@ public class Day07 {
     }
 
     private static void runPartOne() {
-        ArrayList<HandPartOne> hands =
-                new ArrayList<>(Arrays.stream(Reader.readFileAsString("y2023", "07").split("\n"))
-                        .map(row -> new HandPartOne(
-                                Arrays.asList(row.split(" ")).get(0),
-                                Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))
-                        .toList());
+        List<HandPartOne> hands = new ArrayList<>(Reader.readFileAsList("y2023", "07").stream()
+                .map(row -> new HandPartOne(
+                        Arrays.asList(row.split(" ")).get(0),
+                        Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))
+                .toList());
 
         Collections.sort(hands);
 
@@ -40,12 +40,11 @@ public class Day07 {
     }
 
     private static void runPartTwo() {
-        ArrayList<HandPartTwo> hands =
-                new ArrayList<>(Arrays.stream(Reader.readFileAsString("y2023", "07").split("\n"))
-                        .map(row -> new HandPartTwo(
-                                Arrays.asList(row.split(" ")).get(0),
-                                Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))
-                        .toList());
+        ArrayList<HandPartTwo> hands = new ArrayList<>(Reader.readFileAsList("y2023", "07").stream()
+                .map(row -> new HandPartTwo(
+                        Arrays.asList(row.split(" ")).get(0),
+                        Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))
+                .toList());
 
         Collections.sort(hands);
 
@@ -266,7 +265,6 @@ public class Day07 {
 
             this.type = currentType;
         }
-
 
         private HashMap<Character, Integer> createCardsMap() {
             HashMap<Character, Integer> cardCount = new HashMap<>();

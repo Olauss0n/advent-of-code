@@ -16,17 +16,17 @@ public class Day04 {
     }
 
     private static void runPartOne() {
-        String input = Reader.readFileAsString("y2023", "04");
+        ArrayList<String> input = Reader.readFileAsList("y2023", "04");
 
-        List<Card> cards = Arrays.stream(input.split("\n")).map(Card::new).toList();
+        List<Card> cards = input.stream().map(Card::new).toList();
 
         cards.stream().map(card -> card.cardPoints).reduce(Integer::sum).ifPresent(System.out::println);
     }
 
     private static void runPartTwo() {
-        String input = Reader.readFileAsString("y2023", "04");
+        ArrayList<String> input = Reader.readFileAsList("y2023", "04");
 
-        List<Card> cards = Arrays.stream(input.split("\n")).map(Card::new).toList();
+        List<Card> cards = input.stream().map(Card::new).toList();
 
         List<Card> cardPile = new ArrayList<>();
 
@@ -37,9 +37,7 @@ public class Day04 {
     }
 
     private static void runPartOneWithOutCardClass() {
-        String input = Reader.readFileAsString("y2023", "04");
-
-        List<String> cards = Arrays.asList(input.split("\n"));
+        ArrayList<String> cards = Reader.readFileAsList("y2023", "04");
 
         List<Integer> cardPoints = new ArrayList<>();
 

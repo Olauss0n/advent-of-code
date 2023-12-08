@@ -71,8 +71,6 @@ public class Day01 {
     }
 
     private static void runPartTwoWithoutOverlaps() {
-        String input = Reader.readFileAsString("y2023", "01");
-
         Map<String, String> replacements = new HashMap<>() {{
             put("one", "1");
             put("two", "2");
@@ -85,7 +83,7 @@ public class Day01 {
             put("nine", "9");
         }};
 
-        List<String> inputList = Arrays.asList(input.split("\n"));
+        List<String> inputList = Reader.readFileAsList("y2023", "01");
 
         List<String> combinedList = new ArrayList<>();
 
