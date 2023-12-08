@@ -4,6 +4,7 @@ import day.y2023.Day04;
 import day.y2023.Day05;
 import day.y2023.Day05part2;
 import day.y2023.Day06;
+import day.y2023.Day07;
 
 import java.util.Arrays;
 
@@ -24,6 +25,8 @@ public class Main {
                 Day05.run();
             } else if (argument == 6) {
                 Day06.run();
+            } else if (argument == 7) {
+                Day07.run();
             }
         }
     }
