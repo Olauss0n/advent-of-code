@@ -2,7 +2,6 @@ import day.y2023.Day01;
 import day.y2023.Day02;
 import day.y2023.Day04;
 import day.y2023.Day05;
-import day.y2023.Day05part2;
 import day.y2023.Day06;
 import day.y2023.Day07;
 
