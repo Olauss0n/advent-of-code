@@ -4,6 +4,7 @@ import day.y2023.Day04;
 import day.y2023.Day05;
 import day.y2023.Day06;
 import day.y2023.Day07;
+import day.y2023.Day09;
 
 import java.util.Arrays;
 
@@ -27,6 +28,8 @@ public class Main {
                 Day06.run();
             } else if (argument == 7) {
                 Day07.run();
+            } else if (argument == 9) {
+                Day09.run();
             }
         }
         System.out.println("Evaluation took: " + (System.currentTimeMillis() - start) + " ms");
