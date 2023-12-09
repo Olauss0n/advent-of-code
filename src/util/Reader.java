@@ -3,6 +3,7 @@ package util;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Reader {
@@ -29,7 +30,7 @@ public class Reader {
         return textFile.toString();
     }
 
-    public static ArrayList<String> readFileAsList(String directory, String inputNumber) {
+    public static List<String> readFileAsList(String directory, String inputNumber) {
         String fileName = directory + PATH_DIVIDER + INPUT_START + inputNumber + TXT_EXTENSION;
         ArrayList<String> textFile = new ArrayList<>();
         File openFile = new File(INPUT_PATH + directory + PATH_DIVIDER + INPUT_START + inputNumber + TXT_EXTENSION);
