@@ -35,8 +35,7 @@ public class Day06 {
             }
             races.add(heats);
         }
-        Integer sum = races.stream().map(List::size).reduce(Math::multiplyExact).orElseThrow();
-        System.out.println(sum);
+        races.stream().map(List::size).reduce(Math::multiplyExact).ifPresent(System.out::println);
     }
 
     private static void runPartTwo() {

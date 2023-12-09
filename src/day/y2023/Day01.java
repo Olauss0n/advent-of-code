@@ -25,19 +25,15 @@ public class Day01 {
         String newInput = input.replaceAll("[a-zA-Z]", "");
 
         List<String> inputList = Arrays.asList(newInput.split("\n"));
-
         List<String> combinedList = new ArrayList<>();
 
-        for (String line: inputList) {
+        for (String line : inputList) {
             String firstDigit = line.substring(0, 1);
-            String lastDigit = line.substring(line.length()-1);
+            String lastDigit = line.substring(line.length() - 1);
             String wantedNumber = firstDigit + lastDigit;
             combinedList.add(wantedNumber);
         }
-
-        Integer sum = combinedList.stream().map(Integer::parseInt).reduce(0, Integer::sum);
-
-        System.out.println(sum);
+        combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
     }
 
     public static void runPartTwo() {
@@ -48,46 +44,48 @@ public class Day01 {
     private static void runPartTwoWithOverlaps() {
         String input = Reader.readFileAsString("y2023", "01");
 
-        String newInput = input.replaceAll("one", "o1e").replaceAll("two", "t2o")
-                .replaceAll("three", "t3e").replaceAll("four", "f4r")
-                .replaceAll("five", "f5e").replaceAll("six", "s6x")
-                .replaceAll("seven", "s7n").replaceAll("eight", "e8t")
-                .replaceAll("nine", "n9e").replaceAll("[a-zA-Z]", "");
+        String newInput = input.replaceAll("one", "o1e")
+                .replaceAll("two", "t2o")
+                .replaceAll("three", "t3e")
+                .replaceAll("four", "f4r")
+                .replaceAll("five", "f5e")
+                .replaceAll("six", "s6x")
+                .replaceAll("seven", "s7n")
+                .replaceAll("eight", "e8t")
+                .replaceAll("nine", "n9e")
+                .replaceAll("[a-zA-Z]", "");
 
         List<String> inputList = Arrays.asList(newInput.split("\n"));
-
         List<String> combinedList = new ArrayList<>();
 
-        for (String line: inputList) {
+        for (String line : inputList) {
             String firstDigit = line.substring(0, 1);
-            String lastDigit = line.substring(line.length()-1);
+            String lastDigit = line.substring(line.length() - 1);
             String wantedNumber = firstDigit + lastDigit;
             combinedList.add(wantedNumber);
         }
-
-        Integer sum = combinedList.stream().map(Integer::parseInt).reduce(0, Integer::sum);
-
-        System.out.println(sum);
+        combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
     }
 
     private static void runPartTwoWithoutOverlaps() {
-        Map<String, String> replacements = new HashMap<>() {{
-            put("one", "1");
-            put("two", "2");
-            put("three", "3");
-            put("four", "4");
-            put("five", "5");
-            put("six", "6");
-            put("seven", "7");
-            put("eight", "8");
-            put("nine", "9");
-        }};
+        Map<String, String> replacements = new HashMap<>() {
+            {
+                put("one", "1");
+                put("two", "2");
+                put("three", "3");
+                put("four", "4");
+                put("five", "5");
+                put("six", "6");
+                put("seven", "7");
+                put("eight", "8");
+                put("nine", "9");
+            }
+        };
 
         List<String> inputList = Reader.readFileAsList("y2023", "01");
-
         List<String> combinedList = new ArrayList<>();
 
-        for (String line: inputList) {
+        for (String line : inputList) {
 
             StringBuffer sb = new StringBuffer();
 
@@ -106,13 +104,10 @@ public class Day01 {
             }
 
             String firstDigit = newLine.substring(0, 1);
-            String lastDigit = newLine.substring(newLine.length()-1);
+            String lastDigit = newLine.substring(newLine.length() - 1);
             String wantedNumber = firstDigit + lastDigit;
             combinedList.add(wantedNumber);
         }
-
-        Integer sum = combinedList.stream().map(Integer::parseInt).reduce(0, Integer::sum);
-
-        System.out.println(sum);
+        combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
     }
 }

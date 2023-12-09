@@ -33,9 +33,7 @@ public class Day07 {
             Integer winning = Math.multiplyExact(hand.bid, i + 1);
             totalWinnings.add(winning);
         }
-        Integer sum = totalWinnings.stream().reduce(0, Integer::sum);
-
-        System.out.println(sum);
+        totalWinnings.stream().reduce(Integer::sum).ifPresent(System.out::println);
     }
 
     private static void runPartTwo() {
@@ -54,9 +52,7 @@ public class Day07 {
             Integer winning = Math.multiplyExact(hand.bid, i + 1);
             totalWinnings.add(winning);
         }
-        Integer sum = totalWinnings.stream().reduce(0, Integer::sum);
-
-        System.out.println(sum);
+        totalWinnings.stream().reduce(Integer::sum).ifPresent(System.out::println);
     }
 
     private static class HandPartOne implements Comparable<HandPartOne> {

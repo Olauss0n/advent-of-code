@@ -63,8 +63,7 @@ public class Day04 {
                 cardPoints.add(points);
             }
         }
-        Integer sum = cardPoints.stream().reduce(0, Integer::sum);
-        System.out.println(sum);
+        cardPoints.stream().reduce(Integer::sum).ifPresent(System.out::println);
     }
 
     private static void handleCard(Card card, List<Card> cards, List<Card> cardPile) {

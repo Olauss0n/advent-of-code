@@ -62,9 +62,7 @@ public class Day02 {
             }
 
         }
-        Integer sum = approvedGameIds.stream().map(Integer::parseInt).reduce(0, Integer::sum);
-
-        System.out.println(sum);
+        approvedGameIds.stream().map(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
     }
 
     private static void runPartTwo() {
@@ -110,7 +108,6 @@ public class Day02 {
             Integer minimumPowerNeeded = redMaxAmount * greenMaxAmount * blueMaxAmount;
             minimumSetList.add(minimumPowerNeeded);
         }
-        Integer sum = minimumSetList.stream().reduce(0, Integer::sum);
-        System.out.println(sum);
+        minimumSetList.stream().reduce(Integer::sum).ifPresent(System.out::println);
     }
 }
