@@ -4,6 +4,7 @@ import day.y2023.Day04;
 import day.y2023.Day05;
 import day.y2023.Day06;
 import day.y2023.Day07;
+import day.y2023.Day08;
 import day.y2023.Day09;
 import day.y2023.Day11;
 
@@ -28,6 +29,8 @@ public class Main {
             Day06.run();
         } else if (argument == 7) {
             Day07.run();
+        } else if (argument == 8) {
+            Day08.run();
         } else if (argument == 9) {
             Day09.run();
         } else if (argument == 11) {
