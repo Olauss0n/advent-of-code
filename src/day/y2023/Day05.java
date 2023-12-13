@@ -2,120 +2,132 @@ package day.y2023;
 
 import util.Reader;
 
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Day05 {
 
-    private static HashMap<String, List<Map>> hashMap = new HashMap<>();
-
     public static void run() {
+        System.out.print("For part one: ");
+        runPartOne();
+        System.out.print("For part two: ");
+        runPartTwo();
+    }
+
+    private static void runPartOne() {
         String input = Reader.readFileAsString("y2023", "05");
-
         List<String> inputList = Arrays.asList(input.split("\n\n"));
-
-        List<BigInteger> seeds = new ArrayList<>(Arrays.asList(inputList.get(0).replaceAll("seeds: ", "").split(" ")).stream().map(BigInteger::new).toList());
-
-        List<List<Map>> converterMaps = new ArrayList<>();
+        List<Long> seeds = new ArrayList<>(
+                Arrays.stream(inputList.get(0).replaceAll("seeds: ", "").split(" "))
+                        .map(Long::parseLong)
+                        .toList());
 
         for (int lineIndex = 1; lineIndex < inputList.size(); lineIndex++) {
-            List<Map> maps = new ArrayList<>();
-            List<String> elements = Arrays.asList(inputList.get(lineIndex).replaceAll("[\\w-]+ map:\n", "").split("\n"));
-            for (String element: elements) {
-                List<String> values = Arrays.asList(element.split(" "));
-                Map map = new Map(new BigInteger(values.get(0)), new BigInteger(values.get(1)), new BigInteger(values.get(2)));
-                maps.add(map);
+            List<Map> maps = getMaps(inputList, lineIndex);
+            seeds = getNewSeeds(seeds, maps);
+        }
+        Long minimumSeedValue = seeds.stream().reduce(Math::min).orElseThrow();
+        System.out.println(minimumSeedValue);
+    }
+
+    private static void runPartTwo() {
+        String input = Reader.readFileAsString("y2023", "05");
+        List<String> inputList = Arrays.asList(input.split("\n\n"));
+        List<Long> seeds = new ArrayList<>(
+                Arrays.asList(inputList.get(0).replaceAll("seeds: ", "").split(" ")).stream()
+                        .map(Long::parseLong)
+                        .toList());
+
+        int partitionSize = 2;
+        List<List<Long>> seedRanges = new ArrayList<>();
+
+        for (int i = 0; i < seeds.size(); i += partitionSize) {
+            seedRanges.add(List.of(seeds.get(i), seeds.get(i) + seeds.get(i + 1)));
+        }
+
+        for (int lineIndex = 1; lineIndex < inputList.size(); lineIndex++) {
+            List<Map> maps = getMaps(inputList, lineIndex);
+
+            ArrayList<List<Long>> newSeeds = new ArrayList<>();
+
+            while (!seedRanges.isEmpty()) {
+                List<Long> lastSeedRange = seedRanges.removeLast();
+                boolean rangeFound = false;
+                long seedRangeStart = lastSeedRange.get(0);
+                long seedRangeEnd = lastSeedRange.get(1);
+                for (Map map : maps) {
+                    long overlapStart = Math.max(seedRangeStart, map.destination);
+                    long overlapEnd = Math.min(seedRangeEnd, map.destination + map.range);
+                    if (overlapStart < overlapEnd) {
+                        newSeeds.add(List.of(
+                                overlapStart - map.destination + map.source,
+                                overlapEnd - map.destination + map.source));
+                        if (overlapStart > seedRangeStart) {
+                            seedRanges.add(List.of(seedRangeStart, overlapStart));
+                        }
+                        if (seedRangeEnd > overlapEnd) {
+                            seedRanges.add(List.of(overlapEnd, seedRangeEnd));
+                        }
+                        rangeFound = true;
+                    }
+                }
+                if (!rangeFound) {
+                    newSeeds.add(List.of(seedRangeStart, seedRangeEnd));
+                }
             }
-            converterMaps.add(maps);
+            seedRanges = newSeeds;
         }
-        for (int seedIndex = 0; seedIndex < seeds.size(); seedIndex++) {
+        Long minimumSeedValue =
+                seedRanges.stream().map(List::getFirst).reduce(Math::min).orElseThrow();
+        System.out.println(minimumSeedValue);
+    }
 
-            for (List<Map> converterMap : converterMaps) {
-                BigInteger seedValue = seeds.get(seedIndex);
-                BigInteger updatedSeedValue = getUpdatedValue(converterMap, seedValue);
-                // print(i, updatedSeedValue);
-                seeds.set(seedIndex, updatedSeedValue);
+    private static List<Map> getMaps(List<String> inputList, int lineIndex) {
+        List<Map> maps = new ArrayList<>();
+        String[] elements =
+                inputList.get(lineIndex).replaceAll("[\\w-]+ map:\n", "").split("\n");
+        for (String element : elements) {
+            List<String> values = Arrays.asList(element.split(" "));
+            Map map = new Map(values.get(0), values.get(1), values.get(2));
+            maps.add(map);
+        }
+        return maps;
+    }
+
+    private static ArrayList<Long> getNewSeeds(List<Long> seeds, List<Map> maps) {
+        ArrayList<Long> newSeeds = new ArrayList<>();
+
+        for (long seed : seeds) {
+            boolean rangeFound = false;
+            for (Map map : maps) {
+                if (map.destination <= seed && seed < map.destination + map.range) {
+                    newSeeds.add(seed - map.destination + map.source);
+                    rangeFound = true;
+                    break;
+                }
             }
-            //System.out.println("======== END OF THIS SEED: " + (seedIndex + 1) + " =========");
-        }
-        System.out.println(Collections.min(seeds));
-    }
-
-    private static BigInteger getUpdatedValue(List<Map> maps, BigInteger seedValue) {
-        Optional<BigInteger> updatedValue;
-        for (Map map: maps) {
-            updatedValue = getConvertedValue(seedValue, map);
-            if (updatedValue.isPresent()) {
-                // System.out.println("MATCHING: " + updatedValue.get());
-                return updatedValue.get();
+            if (!rangeFound) {
+                newSeeds.add(seed);
             }
         }
-        //System.out.println("NOT MATCHING. Returning with: " + seedValue);
-        return seedValue;
-    }
-
-    private static void print(int seedIndex, BigInteger updatedValue) {
-        String type = "";
-        if (seedIndex == 0) {
-            type = "seed-to-soil";
-        } else if (seedIndex == 1) {
-            type = "soil-to-fertilizer";
-        } else if (seedIndex == 2) {
-            type = "fertilizer-to-water";
-        } else if (seedIndex == 3) {
-            type = "water-to-light";
-        } else if (seedIndex == 4) {
-            type = "light-to-temperature";
-        } else if (seedIndex == 5) {
-            type = "temperature-to-humidity";
-        } else if (seedIndex == 6) {
-            type = "humidity-to-location";
-        } else {
-            type = "Unknown index: " + seedIndex + " ";
-        }
-        System.out.println(type + ": " + updatedValue);
-    }
-
-    private static Optional<BigInteger> getConvertedValue(BigInteger input, Map map) {
-        if (input.compareTo(map.source) >= 0 && input.compareTo(map.sourceEnd) <= 0) {
-            return Optional.of(input.add(map.sourceDestinationDifference));
-        }
-        return Optional.empty();
-    }
-
-    private static String getMapName(List<String> inputList, int lineIndex) {
-        String mapName = "";
-        Pattern pattern = Pattern.compile("([\\w-]+) map");
-        Matcher matcher = pattern.matcher(inputList.get(lineIndex));
-        if (matcher.find()) {
-            mapName = matcher.group(1);
-        }
-        return mapName;
+        return newSeeds;
     }
 
     private static final class Map {
 
-        BigInteger source;
-        BigInteger sourceEnd;
-        BigInteger destination;
-        BigInteger destinationEnd;
-        BigInteger range;
-        BigInteger sourceDestinationDifference;
+        long source;
+        long destination;
+        long range;
 
-        private Map(BigInteger destination, BigInteger source, BigInteger range) {
-            this.destination = destination;
-            this.source = source;
-            this.range = range;
-            this.destinationEnd = this.destination.add(this.range).subtract(new BigInteger("1")) ;
-            this.sourceEnd = this.source.add(this.range).subtract(new BigInteger("1"));
-            this.sourceDestinationDifference = this.destination.subtract(this.source);
+        private Map(String source, String destination, String range) {
+            this.source = Long.parseLong(source);
+            this.destination = Long.parseLong(destination);
+            this.range = Long.parseLong(range);
+        }
+
+        public String toString() {
+            return "Map{source=" + source + ",destination=" + destination + ",range=" + range + "}";
         }
     }
 }
