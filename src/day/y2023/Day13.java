@@ -19,35 +19,30 @@ public class Day13 {
         List<String> input = Arrays.stream(
                         Reader.readInputAsString("y2023", "13").split("\n\n"))
                 .toList();
-
         Integer sum = 0;
         for (String inputLine : input) {
             String[] pattern = inputLine.split("\n");
             String[][] matrix = new String[pattern.length][pattern[0].length()];
             for (int i = 0; i < pattern.length; i++) {
                 String[] patternSplit = pattern[i].split("");
-                for (int j = 0; j < patternSplit.length; j++) {
-                    matrix[i][j] = patternSplit[j];
-                }
+                System.arraycopy(patternSplit, 0, matrix[i], 0, patternSplit.length);
             }
-
             sum += reflect(matrix, targetDifference);
         }
         System.out.println(sum);
     }
 
     private static Integer reflect(String[][] matrix, int targetDifference) {
-        int difference;
         for (int column = 1; column < matrix[0].length; column++) {
-            difference = 0;
+            int difference = 0;
             for (int j = 1; j < matrix[0].length; j++) {
-                if (column - j < 0 || column + (j - 1) > matrix[0].length - 1) {
+                if (column - j < 0 || column + j > matrix[0].length) {
                     break;
                 }
-                for (String[] strings : matrix) {
-                    String a = strings[column - j];
-                    String b = strings[column + j - 1];
-                    if (!Objects.equals(a, b)) {
+                for (int i = 0; i < matrix.length; i++) {
+                    String leftReflection = matrix[i][column - j];
+                    String rightReflection = matrix[i][column + j - 1];
+                    if (!Objects.equals(leftReflection, rightReflection)) {
                         difference++;
                     }
                 }
@@ -56,17 +51,16 @@ public class Day13 {
                 return column;
             }
         }
-
         for (int row = 1; row < matrix.length; row++) {
-            difference = 0;
+            int difference = 0;
             for (int i = 1; i < matrix.length; i++) {
-                if ((row - i) < 0 || row + (i - 1) > matrix.length - 1) {
+                if (row - i < 0 || row + i > matrix.length) {
                     break;
                 }
                 for (int j = 0; j < matrix[i].length; j++) {
-                    String a = matrix[row - i][j];
-                    String b = matrix[row + (i - 1)][j];
-                    if (!Objects.equals(a, b)) {
+                    String topReflection = matrix[row - i][j];
+                    String bottomReflection = matrix[row + (i - 1)][j];
+                    if (!Objects.equals(topReflection, bottomReflection)) {
                         difference++;
                     }
                 }
