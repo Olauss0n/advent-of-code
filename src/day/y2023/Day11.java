@@ -19,7 +19,7 @@ public class Day11 {
 
     private static void runCommonPart(long expandMultiplier) {
         expandMultiplier--;
-        List<List<String>> input = Reader.readFileAsArrayList("y2023", "11").stream()
+        List<List<String>> input = Reader.readFileAsList("y2023", "11").stream()
                 .map(line -> line.split(""))
                 .map(Arrays::asList)
                 .toList();
