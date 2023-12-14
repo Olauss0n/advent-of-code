@@ -7,6 +7,7 @@ import day.y2023.Day07;
 import day.y2023.Day08;
 import day.y2023.Day09;
 import day.y2023.Day11;
+import day.y2023.Day13;
 import day.y2023.Day14;
 
 import java.util.Arrays;
@@ -36,6 +37,8 @@ public class Main {
             Day09.run();
         } else if (argument == 11) {
             Day11.run();
+        } else if (argument == 13) {
+            Day13.run();
         } else if (argument == 14) {
             Day14.run();
         }
