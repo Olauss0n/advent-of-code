@@ -4,6 +4,7 @@ out/
 !**/src/test/**/out/
 .idea
 advent-of-code.iml
+src/util/session-cookie.txt
 
 ### Eclipse ###
 .apt_generated
