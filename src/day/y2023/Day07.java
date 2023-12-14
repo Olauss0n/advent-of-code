@@ -18,7 +18,7 @@ public class Day07 {
     }
 
     private static void runPartOne() {
-        ArrayList<HandPartOne> hands = new ArrayList<>(Reader.readFileAsList("y2023", "07").stream()
+        ArrayList<HandPartOne> hands = new ArrayList<>(Reader.readInputAsList("y2023", "07").stream()
                 .map(row -> new HandPartOne(
                         Arrays.asList(row.split(" ")).get(0),
                         Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))
@@ -37,7 +37,7 @@ public class Day07 {
     }
 
     private static void runPartTwo() {
-        ArrayList<HandPartTwo> hands = new ArrayList<>(Reader.readFileAsList("y2023", "07").stream()
+        ArrayList<HandPartTwo> hands = new ArrayList<>(Reader.readInputAsList("y2023", "07").stream()
                 .map(row -> new HandPartTwo(
                         Arrays.asList(row.split(" ")).get(0),
                         Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))

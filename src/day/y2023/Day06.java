@@ -17,7 +17,7 @@ public class Day06 {
     }
 
     private static void runPartOne() {
-        List<String> inputList = Reader.readFileAsList("y2023", "06");
+        List<String> inputList = Reader.readInputAsList("y2023", "06");
 
         List<Integer> times = Arrays.stream(inputList.get(0).replaceAll("Time: +", "").split(" +")).map(Integer::parseInt).toList();
         List<Integer> distances = Arrays.stream(inputList.get(1).replaceAll("Distance: +", "").split(" +")).map(Integer::parseInt).toList();
@@ -39,7 +39,7 @@ public class Day06 {
     }
 
     private static void runPartTwo() {
-        List<String> inputList = Reader.readFileAsList("y2023", "06");
+        List<String> inputList = Reader.readInputAsList("y2023", "06");
 
         BigInteger time = BigInteger.valueOf(Long.parseLong(inputList.get(0).replaceAll("Time: +| +", "")));
         BigInteger distance = BigInteger.valueOf(Long.parseLong(inputList.get(1).replaceAll("Distance: +| +", "")));

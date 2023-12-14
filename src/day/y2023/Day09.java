@@ -17,7 +17,7 @@ public class Day09 {
     }
 
     private static void runPartOne() {
-        List<List<Long>> input = Reader.readFileAsList("y2023", "09").stream()
+        List<List<Long>> input = Reader.readInputAsList("y2023", "09").stream()
                 .map(line -> Arrays.stream(line.split(" ")).map(Long::parseLong).toList())
                 .toList();
 
@@ -33,7 +33,7 @@ public class Day09 {
     }
 
     private static void runPartTwo() {
-        List<List<Long>> input = Reader.readFileAsList("y2023", "09").stream()
+        List<List<Long>> input = Reader.readInputAsList("y2023", "09").stream()
                 .map(line -> Arrays.stream(line.split(" ")).map(Long::parseLong).toList())
                 .toList();
 

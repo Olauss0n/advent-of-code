@@ -16,7 +16,7 @@ public class Day05 {
     }
 
     private static void runPartOne() {
-        String input = Reader.readFileAsString("y2023", "05");
+        String input = Reader.readInputAsString("y2023", "05");
         List<String> inputList = Arrays.asList(input.split("\n\n"));
         List<Long> seeds = new ArrayList<>(
                 Arrays.stream(inputList.get(0).replaceAll("seeds: ", "").split(" "))
@@ -32,7 +32,7 @@ public class Day05 {
     }
 
     private static void runPartTwo() {
-        String input = Reader.readFileAsString("y2023", "05");
+        String input = Reader.readInputAsString("y2023", "05");
         List<String> inputList = Arrays.asList(input.split("\n\n"));
         List<Long> seeds = new ArrayList<>(
                 Arrays.asList(inputList.get(0).replaceAll("seeds: ", "").split(" ")).stream()

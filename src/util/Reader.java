@@ -13,7 +13,7 @@ public class Reader {
     private static final String INPUT_START = "input-";
     private static final String TXT_EXTENSION = ".txt";
 
-    public static String readFileAsString(String directory, String inputNumber) {
+    public static String readInputAsString(String directory, String inputNumber) {
         String fileName = directory + PATH_DIVIDER + INPUT_START + inputNumber + TXT_EXTENSION;
         StringBuilder textFile = new StringBuilder();
         File openFile = new File(INPUT_PATH + directory + PATH_DIVIDER + INPUT_START + inputNumber + TXT_EXTENSION);
@@ -30,7 +30,7 @@ public class Reader {
         return textFile.toString();
     }
 
-    public static List<String> readFileAsList(String directory, String inputNumber) {
+    public static List<String> readInputAsList(String directory, String inputNumber) {
         String fileName = directory + PATH_DIVIDER + INPUT_START + inputNumber + TXT_EXTENSION;
         ArrayList<String> textFile = new ArrayList<>();
         File openFile = new File(INPUT_PATH + directory + PATH_DIVIDER + INPUT_START + inputNumber + TXT_EXTENSION);

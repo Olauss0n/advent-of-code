@@ -20,7 +20,7 @@ public class Day01 {
     }
 
     public static void runPartOne() {
-        String input = Reader.readFileAsString("y2023", "01");
+        String input = Reader.readInputAsString("y2023", "01");
 
         String newInput = input.replaceAll("[a-zA-Z]", "");
 
@@ -42,7 +42,7 @@ public class Day01 {
     }
 
     private static void runPartTwoWithOverlaps() {
-        String input = Reader.readFileAsString("y2023", "01");
+        String input = Reader.readInputAsString("y2023", "01");
 
         String newInput = input.replaceAll("one", "o1e")
                 .replaceAll("two", "t2o")
@@ -82,7 +82,7 @@ public class Day01 {
             }
         };
 
-        List<String> inputList = Reader.readFileAsList("y2023", "01");
+        List<String> inputList = Reader.readInputAsList("y2023", "01");
         List<String> combinedList = new ArrayList<>();
 
         for (String line : inputList) {

@@ -17,7 +17,7 @@ public class Day08 {
     }
 
     private static void runPartOne() {
-        List<String> input = Reader.readFileAsList("y2023", "08");
+        List<String> input = Reader.readInputAsList("y2023", "08");
 
         List<String> instructions = List.of(input.get(0).split(""));
 
@@ -46,7 +46,7 @@ public class Day08 {
     }
 
     private static void runPartTwo() {
-        List<String> input = Reader.readFileAsList("y2023", "08");
+        List<String> input = Reader.readInputAsList("y2023", "08");
 
         List<String> instructions = List.of(input.get(0).split(""));
 

@@ -20,7 +20,7 @@ public class Day02 {
     }
 
     private static void runPartOne() {
-        List<String> inputList = Reader.readFileAsList("y2023", "02");
+        List<String> inputList = Reader.readInputAsList("y2023", "02");
 
         List<String> approvedGameIds = new ArrayList<>();
 
@@ -66,7 +66,7 @@ public class Day02 {
     }
 
     private static void runPartTwo() {
-        List<String> inputList = Reader.readFileAsList("y2023", "02");
+        List<String> inputList = Reader.readInputAsList("y2023", "02");
 
         List<Integer> minimumSetList = new ArrayList<>();
 
