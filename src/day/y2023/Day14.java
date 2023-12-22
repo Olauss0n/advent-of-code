@@ -1,5 +1,6 @@
 package day.y2023;
 
+import util.Converter;
 import util.Reader;
 
 import java.util.ArrayList;
@@ -16,17 +17,8 @@ public class Day14 {
     }
 
     private static void runPartOne() {
-        List<List<String>> input = Reader.readInputAsList("y2023", "14").stream()
-                .map(line -> Arrays.stream(line.split("")).toList())
-                .toList();
-        String[][] matrix = new String[input.size()][input.get(0).size()];
-
-        // Load matrix
-        for (int i = 0; i < input.size(); i++) {
-            for (int j = 0; j < input.get(i).size(); j++) {
-                matrix[i][j] = input.get(i).get(j);
-            }
-        }
+        List<String> input = Reader.readInputAsList("y2023", "14");
+        String[][] matrix = Converter.convertListInputToStringMatrix(input);
 
         // Update matrix
         boolean shouldKeepTiltingMatrix = true;
@@ -40,17 +32,8 @@ public class Day14 {
     }
 
     private static void runPartTwo() {
-        List<List<String>> input = Reader.readInputAsList("y2023", "14").stream()
-                .map(line -> Arrays.stream(line.split("")).toList())
-                .toList();
-        String[][] matrix = new String[input.size()][input.get(0).size()];
-
-        // Load matrix
-        for (int i = 0; i < input.size(); i++) {
-            for (int j = 0; j < input.get(i).size(); j++) {
-                matrix[i][j] = input.get(i).get(j);
-            }
-        }
+        List<String> input = Reader.readInputAsList("y2023", "14");
+        String[][] matrix = Converter.convertListInputToStringMatrix(input);
         ArrayList<String[][]> seenMatrixes = new ArrayList<>();
 
         int totalCycles = 1000000000;
