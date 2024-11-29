@@ -1,6 +1,4 @@
-package day.y2023;
-
-import util.Reader;
+package aoc.day.y2023;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import aoc.util.Reader;
 
 public class Day01 {
 

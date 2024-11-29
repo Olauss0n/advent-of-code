@@ -1,10 +1,10 @@
-package day.y2023;
-
-import util.Reader;
+package aoc.day.y2023;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import aoc.util.Reader;
 
 public class Day04 {
 
@@ -47,7 +47,8 @@ public class Day04 {
             List<String> winningNumbers = Arrays.asList(cardList.get(1).strip().split(" +"));
             List<String> yourNumbers = Arrays.asList(cardList.get(2).strip().split(" +"));
 
-            List<String> cardWinningNumbers = winningNumbers.stream().filter(yourNumbers::contains).toList();
+            List<String> cardWinningNumbers =
+                    winningNumbers.stream().filter(yourNumbers::contains).toList();
 
             if (!cardWinningNumbers.isEmpty()) {
                 /*
@@ -86,7 +87,8 @@ public class Day04 {
             this.cardId = Integer.parseInt(cardInfo.get(0).replace("Card", "").strip());
             this.winningNumbers = Arrays.asList(cardInfo.get(1).strip().split(" +"));
             this.yourNumbers = Arrays.asList(cardInfo.get(2).strip().split(" +"));
-            this.cardWinningNumbers = winningNumbers.stream().filter(yourNumbers::contains).toList();
+            this.cardWinningNumbers =
+                    winningNumbers.stream().filter(yourNumbers::contains).toList();
 
             if (!cardWinningNumbers.isEmpty()) {
                 cardPoints = (int) Math.pow(2, cardWinningNumbers.size() - 1);

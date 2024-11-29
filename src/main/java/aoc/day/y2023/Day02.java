@@ -1,10 +1,10 @@
-package day.y2023;
-
-import util.Reader;
+package aoc.day.y2023;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import aoc.util.Reader;
 
 public class Day02 {
 
@@ -23,7 +23,6 @@ public class Day02 {
         List<String> inputList = Reader.readInputAsList("y2023", "02");
 
         List<String> approvedGameIds = new ArrayList<>();
-
 
         for (String game : inputList) {
             List<String> gameIdAndCubes = Arrays.asList(game.split(":"));
@@ -60,7 +59,6 @@ public class Day02 {
             if (shouldAddGameId) {
                 approvedGameIds.add(gameId);
             }
-
         }
         approvedGameIds.stream().map(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
     }

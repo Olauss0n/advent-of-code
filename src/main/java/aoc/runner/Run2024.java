@@ -1,4 +1,4 @@
-package runner;
+package aoc.runner;
 
 public class Run2024 {
 

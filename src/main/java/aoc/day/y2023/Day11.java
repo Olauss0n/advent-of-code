@@ -1,12 +1,12 @@
-package day.y2023;
-
-import util.Reader;
+package aoc.day.y2023;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+
+import aoc.util.Reader;
 
 public class Day11 {
 
@@ -37,7 +37,9 @@ public class Day11 {
                     isEmptyRow = false;
                     Galaxy galaxy = new Galaxy(row, column);
                     galaxies.add(galaxy);
-                    columnToGalaxy.computeIfAbsent(column, x -> new ArrayList<>()).add(galaxy);
+                    columnToGalaxy
+                            .computeIfAbsent(column, x -> new ArrayList<>())
+                            .add(galaxy);
                 }
             }
             if (isEmptyRow) {
@@ -55,9 +57,15 @@ public class Day11 {
         for (int i = 0; i < galaxies.size(); i++) {
             for (int j = i + 1; j < galaxies.size(); j++) {
                 long distance = calculateDistance(galaxies.get(i), galaxies.get(j));
-                long emptyRowDistance = (Math.abs(Collections.binarySearch(emptyRows, galaxies.get(i).row) - Collections.binarySearch(emptyRows, galaxies.get(j).row))) * expandMultiplier;
-                long emptyColumnDistance = (Math.abs(Collections.binarySearch(emptyColumns, galaxies.get(i).column) - Collections.binarySearch(emptyColumns, galaxies.get(j).column))) * expandMultiplier;
-                //System.out.println("Distance between galaxy " + (i + 1) + ": " + galaxies.get(i)+ " and galaxy " + (j+1) + ": " + galaxies.get(j) + " is: " +  distance + " + " + emptyRowDistance + " + " + emptyColumnDistance);
+                long emptyRowDistance = (Math.abs(Collections.binarySearch(emptyRows, galaxies.get(i).row)
+                                - Collections.binarySearch(emptyRows, galaxies.get(j).row)))
+                        * expandMultiplier;
+                long emptyColumnDistance = (Math.abs(Collections.binarySearch(emptyColumns, galaxies.get(i).column)
+                                - Collections.binarySearch(emptyColumns, galaxies.get(j).column)))
+                        * expandMultiplier;
+                // System.out.println("Distance between galaxy " + (i + 1) + ": " + galaxies.get(i)+ " and galaxy " +
+                // (j+1) + ": " + galaxies.get(j) + " is: " +  distance + " + " + emptyRowDistance + " + " +
+                // emptyColumnDistance);
                 totalDistance += (distance + emptyRowDistance + emptyColumnDistance);
             }
         }
@@ -65,8 +73,7 @@ public class Day11 {
     }
 
     private static long calculateDistance(Galaxy galaxy1, Galaxy galaxy2) {
-        return Math.abs(galaxy1.row - galaxy2.row)
-                + Math.abs(galaxy1.column - galaxy2.column);
+        return Math.abs(galaxy1.row - galaxy2.row) + Math.abs(galaxy1.column - galaxy2.column);
     }
 
     private record Galaxy(int row, int column) {}

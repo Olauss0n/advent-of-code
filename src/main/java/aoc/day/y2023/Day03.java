@@ -1,11 +1,11 @@
-package day.y2023;
-
-import util.Converter;
-import util.Reader;
+package aoc.day.y2023;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+
+import aoc.util.Converter;
+import aoc.util.Reader;
 
 public class Day03 {
 

@@ -1,11 +1,11 @@
-package day.y2023;
-
-import util.Reader;
+package aoc.day.y2023;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
+
+import aoc.util.Reader;
 
 public class Day09 {
 

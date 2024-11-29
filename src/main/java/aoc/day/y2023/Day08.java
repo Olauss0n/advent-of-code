@@ -1,11 +1,11 @@
-package day.y2023;
-
-import util.Reader;
+package aoc.day.y2023;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
+import aoc.util.Reader;
 
 public class Day08 {
 
@@ -25,7 +25,9 @@ public class Day08 {
 
         for (int index = 2; index < input.size(); index++) {
             String s = input.get(index);
-            List<String> elements = Arrays.stream(s.replaceAll("\\W+", " ").split(" ")).map(String::trim).toList();
+            List<String> elements = Arrays.stream(s.replaceAll("\\W+", " ").split(" "))
+                    .map(String::trim)
+                    .toList();
             Node node = new Node(elements.get(0), elements.get(1), elements.get(2));
             nodes.put(node.current, node);
         }
@@ -54,12 +56,17 @@ public class Day08 {
 
         for (int index = 2; index < input.size(); index++) {
             String s = input.get(index);
-            List<String> elements = Arrays.stream(s.replaceAll("\\W+", " ").split(" ")).map(String::trim).toList();
+            List<String> elements = Arrays.stream(s.replaceAll("\\W+", " ").split(" "))
+                    .map(String::trim)
+                    .toList();
             Node node = new Node(elements.get(0), elements.get(1), elements.get(2));
             nodes.put(node.current, node);
         }
 
-        List<Node> currentNodes = nodes.keySet().stream().filter(key -> key.endsWith("A")).map(nodes::get).toList();
+        List<Node> currentNodes = nodes.keySet().stream()
+                .filter(key -> key.endsWith("A"))
+                .map(nodes::get)
+                .toList();
 
         ArrayList<Long> cycleLengths = new ArrayList<>();
 

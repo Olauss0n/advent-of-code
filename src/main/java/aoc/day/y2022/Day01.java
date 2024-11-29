@@ -1,6 +1,4 @@
-package day.y2022;
-
-import util.Reader;
+package aoc.day.y2022;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -8,6 +6,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+
+import aoc.util.Reader;
 
 public class Day01 {
 
@@ -36,7 +36,7 @@ public class Day01 {
 
         ArrayList<Integer> calorieList = new ArrayList<>();
 
-        for (String element: input.split("\n\n")) {
+        for (String element : input.split("\n\n")) {
             List<String> individualList = Arrays.asList(element.split("\n"));
             Integer calorie = individualList.stream().map(Integer::parseInt).reduce(0, Integer::sum);
             calorieList.add(calorie);

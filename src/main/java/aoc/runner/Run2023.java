@@ -1,18 +1,18 @@
-package runner;
+package aoc.runner;
 
-import day.y2023.Day01;
-import day.y2023.Day02;
-import day.y2023.Day03;
-import day.y2023.Day04;
-import day.y2023.Day05;
-import day.y2023.Day06;
-import day.y2023.Day07;
-import day.y2023.Day08;
-import day.y2023.Day09;
-import day.y2023.Day11;
-import day.y2023.Day13;
-import day.y2023.Day14;
-import day.y2023.Day15;
+import aoc.day.y2023.Day01;
+import aoc.day.y2023.Day02;
+import aoc.day.y2023.Day03;
+import aoc.day.y2023.Day04;
+import aoc.day.y2023.Day05;
+import aoc.day.y2023.Day06;
+import aoc.day.y2023.Day07;
+import aoc.day.y2023.Day08;
+import aoc.day.y2023.Day09;
+import aoc.day.y2023.Day11;
+import aoc.day.y2023.Day13;
+import aoc.day.y2023.Day14;
+import aoc.day.y2023.Day15;
 
 public class Run2023 {
 
@@ -31,7 +31,6 @@ public class Run2023 {
             case 13 -> Day13.run();
             case 14 -> Day14.run();
             case 15 -> Day15.run();
-            default -> throw new IllegalArgumentException("Provided day is not supported");
         }
     }
 }

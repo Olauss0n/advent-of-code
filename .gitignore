@@ -1,10 +1,11 @@
 ### IntelliJ IDEA ###
 out/
+target/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .idea
 advent-of-code.iml
-src/util/session-cookie.txt
+src/main/java/aoc/util/session-cookie.txt
 
 ### Eclipse ###
 .apt_generated
