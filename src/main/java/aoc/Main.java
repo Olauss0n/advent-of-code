@@ -13,10 +13,12 @@ public class Main {
         int year = arguments.getFirst();
         int day = arguments.getLast();
         if (year > 2035 || year < 2015) {
-            throw new IllegalArgumentException("Invalid year: " + year);
+            System.out.println("Invalid year: " + year);
+            return;
         }
         if (day < 1 || day > 31) {
-            throw new IllegalArgumentException("Invalid day: " + day);
+            System.out.println("Invalid day: " + day);
+            return;
         }
 
         InputFetcher.fetchInput(year, day);
