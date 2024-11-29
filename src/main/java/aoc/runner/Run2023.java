@@ -12,7 +12,6 @@ import aoc.day.y2023.Day09;
 import aoc.day.y2023.Day11;
 import aoc.day.y2023.Day13;
 import aoc.day.y2023.Day14;
-import aoc.day.y2023.Day15;
 
 public class Run2023 {
 
@@ -30,7 +29,6 @@ public class Run2023 {
             case 11 -> Day11.run();
             case 13 -> Day13.run();
             case 14 -> Day14.run();
-            case 15 -> Day15.run();
         }
     }
 }
