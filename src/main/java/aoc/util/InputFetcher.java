@@ -54,8 +54,7 @@ public class InputFetcher {
     }
 
     private static String getSessionToken() throws IOException {
-        String sessionCookie = Files.readString(Paths.get("src", "main", "java", "aoc", "util", "session-cookie.txt"))
-                .trim();
+        String sessionCookie = Files.readString(Paths.get("session-cookie.txt")).trim();
         if (sessionCookie.isEmpty()) {
             throw new RuntimeException("Could not load session cookie");
         }
