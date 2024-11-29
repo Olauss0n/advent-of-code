@@ -1,11 +1,11 @@
-package aoc.day.y2024;
+package aoc.day.y2023;
 
 import aoc.day.AdventOfCodeBaseTest;
 import aoc.util.AdventOfCodeSolver;
 
-public class Day01Test extends AdventOfCodeBaseTest {
+public class Day05Test extends AdventOfCodeBaseTest {
     @Override
     protected AdventOfCodeSolver getSolver() {
-        return new Day01();
+        return new Day05();
     }
 }

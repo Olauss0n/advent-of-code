@@ -1,4 +1,4 @@
-package aoc.day.y2024;
+package aoc.day.y2023;
 
 import aoc.day.AdventOfCodeBaseTest;
 import aoc.util.AdventOfCodeSolver;
