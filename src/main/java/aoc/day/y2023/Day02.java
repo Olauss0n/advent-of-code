@@ -4,22 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day02 {
+public class Day02 implements AdventOfCodeSolver {
 
     private static final Integer MAX_RED_CUBES = 12;
     private static final Integer MAX_GREEN_CUBES = 13;
     private static final Integer MAX_BLUE_CUBES = 14;
 
-    public static void run() {
-        System.out.print("For part one: ");
-        runPartOne();
-        System.out.print("For part two: ");
-        runPartTwo();
-    }
-
-    private static void runPartOne() {
+    @Override
+    public Object solvePartOne() {
         List<String> inputList = Reader.readInputAsList("y2023", "02");
 
         List<String> approvedGameIds = new ArrayList<>();
@@ -60,10 +55,14 @@ public class Day02 {
                 approvedGameIds.add(gameId);
             }
         }
-        approvedGameIds.stream().map(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
+        return approvedGameIds.stream()
+                .map(Integer::parseInt)
+                .reduce(Integer::sum)
+                .orElseThrow();
     }
 
-    private static void runPartTwo() {
+    @Override
+    public Object solvePartTwo() {
         List<String> inputList = Reader.readInputAsList("y2023", "02");
 
         List<Integer> minimumSetList = new ArrayList<>();
@@ -106,6 +105,6 @@ public class Day02 {
             Integer minimumPowerNeeded = redMaxAmount * greenMaxAmount * blueMaxAmount;
             minimumSetList.add(minimumPowerNeeded);
         }
-        minimumSetList.stream().reduce(Integer::sum).ifPresent(System.out::println);
+        return minimumSetList.stream().reduce(Integer::sum).orElseThrow();
     }
 }

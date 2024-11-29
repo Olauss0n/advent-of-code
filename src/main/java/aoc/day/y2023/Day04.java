@@ -4,27 +4,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day04 {
+public class Day04 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.print("For part one: ");
-        runPartOne();
-        System.out.print("For part two: ");
-        runPartTwo();
-    }
-
-    private static void runPartOne() {
-        List<String> input = Reader.readInputAsList("y2023", "04");
+    @Override
+    public Object solvePartOne() {
+        List<String> input = Reader.readInputAsList(this.getClass());
 
         List<Card> cards = input.stream().map(Card::new).toList();
 
-        cards.stream().map(card -> card.cardPoints).reduce(Integer::sum).ifPresent(System.out::println);
+        return cards.stream().map(card -> card.cardPoints).reduce(Integer::sum).orElseThrow();
     }
 
-    private static void runPartTwo() {
-        List<String> input = Reader.readInputAsList("y2023", "04");
+    @Override
+    public Object solvePartTwo() {
+        List<String> input = Reader.readInputAsList(this.getClass());
 
         List<Card> cards = input.stream().map(Card::new).toList();
 
@@ -33,11 +29,11 @@ public class Day04 {
         for (Card card : cards) {
             handleCard(card, cards, cardPile);
         }
-        System.out.println(cardPile.size());
+        return cardPile.size();
     }
 
-    private static void runPartOneWithOutCardClass() {
-        List<String> cards = Reader.readInputAsList("y2023", "04");
+    private int runPartOneWithOutCardClass() {
+        List<String> cards = Reader.readInputAsList(this.getClass());
 
         List<Integer> cardPoints = new ArrayList<>();
 
@@ -64,7 +60,7 @@ public class Day04 {
                 cardPoints.add(points);
             }
         }
-        cardPoints.stream().reduce(Integer::sum).ifPresent(System.out::println);
+        return cardPoints.stream().reduce(Integer::sum).orElseThrow();
     }
 
     private static void handleCard(Card card, List<Card> cards, List<Card> cardPile) {

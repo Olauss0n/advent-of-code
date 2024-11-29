@@ -4,20 +4,24 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day13 {
+public class Day13 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.println("For part one: ");
-        runCommonPart(0);
-        System.out.println("For part two: ");
-        runCommonPart(1);
+    @Override
+    public Object solvePartOne() {
+        return runCommonPart(0);
     }
 
-    private static void runCommonPart(int targetDifference) {
+    @Override
+    public Object solvePartTwo() {
+        return runCommonPart(1);
+    }
+
+    private int runCommonPart(int targetDifference) {
         List<String> input = Arrays.stream(
-                        Reader.readInputAsString("y2023", "13").split("\n\n"))
+                        Reader.readInputAsString(this.getClass()).split("\n\n"))
                 .toList();
         Integer sum = 0;
         for (String inputLine : input) {
@@ -29,7 +33,7 @@ public class Day13 {
             }
             sum += reflect(matrix, targetDifference);
         }
-        System.out.println(sum);
+        return sum;
     }
 
     private static Integer reflect(String[][] matrix, int targetDifference) {

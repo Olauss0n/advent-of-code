@@ -5,19 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day09 {
+public class Day09 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.print("For part one: ");
-        runPartOne();
-        System.out.print("For part two: ");
-        runPartTwo();
-    }
-
-    private static void runPartOne() {
-        List<List<Long>> input = Reader.readInputAsList("y2023", "09").stream()
+    @Override
+    public Object solvePartOne() {
+        List<List<Long>> input = Reader.readInputAsList(this.getClass()).stream()
                 .map(line -> Arrays.stream(line.split(" ")).map(Long::parseLong).toList())
                 .toList();
 
@@ -29,11 +24,12 @@ public class Day09 {
                 extrapolatedValues.add(digits.get(digits.size() - 1));
             }
         }
-        extrapolatedValues.stream().reduce(Long::sum).ifPresent(System.out::println);
+        return extrapolatedValues.stream().reduce(Long::sum).orElseThrow();
     }
 
-    private static void runPartTwo() {
-        List<List<Long>> input = Reader.readInputAsList("y2023", "09").stream()
+    @Override
+    public Object solvePartTwo() {
+        List<List<Long>> input = Reader.readInputAsList(this.getClass()).stream()
                 .map(line -> Arrays.stream(line.split(" ")).map(Long::parseLong).toList())
                 .toList();
 
@@ -47,7 +43,7 @@ public class Day09 {
             }
             extrapolatedValues.add(calculateDifference(firstValues));
         }
-        extrapolatedValues.stream().reduce(Long::sum).ifPresent(System.out::println);
+        return extrapolatedValues.stream().reduce(Long::sum).orElseThrow();
     }
 
     private static Long calculateDifference(ArrayList<Long> values) {

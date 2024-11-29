@@ -7,23 +7,21 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day01 {
+public class Day01 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.printf("Part 1: %s%n", runPart1());
-        System.out.printf("Part 2: %s%n", runPart2());
-    }
-
-    public static String runPart1() {
+    @Override
+    public Object solvePartOne() {
         ArrayList<Integer> calorieList = commonPart();
         Optional<Integer> maxValue = calorieList.stream().max(Comparator.naturalOrder());
 
         return maxValue.orElseThrow().toString();
     }
 
-    public static String runPart2() {
+    @Override
+    public Object solvePartTwo() {
         ArrayList<Integer> calorieList = commonPart();
 
         calorieList.sort(Collections.reverseOrder());
@@ -31,8 +29,8 @@ public class Day01 {
         return calorieList.stream().limit(3).reduce(0, Integer::sum).toString();
     }
 
-    private static ArrayList<Integer> commonPart() {
-        String input = Reader.readInputAsString("y2022", "01");
+    private ArrayList<Integer> commonPart() {
+        String input = Reader.readInputAsString(this.getClass());
 
         ArrayList<Integer> calorieList = new ArrayList<>();
 

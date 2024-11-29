@@ -8,19 +8,14 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day01 {
+public class Day01 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.print("For part one: ");
-        runPartOne();
-        System.out.print("For part two: ");
-        runPartTwo();
-    }
-
-    public static void runPartOne() {
-        String input = Reader.readInputAsString("y2023", "01");
+    @Override
+    public Object solvePartOne() {
+        String input = Reader.readInputAsString(this.getClass());
 
         String newInput = input.replaceAll("[a-zA-Z]", "");
 
@@ -33,16 +28,16 @@ public class Day01 {
             String wantedNumber = firstDigit + lastDigit;
             combinedList.add(wantedNumber);
         }
-        combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
+        return combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).orElseThrow();
     }
 
-    public static void runPartTwo() {
-        runPartTwoWithOverlaps();
-        // runPartTwoWithoutOverlaps();
+    @Override
+    public Object solvePartTwo() {
+        return runPartTwoWithOverlaps();
     }
 
-    private static void runPartTwoWithOverlaps() {
-        String input = Reader.readInputAsString("y2023", "01");
+    private Integer runPartTwoWithOverlaps() {
+        String input = Reader.readInputAsString(this.getClass());
 
         String newInput = input.replaceAll("one", "o1e")
                 .replaceAll("two", "t2o")
@@ -64,10 +59,10 @@ public class Day01 {
             String wantedNumber = firstDigit + lastDigit;
             combinedList.add(wantedNumber);
         }
-        combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
+        return combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).orElseThrow();
     }
 
-    private static void runPartTwoWithoutOverlaps() {
+    private Integer runPartTwoWithoutOverlaps() {
         Map<String, String> replacements = new HashMap<>() {
             {
                 put("one", "1");
@@ -82,7 +77,7 @@ public class Day01 {
             }
         };
 
-        List<String> inputList = Reader.readInputAsList("y2023", "01");
+        List<String> inputList = Reader.readInputAsList(this.getClass());
         List<String> combinedList = new ArrayList<>();
 
         for (String line : inputList) {
@@ -108,6 +103,6 @@ public class Day01 {
             String wantedNumber = firstDigit + lastDigit;
             combinedList.add(wantedNumber);
         }
-        combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).ifPresent(System.out::println);
+        return combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).orElseThrow();
     }
 }
