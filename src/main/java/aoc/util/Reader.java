@@ -24,40 +24,34 @@ public class Reader {
         String className = callingClass.getSimpleName();
         String day = className.replaceAll("[^0-9]", ""); // Extract "01"
 
-        // Delegate to existing read method
+        return readInput(year, day, inputType);
+    }
+
+    private static <T> T readInput(String directory, String inputNumber, InputType inputType) {
+        StringBuilder textString = new StringBuilder();
+        ArrayList<String> textList = new ArrayList<>();
+        String inputFile = "input/%s/input-%s.txt".formatted(directory, inputNumber);
+        InputStream inputStream = Reader.class
+                .getClassLoader()
+                .getResourceAsStream(inputFile);
+        if (inputStream == null) {
+            throw new RuntimeException("Could not find input file: " + inputFile);
+        }
+        Scanner scanner = new Scanner(inputStream);
+        while (scanner.hasNextLine()) {
+            String data = scanner.nextLine();
+            textString.append(data).append("\n");
+            textList.add(data);
+        }
+        scanner.close();
         return switch (inputType) {
-            case STRING -> (T) readInputAsString(year, day);
-            case LIST -> (T) readInputAsList(year, day);
+            case STRING -> (T) textString.toString();
+            case LIST -> (T) textList;
         };
     }
 
-    private static String readInputAsString(String directory, String inputNumber) {
-        StringBuilder textFile = new StringBuilder();
-        InputStream inputStream = Reader.class
-                .getClassLoader()
-                .getResourceAsStream("input/%s/input-%s.txt".formatted(directory, inputNumber));
-        assert inputStream != null;
-        Scanner scanner = new Scanner(inputStream);
-        while (scanner.hasNextLine()) {
-            String data = scanner.nextLine();
-            textFile.append(data).append("\n");
-        }
-        scanner.close();
-        return textFile.toString();
-    }
-
-    private static List<String> readInputAsList(String directory, String inputNumber) {
-        ArrayList<String> textFile = new ArrayList<>();
-        InputStream inputStream = Reader.class
-                .getClassLoader()
-                .getResourceAsStream("input/%s/input-%s.txt".formatted(directory, inputNumber));
-        assert inputStream != null;
-        Scanner scanner = new Scanner(inputStream);
-        while (scanner.hasNextLine()) {
-            String data = scanner.nextLine();
-            textFile.add(data);
-        }
-        scanner.close();
-        return textFile;
+    private enum InputType {
+        STRING,
+        LIST
     }
 }
