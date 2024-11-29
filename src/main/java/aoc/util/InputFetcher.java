@@ -16,8 +16,14 @@ public class InputFetcher {
     public static void fetchInput(int year, int day) throws IOException, InterruptedException {
 
         Path path = createPath(year, day);
+        String sessionCookie = getSessionToken();
 
         if (Files.exists(path)) {
+            System.out.println("Input file already exists.");
+            return;
+        }
+        if (sessionCookie.isEmpty()) {
+            System.out.println("Session cookie could not be found.");
             return;
         }
 
@@ -25,14 +31,16 @@ public class InputFetcher {
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
-                .header("Cookie", "session=" + getSessionToken())
+                .header("Cookie", "session=" + sessionCookie)
                 .GET()
                 .build();
 
         HttpResponse<String> response = HttpClient.newHttpClient().send(request, BodyHandlers.ofString());
 
         if (response.statusCode() != 200) {
-            throw new RuntimeException("Failed : HTTP error code : " + response.statusCode());
+            System.out.println("Received http error code: " + response.statusCode());
+            System.out.println("Response body: " + response.body());
+            return;
         }
 
         Files.createDirectories(path.getParent());
@@ -54,10 +62,6 @@ public class InputFetcher {
     }
 
     private static String getSessionToken() throws IOException {
-        String sessionCookie = Files.readString(Paths.get("session-cookie.txt")).trim();
-        if (sessionCookie.isEmpty()) {
-            throw new RuntimeException("Could not load session cookie");
-        }
-        return sessionCookie;
+        return Files.readString(Paths.get("session-cookie.txt")).trim();
     }
 }
