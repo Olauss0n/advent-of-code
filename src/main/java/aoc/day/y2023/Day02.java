@@ -15,7 +15,7 @@ public class Day02 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartOne() {
-        List<String> inputList = Reader.readInputAsList("y2023", "02");
+        List<String> inputList = Reader.readInputAsList(this.getClass());
 
         List<String> approvedGameIds = new ArrayList<>();
 
@@ -63,7 +63,7 @@ public class Day02 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo() {
-        List<String> inputList = Reader.readInputAsList("y2023", "02");
+        List<String> inputList = Reader.readInputAsList(this.getClass());
 
         List<Integer> minimumSetList = new ArrayList<>();
 
