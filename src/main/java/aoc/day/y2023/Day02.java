@@ -21,18 +21,18 @@ public class Day02 implements AdventOfCodeSolver {
 
         for (String game : inputList) {
             List<String> gameIdAndCubes = Arrays.asList(game.split(":"));
-            String gameId = gameIdAndCubes.get(0).replaceAll("Game ", "");
-            List<String> sets = Arrays.asList(gameIdAndCubes.get(1).split(";"));
+            String gameId = gameIdAndCubes.getFirst().replaceAll("Game ", "");
+            String[] sets = gameIdAndCubes.get(1).split(";");
 
             boolean shouldAddGameId = true;
 
             for (String set : sets) {
-                List<String> cubes = Arrays.asList(set.split(","));
+                String[] cubes = set.split(",");
 
                 for (String cube : cubes) {
 
                     List<String> cubeList = Arrays.asList(cube.strip().split(" "));
-                    Integer amount = Integer.parseInt(cubeList.get(0));
+                    int amount = Integer.parseInt(cubeList.getFirst());
                     String color = cubeList.get(1);
 
                     switch (color) {
@@ -68,20 +68,20 @@ public class Day02 implements AdventOfCodeSolver {
         List<Integer> minimumSetList = new ArrayList<>();
 
         for (String game : inputList) {
-            Integer redMaxAmount = 0;
-            Integer greenMaxAmount = 0;
-            Integer blueMaxAmount = 0;
+            int redMaxAmount = 0;
+            int greenMaxAmount = 0;
+            int blueMaxAmount = 0;
             List<String> gameIdAndCubes = Arrays.asList(game.split(":"));
-            String gameId = gameIdAndCubes.get(0).replaceAll("Game ", "");
-            List<String> sets = Arrays.asList(gameIdAndCubes.get(1).split(";"));
+            String gameId = gameIdAndCubes.getFirst().replaceAll("Game ", "");
+            String[] sets = gameIdAndCubes.get(1).split(";");
 
             for (String set : sets) {
-                List<String> cubes = Arrays.asList(set.split(","));
+                String[] cubes = set.split(",");
 
                 for (String cube : cubes) {
 
                     List<String> cubeList = Arrays.asList(cube.strip().split(" "));
-                    Integer amount = Integer.parseInt(cubeList.get(0));
+                    int amount = Integer.parseInt(cubeList.getFirst());
                     String color = cubeList.get(1);
 
                     switch (color) {

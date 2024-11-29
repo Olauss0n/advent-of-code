@@ -15,7 +15,7 @@ public class Reader {
         return readInput(callingClass, InputType.LIST);
     }
 
-    public static <T> T readInput(Class<?> callingClass, InputType inputType) {
+    private static <T> T readInput(Class<?> callingClass, InputType inputType) {
         // Extract package name (e.g., "aoc.day.y2024")
         String packageName = callingClass.getPackageName();
         String year = packageName.substring(packageName.lastIndexOf('.') + 1); // Extract "y2024"
@@ -31,7 +31,7 @@ public class Reader {
         };
     }
 
-    public static String readInputAsString(String directory, String inputNumber) {
+    private static String readInputAsString(String directory, String inputNumber) {
         StringBuilder textFile = new StringBuilder();
         InputStream inputStream = Reader.class
                 .getClassLoader()
@@ -46,7 +46,7 @@ public class Reader {
         return textFile.toString();
     }
 
-    public static List<String> readInputAsList(String directory, String inputNumber) {
+    private static List<String> readInputAsList(String directory, String inputNumber) {
         ArrayList<String> textFile = new ArrayList<>();
         InputStream inputStream = Reader.class
                 .getClassLoader()

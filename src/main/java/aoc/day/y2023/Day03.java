@@ -105,7 +105,7 @@ public class Day03 implements AdventOfCodeSolver {
                         partNumbers.add(Integer.parseInt(partNumber.toString()));
                     }
                 }
-                sumOfGearRatios += partNumbers.get(0) * partNumbers.get(1);
+                sumOfGearRatios += partNumbers.getFirst() * partNumbers.get(1);
             }
         }
         return sumOfGearRatios;

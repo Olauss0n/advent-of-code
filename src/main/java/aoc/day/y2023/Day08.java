@@ -14,7 +14,7 @@ public class Day08 implements AdventOfCodeSolver {
     public Object solvePartOne() {
         List<String> input = Reader.readInputAsList(this.getClass());
 
-        List<String> instructions = List.of(input.get(0).split(""));
+        List<String> instructions = List.of(input.getFirst().split(""));
 
         HashMap<String, Node> nodes = new HashMap<>();
 
@@ -23,7 +23,7 @@ public class Day08 implements AdventOfCodeSolver {
             List<String> elements = Arrays.stream(s.replaceAll("\\W+", " ").split(" "))
                     .map(String::trim)
                     .toList();
-            Node node = new Node(elements.get(0), elements.get(1), elements.get(2));
+            Node node = new Node(elements.getFirst(), elements.get(1), elements.get(2));
             nodes.put(node.current, node);
         }
 
@@ -46,7 +46,7 @@ public class Day08 implements AdventOfCodeSolver {
     public Object solvePartTwo() {
         List<String> input = Reader.readInputAsList(this.getClass());
 
-        List<String> instructions = List.of(input.get(0).split(""));
+        List<String> instructions = List.of(input.getFirst().split(""));
 
         HashMap<String, Node> nodes = new HashMap<>();
 
@@ -55,7 +55,7 @@ public class Day08 implements AdventOfCodeSolver {
             List<String> elements = Arrays.stream(s.replaceAll("\\W+", " ").split(" "))
                     .map(String::trim)
                     .toList();
-            Node node = new Node(elements.get(0), elements.get(1), elements.get(2));
+            Node node = new Node(elements.getFirst(), elements.get(1), elements.get(2));
             nodes.put(node.current, node);
         }
 
@@ -84,9 +84,9 @@ public class Day08 implements AdventOfCodeSolver {
 
     private static long lcm(List<Long> nums) {
         if (nums.size() == 1) {
-            return nums.get(0);
+            return nums.getFirst();
         }
-        long a = nums.get(0);
+        long a = nums.getFirst();
         long b = lcm(nums.subList(1, nums.size()));
         return a * b / gcd(a, b);
     }
