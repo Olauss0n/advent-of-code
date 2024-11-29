@@ -1,8 +1,6 @@
 # Advent of Code
 
-Project for this year's [advent of code](https://adventofcode.com/).
-
-[Leaderboard](https://adventofcode.com/2023/leaderboard/private/view/2003266)
+Project with [advent of code](https://adventofcode.com/).
 
 ### Links for troubleshooting/test examples
 
@@ -45,12 +43,8 @@ Day 9:
 
 #### Java
 
-https://github.com/shanehowe/AdventOfCode2023/tree/main/src
-https://github.com/SimonGirardSfeir/AdventOfCode2023/tree/main/src/main/java/org/girardsimon
-https://github.com/dirk527/aoc2021/tree/main/src/aoc2023
+- [SimonGirardSfeir](https://github.com/SimonGirardSfeir/AdventOfCode2023/tree/main/src/main/java/org/girardsimon)
+- [dirk527](https://github.com/dirk527/aoc2021/tree/main/src/aoc2023)
 
 #### Python
-https://github.com/hyper-neutrino/advent-of-code/tree/main/2023
-
-Day 3 är inte
-541515 (Day03new) eller 540253 (Day03test)
+- [hyper-neutrino](https://github.com/hyper-neutrino/advent-of-code/tree/main/2023)
