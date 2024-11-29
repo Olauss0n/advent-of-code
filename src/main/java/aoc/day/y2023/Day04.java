@@ -80,7 +80,8 @@ public class Day04 implements AdventOfCodeSolver {
 
         private Card(String input) {
             List<String> cardInfo = Arrays.asList(input.split(":|\\|"));
-            this.cardId = Integer.parseInt(cardInfo.getFirst().replace("Card", "").strip());
+            this.cardId =
+                    Integer.parseInt(cardInfo.getFirst().replace("Card", "").strip());
             this.winningNumbers = Arrays.asList(cardInfo.get(1).strip().split(" +"));
             this.yourNumbers = Arrays.asList(cardInfo.get(2).strip().split(" +"));
             this.cardWinningNumbers =

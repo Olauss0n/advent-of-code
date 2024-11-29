@@ -31,9 +31,7 @@ public class Reader {
         StringBuilder textString = new StringBuilder();
         ArrayList<String> textList = new ArrayList<>();
         String inputFile = "input/%s/input-%s.txt".formatted(directory, inputNumber);
-        InputStream inputStream = Reader.class
-                .getClassLoader()
-                .getResourceAsStream(inputFile);
+        InputStream inputStream = Reader.class.getClassLoader().getResourceAsStream(inputFile);
         if (inputStream == null) {
             throw new RuntimeException("Could not find input file: " + inputFile);
         }

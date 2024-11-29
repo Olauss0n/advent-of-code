@@ -14,7 +14,8 @@ public class Converter {
                 .map(line -> Arrays.stream(line.split(delimiter)).toList())
                 .toList();
 
-        String[][] matrix = new String[inputMatrix.size()][inputMatrix.getFirst().size()];
+        String[][] matrix =
+                new String[inputMatrix.size()][inputMatrix.getFirst().size()];
 
         for (int row = 0; row < inputMatrix.size(); row++) {
             for (int column = 0; column < inputMatrix.get(row).size(); column++) {
