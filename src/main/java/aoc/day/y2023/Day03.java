@@ -4,20 +4,15 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.Reader;
 
-public class Day03 {
+public class Day03 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.print("For part one: ");
-        runPartOne();
-        System.out.print("For part two: ");
-        runPartTwo();
-    }
-
-    private static void runPartOne() {
-        List<String> input = Reader.readInputAsList("y2023", "03");
+    @Override
+    public Object solvePartOne() {
+        List<String> input = Reader.readInputAsList(this.getClass());
         String[][] matrix = Converter.convertListInputToStringMatrix(input);
 
         HashSet<Coordinate> coordinates = new HashSet<>();
@@ -61,14 +56,15 @@ public class Day03 {
                 partNumbers.add(Integer.parseInt(partNumber.toString()));
             }
         }
-        partNumbers.stream().reduce(Integer::sum).ifPresent(System.out::println);
+        return partNumbers.stream().reduce(Integer::sum).orElseThrow();
     }
 
-    private static void runPartTwo() {
-        List<String> input = Reader.readInputAsList("y2023", "03");
+    @Override
+    public Object solvePartTwo() {
+        List<String> input = Reader.readInputAsList(this.getClass());
         String[][] matrix = Converter.convertListInputToStringMatrix(input);
 
-        Integer sumOfGearRatios = 0;
+        int sumOfGearRatios = 0;
 
         for (int row = 0; row < matrix.length; row++) {
             for (int column = 0; column < matrix[row].length; column++) {
@@ -112,7 +108,7 @@ public class Day03 {
                 sumOfGearRatios += partNumbers.get(0) * partNumbers.get(1);
             }
         }
-        System.out.println(sumOfGearRatios);
+        return sumOfGearRatios;
     }
 
     private record Coordinate(Integer row, Integer column) {}

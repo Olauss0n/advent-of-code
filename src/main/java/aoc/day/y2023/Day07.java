@@ -6,19 +6,14 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day07 {
+public class Day07 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.print("For part one: ");
-        runPartOne();
-        System.out.print("For part two: ");
-        runPartTwo();
-    }
-
-    private static void runPartOne() {
-        ArrayList<HandPartOne> hands = new ArrayList<>(Reader.readInputAsList("y2023", "07").stream()
+    @Override
+    public Object solvePartOne() {
+        ArrayList<HandPartOne> hands = new ArrayList<>(Reader.readInputAsList(this.getClass()).stream()
                 .map(row -> new HandPartOne(
                         Arrays.asList(row.split(" ")).get(0),
                         Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))
@@ -33,11 +28,12 @@ public class Day07 {
             Integer winning = Math.multiplyExact(hand.bid, i + 1);
             totalWinnings.add(winning);
         }
-        totalWinnings.stream().reduce(Integer::sum).ifPresent(System.out::println);
+        return totalWinnings.stream().reduce(Integer::sum).orElseThrow();
     }
 
-    private static void runPartTwo() {
-        ArrayList<HandPartTwo> hands = new ArrayList<>(Reader.readInputAsList("y2023", "07").stream()
+    @Override
+    public Object solvePartTwo() {
+        ArrayList<HandPartTwo> hands = new ArrayList<>(Reader.readInputAsList(this.getClass()).stream()
                 .map(row -> new HandPartTwo(
                         Arrays.asList(row.split(" ")).get(0),
                         Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))
@@ -52,7 +48,7 @@ public class Day07 {
             Integer winning = Math.multiplyExact(hand.bid, i + 1);
             totalWinnings.add(winning);
         }
-        totalWinnings.stream().reduce(Integer::sum).ifPresent(System.out::println);
+        return totalWinnings.stream().reduce(Integer::sum).orElseThrow();
     }
 
     private static class HandPartOne implements Comparable<HandPartOne> {

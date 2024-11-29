@@ -4,19 +4,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day05 {
+public class Day05 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.print("For part one: ");
-        runPartOne();
-        System.out.print("For part two: ");
-        runPartTwo();
-    }
-
-    private static void runPartOne() {
-        String input = Reader.readInputAsString("y2023", "05");
+    @Override
+    public Object solvePartOne() {
+        String input = Reader.readInputAsString(this.getClass());
         List<String> inputList = Arrays.asList(input.split("\n\n"));
         List<Long> seeds = new ArrayList<>(
                 Arrays.stream(inputList.get(0).replaceAll("seeds: ", "").split(" "))
@@ -27,12 +22,12 @@ public class Day05 {
             List<Map> maps = getMaps(inputList, lineIndex);
             seeds = getNewSeeds(seeds, maps);
         }
-        Long minimumSeedValue = seeds.stream().reduce(Math::min).orElseThrow();
-        System.out.println(minimumSeedValue);
+        return seeds.stream().reduce(Math::min).orElseThrow();
     }
 
-    private static void runPartTwo() {
-        String input = Reader.readInputAsString("y2023", "05");
+    @Override
+    public Object solvePartTwo() {
+        String input = Reader.readInputAsString(this.getClass());
         List<String> inputList = Arrays.asList(input.split("\n\n"));
         List<Long> seeds = new ArrayList<>(
                 Arrays.asList(inputList.get(0).replaceAll("seeds: ", "").split(" ")).stream()
@@ -78,9 +73,7 @@ public class Day05 {
             }
             seedRanges = newSeeds;
         }
-        Long minimumSeedValue =
-                seedRanges.stream().map(List::getFirst).reduce(Math::min).orElseThrow();
-        System.out.println(minimumSeedValue);
+        return seedRanges.stream().map(List::getFirst).reduce(Math::min).orElseThrow();
     }
 
     private static List<Map> getMaps(List<String> inputList, int lineIndex) {

@@ -5,19 +5,14 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day08 {
+public class Day08 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.println("For part one: ");
-        runPartOne();
-        System.out.println("For part two: ");
-        runPartTwo();
-    }
-
-    private static void runPartOne() {
-        List<String> input = Reader.readInputAsList("y2023", "08");
+    @Override
+    public Object solvePartOne() {
+        List<String> input = Reader.readInputAsList(this.getClass());
 
         List<String> instructions = List.of(input.get(0).split(""));
 
@@ -44,11 +39,12 @@ public class Day08 {
             }
             steps++;
         }
-        System.out.println(steps);
+        return steps;
     }
 
-    private static void runPartTwo() {
-        List<String> input = Reader.readInputAsList("y2023", "08");
+    @Override
+    public Object solvePartTwo() {
+        List<String> input = Reader.readInputAsList(this.getClass());
 
         List<String> instructions = List.of(input.get(0).split(""));
 
@@ -83,8 +79,7 @@ public class Day08 {
             }
             cycleLengths.add(steps);
         }
-        Long leastCommonMultiple = lcm(cycleLengths);
-        System.out.println(leastCommonMultiple);
+        return lcm(cycleLengths);
     }
 
     private static long lcm(List<Long> nums) {

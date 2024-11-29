@@ -6,20 +6,24 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day11 {
+public class Day11 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.println("For part one: ");
-        runCommonPart(2);
-        System.out.println("For part two: ");
-        runCommonPart(1000000);
+    @Override
+    public Object solvePartOne() {
+        return runCommonPart(2);
     }
 
-    private static void runCommonPart(long expandMultiplier) {
+    @Override
+    public Object solvePartTwo() {
+        return runCommonPart(1000000);
+    }
+
+    private long runCommonPart(long expandMultiplier) {
         expandMultiplier--;
-        List<List<String>> input = Reader.readInputAsList("y2023", "11").stream()
+        List<List<String>> input = Reader.readInputAsList(this.getClass()).stream()
                 .map(line -> line.split(""))
                 .map(Arrays::asList)
                 .toList();
@@ -69,7 +73,7 @@ public class Day11 {
                 totalDistance += (distance + emptyRowDistance + emptyColumnDistance);
             }
         }
-        System.out.println(totalDistance);
+        return totalDistance;
     }
 
     private static long calculateDistance(Galaxy galaxy1, Galaxy galaxy2) {

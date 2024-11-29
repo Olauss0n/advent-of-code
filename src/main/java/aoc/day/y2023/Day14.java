@@ -4,20 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.Reader;
 
-public class Day14 {
+public class Day14 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.println("For part one: ");
-        runPartOne();
-        System.out.println("For part two: ");
-        runPartTwo();
-    }
-
-    private static void runPartOne() {
-        List<String> input = Reader.readInputAsList("y2023", "14");
+    @Override
+    public Object solvePartOne() {
+        List<String> input = Reader.readInputAsList(this.getClass());
         String[][] matrix = Converter.convertListInputToStringMatrix(input);
 
         // Update matrix
@@ -28,11 +23,12 @@ public class Day14 {
 
         // Calculate weight
         long weight = calculateWeight(matrix);
-        System.out.println(weight);
+        return weight;
     }
 
-    private static void runPartTwo() {
-        List<String> input = Reader.readInputAsList("y2023", "14");
+    @Override
+    public Object solvePartTwo() {
+        List<String> input = Reader.readInputAsList(this.getClass());
         String[][] matrix = Converter.convertListInputToStringMatrix(input);
         ArrayList<String[][]> seenMatrixes = new ArrayList<>();
 
@@ -62,7 +58,7 @@ public class Day14 {
 
         // Calculate weight
         long weight = calculateWeight(finalMatrix);
-        System.out.println(weight);
+        return weight;
     }
 
     private static boolean tiltMatrixNorth(String[][] matrix) {

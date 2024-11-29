@@ -5,19 +5,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 
-public class Day06 {
+public class Day06 implements AdventOfCodeSolver {
 
-    public static void run() {
-        System.out.print("For part one: ");
-        runPartOne();
-        System.out.print("For part two: ");
-        runPartTwo();
-    }
-
-    private static void runPartOne() {
-        List<String> inputList = Reader.readInputAsList("y2023", "06");
+    @Override
+    public Object solvePartOne() {
+        List<String> inputList = Reader.readInputAsList(this.getClass());
 
         List<Integer> times = Arrays.stream(
                         inputList.get(0).replaceAll("Time: +", "").split(" +"))
@@ -41,11 +36,12 @@ public class Day06 {
             }
             races.add(heats);
         }
-        races.stream().map(List::size).reduce(Math::multiplyExact).ifPresent(System.out::println);
+        return races.stream().map(List::size).reduce(Math::multiplyExact).orElseThrow();
     }
 
-    private static void runPartTwo() {
-        List<String> inputList = Reader.readInputAsList("y2023", "06");
+    @Override
+    public Object solvePartTwo() {
+        List<String> inputList = Reader.readInputAsList(this.getClass());
 
         BigInteger time = BigInteger.valueOf(Long.parseLong(inputList.get(0).replaceAll("Time: +| +", "")));
         BigInteger distance = BigInteger.valueOf(Long.parseLong(inputList.get(1).replaceAll("Distance: +| +", "")));
@@ -61,6 +57,6 @@ public class Day06 {
                 heats.add(holdDuration);
             }
         }
-        System.out.println(heats.size());
+        return heats.size();
     }
 }
