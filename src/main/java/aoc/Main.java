@@ -10,8 +10,8 @@ public class Main {
     public static void main(String[] args) throws IOException, InterruptedException {
         long start = System.currentTimeMillis();
         List<Integer> arguments = Arrays.stream(args).map(Integer::parseInt).toList();
-        int day = arguments.getFirst();
-        int year = arguments.getLast();
+        int year = arguments.getFirst();
+        int day = arguments.getLast();
         if (year > 2035 || year < 2015) {
             throw new IllegalArgumentException("Invalid year: " + year);
         }
