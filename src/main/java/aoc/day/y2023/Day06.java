@@ -15,7 +15,7 @@ public class Day06 implements AdventOfCodeSolver {
         List<String> inputList = Reader.readInputAsList(this.getClass());
 
         List<Integer> times = Arrays.stream(
-                        inputList.get(0).replaceAll("Time: +", "").split(" +"))
+                        inputList.getFirst().replaceAll("Time: +", "").split(" +"))
                 .map(Integer::parseInt)
                 .toList();
         List<Integer> distances = Arrays.stream(
@@ -43,7 +43,7 @@ public class Day06 implements AdventOfCodeSolver {
     public Object solvePartTwo() {
         List<String> inputList = Reader.readInputAsList(this.getClass());
 
-        BigInteger time = BigInteger.valueOf(Long.parseLong(inputList.get(0).replaceAll("Time: +| +", "")));
+        BigInteger time = BigInteger.valueOf(Long.parseLong(inputList.getFirst().replaceAll("Time: +| +", "")));
         BigInteger distance = BigInteger.valueOf(Long.parseLong(inputList.get(1).replaceAll("Distance: +| +", "")));
 
         ArrayList<BigInteger> heats = new ArrayList<>();

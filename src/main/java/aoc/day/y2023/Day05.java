@@ -14,7 +14,7 @@ public class Day05 implements AdventOfCodeSolver {
         String input = Reader.readInputAsString(this.getClass());
         List<String> inputList = Arrays.asList(input.split("\n\n"));
         List<Long> seeds = new ArrayList<>(
-                Arrays.stream(inputList.get(0).replaceAll("seeds: ", "").split(" "))
+                Arrays.stream(inputList.getFirst().replaceAll("seeds: ", "").split(" "))
                         .map(Long::parseLong)
                         .toList());
 
@@ -30,7 +30,7 @@ public class Day05 implements AdventOfCodeSolver {
         String input = Reader.readInputAsString(this.getClass());
         List<String> inputList = Arrays.asList(input.split("\n\n"));
         List<Long> seeds = new ArrayList<>(
-                Arrays.asList(inputList.get(0).replaceAll("seeds: ", "").split(" ")).stream()
+                Arrays.stream(inputList.getFirst().replaceAll("seeds: ", "").split(" "))
                         .map(Long::parseLong)
                         .toList());
 
@@ -49,7 +49,7 @@ public class Day05 implements AdventOfCodeSolver {
             while (!seedRanges.isEmpty()) {
                 List<Long> lastSeedRange = seedRanges.removeLast();
                 boolean rangeFound = false;
-                long seedRangeStart = lastSeedRange.get(0);
+                long seedRangeStart = lastSeedRange.getFirst();
                 long seedRangeEnd = lastSeedRange.get(1);
                 for (Map map : maps) {
                     long overlapStart = Math.max(seedRangeStart, map.destination);
@@ -82,7 +82,7 @@ public class Day05 implements AdventOfCodeSolver {
                 inputList.get(lineIndex).replaceAll("[\\w-]+ map:\n", "").split("\n");
         for (String element : elements) {
             List<String> values = Arrays.asList(element.split(" "));
-            Map map = new Map(values.get(0), values.get(1), values.get(2));
+            Map map = new Map(values.getFirst(), values.get(1), values.get(2));
             maps.add(map);
         }
         return maps;

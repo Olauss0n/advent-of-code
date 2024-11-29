@@ -82,7 +82,7 @@ public class Day01 implements AdventOfCodeSolver {
 
         for (String line : inputList) {
 
-            StringBuffer sb = new StringBuffer();
+            StringBuilder sb = new StringBuilder();
 
             Pattern pattern = Pattern.compile("(one)|(two)|(three)|(four)|(five)|(six)|(seven)|(eight)|(nine)");
             Matcher matcher = pattern.matcher(line);

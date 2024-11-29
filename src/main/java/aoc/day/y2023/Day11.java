@@ -51,7 +51,7 @@ public class Day11 implements AdventOfCodeSolver {
             }
         }
 
-        for (int column = 0; column < input.get(0).size(); column++) {
+        for (int column = 0; column < input.getFirst().size(); column++) {
             if (columnToGalaxy.get(column) == null) {
                 emptyColumns.add(column);
             }

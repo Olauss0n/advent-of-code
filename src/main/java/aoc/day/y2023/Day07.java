@@ -15,7 +15,7 @@ public class Day07 implements AdventOfCodeSolver {
     public Object solvePartOne() {
         ArrayList<HandPartOne> hands = new ArrayList<>(Reader.readInputAsList(this.getClass()).stream()
                 .map(row -> new HandPartOne(
-                        Arrays.asList(row.split(" ")).get(0),
+                        Arrays.asList(row.split(" ")).getFirst(),
                         Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))
                 .toList());
 
@@ -35,7 +35,7 @@ public class Day07 implements AdventOfCodeSolver {
     public Object solvePartTwo() {
         ArrayList<HandPartTwo> hands = new ArrayList<>(Reader.readInputAsList(this.getClass()).stream()
                 .map(row -> new HandPartTwo(
-                        Arrays.asList(row.split(" ")).get(0),
+                        Arrays.asList(row.split(" ")).getFirst(),
                         Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))
                 .toList());
 

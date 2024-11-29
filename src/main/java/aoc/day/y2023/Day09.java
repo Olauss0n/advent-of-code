@@ -18,10 +18,10 @@ public class Day09 implements AdventOfCodeSolver {
 
         ArrayList<Long> extrapolatedValues = new ArrayList<>();
         for (List<Long> digits : input) {
-            extrapolatedValues.add(digits.get(digits.size() - 1));
+            extrapolatedValues.add(digits.getLast());
             while (digits.stream().anyMatch(value -> 0L != value)) {
                 digits = getDifferences(digits);
-                extrapolatedValues.add(digits.get(digits.size() - 1));
+                extrapolatedValues.add(digits.getLast());
             }
         }
         return extrapolatedValues.stream().reduce(Long::sum).orElseThrow();
@@ -36,10 +36,10 @@ public class Day09 implements AdventOfCodeSolver {
         ArrayList<Long> extrapolatedValues = new ArrayList<>();
         for (List<Long> digits : input) {
             ArrayList<Long> firstValues = new ArrayList<>();
-            firstValues.add(digits.get(0));
+            firstValues.add(digits.getFirst());
             while (digits.stream().anyMatch(value -> 0L != value)) {
                 digits = getDifferences(digits);
-                firstValues.add(digits.get(0));
+                firstValues.add(digits.getFirst());
             }
             extrapolatedValues.add(calculateDifference(firstValues));
         }
