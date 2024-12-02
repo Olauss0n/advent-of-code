@@ -5,20 +5,18 @@ import java.util.List;
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 public class Day02 implements AdventOfCodeSolver {
 
     @Getter
+    @RequiredArgsConstructor
     public enum Hand {
         ROCK(1),
         PAPER(2),
         SCISSOR(3);
 
         private final int value;
-
-        Hand(int value) {
-            this.value = value;
-        }
     }
 
     @Override
@@ -30,14 +28,7 @@ public class Day02 implements AdventOfCodeSolver {
             String you = line.split(" ")[1];
             Hand opponentHand = getHand(opponent);
             Hand yourHand = getHand(you);
-            int outcome = (yourHand.value - opponentHand.value + 3) % 3;
-            if (outcome == 1) {
-                score += yourHand.value + 6;
-            } else if (outcome == 0) {
-                score += yourHand.value + 3;
-            } else {
-                score += yourHand.value;
-            }
+            score += calculateScore(opponentHand, yourHand);
         }
         return score;
     }
@@ -51,26 +42,18 @@ public class Day02 implements AdventOfCodeSolver {
             String you = line.split(" ")[1];
             Hand opponentHand = getHand(opponent);
             Hand yourHand = getHand(you);
-            if (Hand.ROCK.name().equals(yourHand.name())) {
-                // Lose
-                yourHand = createHand((opponentHand.value - 1 + 3) % 3);
-            } else if (Hand.PAPER.name().equals(yourHand.name())) {
-                // Draw
-                yourHand = createHand((opponentHand.value + 3) % 3);
-            } else {
-                // Win
-                yourHand = createHand((opponentHand.value + 1 + 3) % 3);
-            }
-            int outcome = (yourHand.value - opponentHand.value + 3) % 3;
-            if (outcome == 1) {
-                score += yourHand.value + 6;
-            } else if (outcome == 0) {
-                score += yourHand.value + 3;
-            } else {
-                score += yourHand.value;
-            }
+            Hand yourNewHand = createHand((opponentHand.value + adjustHand(yourHand)) % 3);
+            score += calculateScore(opponentHand, yourNewHand);
         }
         return score;
+    }
+
+    private long calculateScore(Hand opponentHand, Hand yourHand) {
+        return switch ((yourHand.value - opponentHand.value + 3) % 3) {
+            case 1 -> yourHand.value + 6;
+            case 0 -> yourHand.value + 3;
+            default -> yourHand.value;
+        };
     }
 
     private Hand getHand(String character) {
@@ -88,6 +71,14 @@ public class Day02 implements AdventOfCodeSolver {
             case 2 -> Hand.PAPER;
             case 0 -> Hand.SCISSOR;
             default -> throw new IllegalStateException("Unexpected value: " + value);
+        };
+    }
+
+    private int adjustHand(Hand hand) {
+        return switch (hand) {
+            case Hand.ROCK -> -1;
+            case Hand.PAPER -> 0;
+            case Hand.SCISSOR -> 1;
         };
     }
 }
