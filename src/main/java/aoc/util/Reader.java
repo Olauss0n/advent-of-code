@@ -7,6 +7,10 @@ import java.util.Scanner;
 
 public class Reader {
 
+    public static String readInputAsSingleString(Class<?> callingClass) {
+        return readInput(callingClass, InputType.STRING).toString().replace("\n", "");
+    }
+
     public static String readInputAsString(Class<?> callingClass) {
         return readInput(callingClass, InputType.STRING);
     }
