@@ -24,4 +24,14 @@ public class Converter {
         }
         return matrix;
     }
+
+    public static char[][] convertListInputToCharMatrix(List<String> input) {
+        char[][] matrix = new char[input.size()][input.getFirst().length()];
+
+        for (int i = 0; i < input.size(); i++) {
+            matrix[i] = input.get(i).toCharArray();
+        }
+
+        return matrix;
+    }
 }
