@@ -4,6 +4,32 @@ Project with [advent of code](https://adventofcode.com/).
 
 ### Links for troubleshooting/test examples
 
+#### 2024
+
+Day 6:
+- [Edge cases](https://www.reddit.com/r/adventofcode/comments/1h7x808/comment/m0ol010/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button)
+- ```
+  ..#.
+  ...#
+  ..^.
+  ```
+  (P1 = 2, P2 = 0)
+- ```
+  .#.
+  #.#
+  #^.
+  ...
+  ```
+  (P1 = 3, P2 = 1)
+- ```
+  .#.
+  ..#
+  #^.
+  ...
+  ```
+  (P1 = 3, P2 = 1)
+  
+  
 #### 2023
 
 Day 3:
