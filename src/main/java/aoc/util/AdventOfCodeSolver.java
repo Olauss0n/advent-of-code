@@ -6,8 +6,14 @@ public interface AdventOfCodeSolver {
 
     Object solvePartTwo();
 
+    default void setup() {
+        String output = "Running test for " + getYearAndDay();
+        System.out.println("-".repeat(output.length()));
+        System.out.println(output);
+        System.out.println("-".repeat(output.length()));
+    }
+
     default void runPartOne() {
-        System.out.println("Running test for " + getYearAndDay());
         System.out.println("Part one is: " + solvePartOne());
     }
 
