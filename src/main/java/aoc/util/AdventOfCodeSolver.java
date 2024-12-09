@@ -7,6 +7,11 @@ public interface AdventOfCodeSolver {
     Object solvePartTwo();
 
     default void setup() {
+        try {
+            InputFetcher.fetchInput(getYear(), getDay());
+        } catch (Exception e) {
+            System.out.println("Exception while fetching input: " + e);
+        }
         String output = "Running test for " + getYearAndDay();
         System.out.println("-".repeat(output.length()));
         System.out.println(output);

@@ -19,7 +19,7 @@ public class InputFetcher {
         String sessionCookie = getSessionToken();
 
         if (Files.exists(path)) {
-            System.out.println("Input file already exists.");
+            // System.out.println("Input file already exists.");
             return;
         }
         if (sessionCookie.isEmpty()) {
