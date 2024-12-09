@@ -4,6 +4,7 @@ target/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .idea
+src/main/resources/input
 advent-of-code.iml
 session-cookie.txt
 
