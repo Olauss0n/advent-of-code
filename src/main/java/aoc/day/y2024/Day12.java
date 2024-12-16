@@ -9,7 +9,11 @@ import java.util.Set;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
+import aoc.util.MatrixUtil.Direction;
+import aoc.util.MatrixUtil.Position;
 import aoc.util.Reader;
+
+import static aoc.util.MatrixUtil.isWithinBounds;
 
 public class Day12 implements AdventOfCodeSolver {
     @Override
@@ -62,7 +66,8 @@ public class Day12 implements AdventOfCodeSolver {
         set.add(pos);
         for (Direction direction : Direction.values()) {
             Position newPos = pos.move(direction);
-            if (isWithinBounds(matrix, newPos) && matrix[newPos.row][newPos.col].equals(matrix[pos.row][pos.col])) {
+            if (isWithinBounds(matrix, newPos)
+                    && matrix[newPos.yPos()][newPos.xPos()].equals(matrix[pos.yPos()][pos.xPos()])) {
                 set.add(newPos);
                 set = checkAdjacentPositions(matrix, newPos, visited, set);
             }
@@ -73,28 +78,5 @@ public class Day12 implements AdventOfCodeSolver {
     @Override
     public Object solvePartTwo() {
         return null;
-    }
-
-    private boolean isWithinBounds(String[][] matrix, Position pos) {
-        return (pos.col >= 0 && pos.row >= 0 && pos.row < matrix.length && pos.col < matrix[0].length);
-    }
-
-    private record Position(Integer row, Integer col) {
-
-        private Position move(Direction direction) {
-            return switch (direction) {
-                case UP -> new Position(row - 1, col);
-                case RIGHT -> new Position(row, col + 1);
-                case DOWN -> new Position(row + 1, col);
-                case LEFT -> new Position(row, col - 1);
-            };
-        }
-    }
-
-    private enum Direction {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT
     }
 }

@@ -4,24 +4,27 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
+import aoc.util.MatrixUtil.Position;
 import aoc.util.Reader;
+
+import static aoc.util.MatrixUtil.isWithinBounds;
 
 public class Day04 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne() {
         List<String> inputList = Reader.readInputAsList(this.getClass());
-        char[][] matrix = Converter.convertListInputToCharMatrix(inputList);
+        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
 
         int result = 0;
-        for (int x = 0; x < matrix.length; x++) {
-            for (int y = 0; y < matrix[x].length; y++) {
-                result += findXMAS(matrix, x, y);
+        for (int y = 0; y < matrix.length; y++) {
+            for (int x = 0; x < matrix[y].length; x++) {
+                result += findXMAS(matrix, new Position(x, y));
             }
         }
         return result;
     }
 
-    private int findXMAS(char[][] matrix, int x, int y) {
+    private int findXMAS(String[][] matrix, Position position) {
         int[][] directions = {
             {0, 1},
             {1, 0},
@@ -34,52 +37,47 @@ public class Day04 implements AdventOfCodeSolver {
         };
         int count = 0;
         for (int[] direction : directions) {
-            if (isXMAS(matrix, x, y, direction[0], direction[1])) {
+            if (isXMAS(matrix, position, direction[0], direction[1])) {
                 count++;
             }
         }
         return count;
     }
 
-    private boolean isXMAS(char[][] matrix, int x, int y, int xDirection, int yDirection) {
+    private boolean isXMAS(String[][] matrix, Position position, int xDirection, int yDirection) {
         int index = 0;
-        while (isWithinBounds(matrix, x, y)) {
-            char c = matrix[x][y];
+        while (isWithinBounds(matrix, position)) {
+            String c = matrix[position.yPos()][position.xPos()];
             switch (index) {
                 case 0 -> {
-                    if (c != 'X') {
+                    if (!c.equals("X")) {
                         return false;
                     }
                 }
                 case 1 -> {
-                    if (c != 'M') {
+                    if (!c.equals("M")) {
                         return false;
                     }
                 }
                 case 2 -> {
-                    if (c != 'A') {
+                    if (!c.equals("A")) {
                         return false;
                     }
                 }
                 case 3 -> {
-                    return c == 'S';
+                    return c.equals("S");
                 }
             }
-            x += xDirection;
-            y += yDirection;
+            position = position.move(xDirection, yDirection);
             index++;
         }
         return false;
     }
 
-    private boolean isWithinBounds(char[][] grid, int x, int y) {
-        return (x >= 0 && y >= 0 && x < grid.length && y < grid[x].length);
-    }
-
     @Override
     public Object solvePartTwo() {
         List<String> inputList = Reader.readInputAsList(this.getClass());
-        char[][] matrix = Converter.convertListInputToCharMatrix(inputList);
+        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
         int result = 0;
         for (int x = 1; x < matrix.length - 1; x++) {
             for (int y = 1; y < matrix[x].length - 1; y++) {
@@ -91,13 +89,13 @@ public class Day04 implements AdventOfCodeSolver {
         return result;
     }
 
-    private boolean checkMAS(char[][] matrix, int x, int y) {
-        return matrix[x][y] == 'A'
+    private boolean checkMAS(String[][] matrix, int x, int y) {
+        return matrix[x][y].equals("A")
                 && isMS(matrix[x - 1][y - 1], matrix[x + 1][y + 1])
                 && isMS(matrix[x - 1][y + 1], matrix[x + 1][y - 1]);
     }
 
-    private boolean isMS(char first, char second) {
-        return (first == 'M' && second == 'S') || (first == 'S' && second == 'M');
+    private boolean isMS(String first, String second) {
+        return (first.equals("M") && second.equals("S")) || (first.equals("S") && second.equals("M"));
     }
 }

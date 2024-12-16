@@ -5,6 +5,9 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
+import aoc.util.MatrixUtil;
+import aoc.util.MatrixUtil.Direction;
+import aoc.util.MatrixUtil.Position;
 import aoc.util.Reader;
 
 public class Day06 implements AdventOfCodeSolver {
@@ -23,7 +26,7 @@ public class Day06 implements AdventOfCodeSolver {
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {
                 if (matrix[row][col].equals("^")) {
-                    startPosition = new Position(row, col);
+                    startPosition = new Position(col, row);
                 }
             }
         }
@@ -31,13 +34,6 @@ public class Day06 implements AdventOfCodeSolver {
             throw new RuntimeException("No start position found");
         }
         return startPosition;
-    }
-
-    private boolean isOutOfBounds(Position position, Direction direction, String[][] matrix) {
-        return position.move(direction).row < 0
-                || position.move(direction).row >= matrix.length
-                || position.move(direction).col < 0
-                || position.move(direction).col >= matrix[0].length;
     }
 
     @Override
@@ -54,10 +50,10 @@ public class Day06 implements AdventOfCodeSolver {
                 if (!matrix[row][col].equals(".")) {
                     continue;
                 }
-                if (!visited.contains(new Position(row, col))) {
+                if (!visited.contains(new Position(col, row))) {
                     continue;
                 }
-                if (startPosition.row == row && startPosition.col == col) {
+                if (startPosition.xPos() == col && startPosition.yPos() == row) {
                     continue;
                 }
                 matrix[row][col] = "#";
@@ -75,12 +71,12 @@ public class Day06 implements AdventOfCodeSolver {
         Direction currentDirection = Direction.UP;
         while (true) {
             visited.add(currentPosition);
-            if (isOutOfBounds(currentPosition, currentDirection, matrix)) {
+            if (!MatrixUtil.isWithinBounds(matrix, currentPosition, currentDirection)) {
                 break;
             }
-            while (matrix[currentPosition.move(currentDirection).row][currentPosition.move(currentDirection).col]
-                    .equals("#")) {
-                currentDirection = currentDirection.rotate();
+            while (matrix[currentPosition.move(currentDirection).yPos()][
+                    currentPosition.move(currentDirection).xPos()].equals("#")) {
+                currentDirection = currentDirection.rotateClockwise();
             }
             currentPosition = currentPosition.move(currentDirection);
         }
@@ -92,12 +88,12 @@ public class Day06 implements AdventOfCodeSolver {
         Direction currentDirection = Direction.UP;
         while (true) {
             visited.add(new Pair(currentPosition, currentDirection));
-            if (isOutOfBounds(currentPosition, currentDirection, matrix)) {
+            if (!MatrixUtil.isWithinBounds(matrix, currentPosition, currentDirection)) {
                 return false;
             }
-            while (matrix[currentPosition.move(currentDirection).row][currentPosition.move(currentDirection).col]
-                    .equals("#")) {
-                currentDirection = currentDirection.rotate();
+            while (matrix[currentPosition.move(currentDirection).yPos()][
+                    currentPosition.move(currentDirection).xPos()].equals("#")) {
+                currentDirection = currentDirection.rotateClockwise();
             }
             currentPosition = currentPosition.move(currentDirection);
             if (visited.contains(new Pair(currentPosition, currentDirection))) {
@@ -107,32 +103,4 @@ public class Day06 implements AdventOfCodeSolver {
     }
 
     private record Pair(Position position, Direction direction) {}
-
-    private record Position(int row, int col) {
-
-        private Position move(Direction direction) {
-            return switch (direction) {
-                case UP -> new Position(row - 1, col);
-                case RIGHT -> new Position(row, col + 1);
-                case DOWN -> new Position(row + 1, col);
-                case LEFT -> new Position(row, col - 1);
-            };
-        }
-    }
-
-    private enum Direction {
-        UP,
-        DOWN,
-        LEFT,
-        RIGHT;
-
-        private Direction rotate() {
-            return switch (this) {
-                case UP -> RIGHT;
-                case RIGHT -> DOWN;
-                case DOWN -> LEFT;
-                case LEFT -> UP;
-            };
-        }
-    }
 }

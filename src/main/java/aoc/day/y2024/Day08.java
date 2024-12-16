@@ -7,7 +7,10 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
+import aoc.util.MatrixUtil.Position;
 import aoc.util.Reader;
+
+import static aoc.util.MatrixUtil.isWithinBounds;
 
 public class Day08 implements AdventOfCodeSolver {
     @Override
@@ -22,13 +25,15 @@ public class Day08 implements AdventOfCodeSolver {
                 for (int j = i + 1; j < positions.size(); j++) {
                     Position first = positions.get(i);
                     Position second = positions.get(j);
-                    Position firstAntinode = new Position(2 * first.col - second.col, 2 * first.row - second.row);
-                    Position secondAntinode = new Position(2 * second.col - first.col, 2 * second.row - first.row);
+                    Position firstAntinode =
+                            new Position(2 * first.xPos() - second.xPos(), 2 * first.yPos() - second.yPos());
+                    Position secondAntinode =
+                            new Position(2 * second.xPos() - first.xPos(), 2 * second.yPos() - first.yPos());
 
-                    if (isWithinBound(matrix, firstAntinode)) {
+                    if (isWithinBounds(matrix, firstAntinode)) {
                         antinodes.add(firstAntinode);
                     }
-                    if (isWithinBound(matrix, secondAntinode)) {
+                    if (isWithinBounds(matrix, secondAntinode)) {
                         antinodes.add(secondAntinode);
                     }
                 }
@@ -49,16 +54,16 @@ public class Day08 implements AdventOfCodeSolver {
                 for (int j = i + 1; j < positions.size(); j++) {
                     Position first = positions.get(i);
                     Position second = positions.get(j);
-                    int rowDelta = second.row - first.row;
-                    int colDelta = second.col - first.col;
+                    int xDelta = second.xPos() - first.xPos();
+                    int yDelta = second.yPos() - first.yPos();
 
-                    while (isWithinBound(matrix, first)) {
+                    while (isWithinBounds(matrix, first)) {
                         antinodes.add(first);
-                        first = first.move(rowDelta, colDelta);
+                        first = first.move(xDelta, yDelta);
                     }
-                    while (isWithinBound(matrix, second)) {
+                    while (isWithinBounds(matrix, second)) {
                         antinodes.add(second);
-                        second = second.move(-rowDelta, -colDelta);
+                        second = second.move(-xDelta, -yDelta);
                     }
                 }
             }
@@ -79,24 +84,5 @@ public class Day08 implements AdventOfCodeSolver {
             }
         }
         return antennas;
-    }
-
-    private boolean isWithinBound(String[][] matrix, Position pos) {
-        return (pos.col >= 0 && pos.row >= 0 && pos.row < matrix.length && pos.col < matrix[0].length);
-    }
-
-    private record Position(int row, int col) implements Comparable<Position> {
-
-        private Position move(int row, int col) {
-            return new Position(this.row + row, this.col + col);
-        }
-
-        @Override
-        public int compareTo(Position o) {
-            if (this.row == o.row) {
-                return this.col - o.col;
-            }
-            return (this.row - o.row);
-        }
     }
 }
