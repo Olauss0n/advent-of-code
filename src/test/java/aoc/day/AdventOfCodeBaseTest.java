@@ -42,7 +42,7 @@ public abstract class AdventOfCodeBaseTest {
         try {
             getSolver().runPartOne(getInput());
         } catch (NotImplementedException e) {
-            System.out.println("Part one: not implemented");
+            System.out.println("Part one: Not implemented.");
         }
     }
 
@@ -51,22 +51,22 @@ public abstract class AdventOfCodeBaseTest {
         try {
             getSolver().runPartTwo(getInput());
         } catch (NotImplementedException e) {
-            System.out.println("Part two: not implemented");
+            System.out.println("Part two: Not implemented.");
         }
     }
 
     @Test
     public void verifyExamples() {
         try {
-            Object examplePartOne = getSolver().solvePartOne(getExampleInput());
             System.out.print("Example part one: ");
+            Object examplePartOne = getSolver().solvePartOne(getExampleInput());
             System.out.printf("%s\n", examplePartOne);
-            assertSolutionMatches(getExampleSolutionPartOne(), examplePartOne, "Part one is wrong");
+            assertSolutionMatches(getExampleSolutionPartOne(), examplePartOne, "Part one is wrong.");
 
-            Object examplePartTwo = getSolver().solvePartTwo(getExampleInputPartTwo());
             System.out.print("Example part two: ");
+            Object examplePartTwo = getSolver().solvePartTwo(getExampleInputPartTwo());
             System.out.printf("%s\n", examplePartTwo);
-            assertSolutionMatches(getExampleSolutionPartTwo(), examplePartTwo, "Part two is wrong");
+            assertSolutionMatches(getExampleSolutionPartTwo(), examplePartTwo, "Part two is wrong.");
 
             System.out.println("Examples are verified and correct.");
         } catch (NoExampleGivenException e) {
@@ -74,7 +74,7 @@ public abstract class AdventOfCodeBaseTest {
         } catch (NoExampleSolutionGivenException e) {
             System.out.println("No example solution was given.");
         } catch (NotImplementedException e) {
-            System.out.println("Not implemented");
+            System.out.println("Not implemented.");
         } catch (FileNotFoundException e) {
             System.out.println("File was not found: " + e.getMessage());
         }
