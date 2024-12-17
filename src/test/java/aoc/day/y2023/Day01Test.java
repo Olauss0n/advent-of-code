@@ -1,13 +1,18 @@
 package aoc.day.y2023;
 
 import aoc.day.AdventOfCodeBaseTest;
-import aoc.day.exceptions.NoExampleSolutionGivenException;
 import aoc.util.AdventOfCodeSolver;
+import aoc.util.Reader;
 
 public class Day01Test extends AdventOfCodeBaseTest {
     @Override
     protected AdventOfCodeSolver getSolver() {
         return new Day01();
+    }
+
+    @Override
+    protected String getExampleInputPartTwo() {
+        return Reader.readExampleInputPartTwo(this.getClass());
     }
 
     @Override
@@ -17,6 +22,6 @@ public class Day01Test extends AdventOfCodeBaseTest {
 
     @Override
     protected Object getExampleSolutionPartTwo() {
-        throw new NoExampleSolutionGivenException();
+        return 281;
     }
 }

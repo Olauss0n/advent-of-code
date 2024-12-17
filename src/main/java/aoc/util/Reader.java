@@ -14,7 +14,11 @@ public class Reader {
     }
 
     public static String readExampleInput(Class<?> callingClass) {
-        return readInput(callingClass, InputType.STRING, InputFile.EXAMPLE);
+        return readInput(callingClass, InputType.STRING, InputFile.EXAMPLE_1);
+    }
+
+    public static String readExampleInputPartTwo(Class<?> callingClass) {
+        return readInput(callingClass, InputType.STRING, InputFile.EXAMPLE_2);
     }
 
     private static <T> T readInput(Class<?> callingClass, InputType inputType, InputFile file) {
@@ -69,7 +73,8 @@ public class Reader {
     private static String getInputFile(String directory, String inputNumber, InputFile file) {
         return switch (file) {
             case INPUT -> "input/%s/input-%s.txt".formatted(directory, inputNumber);
-            case EXAMPLE -> "input/%s/example-%s.txt".formatted(directory, inputNumber);
+            case EXAMPLE_1 -> "input/%s/example-%s.txt".formatted(directory, inputNumber);
+            case EXAMPLE_2 -> "input/%s/example-%s-2.txt".formatted(directory, inputNumber);
         };
     }
 
@@ -87,6 +92,7 @@ public class Reader {
 
     private enum InputFile {
         INPUT,
-        EXAMPLE
+        EXAMPLE_1,
+        EXAMPLE_2
     }
 }

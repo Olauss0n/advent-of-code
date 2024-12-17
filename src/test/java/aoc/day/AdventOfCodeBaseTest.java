@@ -9,6 +9,7 @@ import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 import aoc.util.exceptions.FileNotFoundException;
 import aoc.util.exceptions.NotImplementedException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public abstract class AdventOfCodeBaseTest {

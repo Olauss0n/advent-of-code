@@ -2,17 +2,11 @@ package aoc.day.y2022;
 
 import aoc.day.AdventOfCodeBaseTest;
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
 
 public class Day03Test extends AdventOfCodeBaseTest {
     @Override
     protected AdventOfCodeSolver getSolver() {
         return new Day03();
-    }
-
-    @Override
-    protected String getExampleInputPartTwo() {
-        return Reader.readExampleInput(this.getClass());
     }
 
     @Override
