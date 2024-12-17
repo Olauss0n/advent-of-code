@@ -57,18 +57,28 @@ public abstract class AdventOfCodeBaseTest {
 
     @Test
     public void verifyExamples() {
-        try {
+        boolean noExceptions = true;
+        noExceptions &= runWithExceptionHandling(() -> {
             System.out.print("Example part one: ");
             Object examplePartOne = getSolver().solvePartOne(getExampleInput());
             System.out.printf("%s\n", examplePartOne);
             assertSolutionMatches(getExampleSolutionPartOne(), examplePartOne, "Part one is wrong.");
-
+        });
+        noExceptions &= runWithExceptionHandling(() -> {
             System.out.print("Example part two: ");
             Object examplePartTwo = getSolver().solvePartTwo(getExampleInputPartTwo());
             System.out.printf("%s\n", examplePartTwo);
             assertSolutionMatches(getExampleSolutionPartTwo(), examplePartTwo, "Part two is wrong.");
-
+        });
+        if (noExceptions) {
             System.out.println("Examples are verified and correct.");
+        }
+    }
+
+    private boolean runWithExceptionHandling(Runnable runnable) {
+        try {
+            runnable.run();
+            return true;
         } catch (NoExampleGivenException e) {
             System.out.println("No example was given.");
         } catch (NoExampleSolutionGivenException e) {
@@ -78,6 +88,7 @@ public abstract class AdventOfCodeBaseTest {
         } catch (FileNotFoundException e) {
             System.out.println("File was not found: " + e.getMessage());
         }
+        return false;
     }
 
     private void assertSolutionMatches(Object expected, Object actual, String errorMessage) {
