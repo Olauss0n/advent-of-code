@@ -9,27 +9,12 @@ import aoc.util.exceptions.FileNotFoundException;
 
 public class Reader {
 
-    public static String readInputAsSingleString(Class<?> callingClass) {
-        return readInput(callingClass, InputType.STRING, InputFile.INPUT)
-                .toString()
-                .replace("\n", "");
-    }
-
-    public static String readInputAsString(Class<?> callingClass) {
+    public static String readInput(Class<?> callingClass) {
         return readInput(callingClass, InputType.STRING, InputFile.INPUT);
     }
 
-    public static String readExampleInputAsString(Class<?> callingClass) {
+    public static String readExampleInput(Class<?> callingClass) {
         return readInput(callingClass, InputType.STRING, InputFile.EXAMPLE);
-    }
-
-    public static List<String> readInputAsList(Class<?> callingClass) {
-        return readInput(callingClass, InputType.LIST, InputFile.INPUT);
-    }
-
-    public static List<List<String>> readInputAsMatrix(Class<?> callingClass, int amountOfRows) {
-        InputType.MATRIX.setAmountOfRows(amountOfRows);
-        return readInput(callingClass, InputType.MATRIX, InputFile.INPUT);
     }
 
     private static <T> T readInput(Class<?> callingClass, InputType inputType, InputFile file) {

@@ -12,7 +12,7 @@ public class Day03Test extends AdventOfCodeBaseTest {
 
     @Override
     protected String getExampleInputPartTwo() {
-        return Reader.readExampleInputAsString(this.getClass());
+        return Reader.readExampleInput(this.getClass());
     }
 
     @Override

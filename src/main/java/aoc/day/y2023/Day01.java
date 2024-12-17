@@ -9,6 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import aoc.util.AdventOfCodeSolver;
+import aoc.util.Converter;
 import aoc.util.Reader;
 
 public class Day01 implements AdventOfCodeSolver {
@@ -73,7 +74,7 @@ public class Day01 implements AdventOfCodeSolver {
             }
         };
 
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+        List<String> inputList = Converter.convertInputToList(Reader.readInput(this.getClass()));
         List<String> combinedList = new ArrayList<>();
 
         for (String line : inputList) {

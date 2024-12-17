@@ -6,7 +6,6 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.Reader;
 
 public class Day04 implements AdventOfCodeSolver {
 
@@ -33,8 +32,8 @@ public class Day04 implements AdventOfCodeSolver {
         return cardPile.size();
     }
 
-    private int runPartOneWithOutCardClass() {
-        List<String> cards = Reader.readInputAsList(this.getClass());
+    private int runPartOneWithOutCardClass(String input) {
+        List<String> cards = Converter.convertInputToList(input);
 
         List<Integer> cardPoints = new ArrayList<>();
 
