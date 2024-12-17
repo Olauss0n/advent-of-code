@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
 
 public class Day01 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         List<Integer> leftSide = new ArrayList<>();
         List<Integer> rightSide = new ArrayList<>();
 
@@ -30,8 +30,8 @@ public class Day01 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartTwo(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         List<Integer> leftSide = new ArrayList<>();
         List<Integer> rightSide = new ArrayList<>();
 

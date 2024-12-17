@@ -8,23 +8,30 @@ import java.util.Scanner;
 public class Reader {
 
     public static String readInputAsSingleString(Class<?> callingClass) {
-        return readInput(callingClass, InputType.STRING).toString().replace("\n", "");
+        return readInput(callingClass, InputType.STRING, InputFile.INPUT)
+                .toString()
+                .replace("\n", "");
     }
 
     public static String readInputAsString(Class<?> callingClass) {
-        return readInput(callingClass, InputType.STRING);
+        return readInput(callingClass, InputType.STRING, InputFile.INPUT);
     }
 
+    public static String readExampleInputAsString(Class<?> callingClass) {
+        return readInput(callingClass, InputType.STRING, InputFile.EXAMPLE);
+    }
+    ;
+
     public static List<String> readInputAsList(Class<?> callingClass) {
-        return readInput(callingClass, InputType.LIST);
+        return readInput(callingClass, InputType.LIST, InputFile.INPUT);
     }
 
     public static List<List<String>> readInputAsMatrix(Class<?> callingClass, int amountOfRows) {
         InputType.MATRIX.setAmountOfRows(amountOfRows);
-        return readInput(callingClass, InputType.MATRIX);
+        return readInput(callingClass, InputType.MATRIX, InputFile.INPUT);
     }
 
-    private static <T> T readInput(Class<?> callingClass, InputType inputType) {
+    private static <T> T readInput(Class<?> callingClass, InputType inputType, InputFile file) {
         // Extract package name (e.g., "aoc.day.y2024")
         String packageName = callingClass.getPackageName();
         String year = packageName.substring(packageName.lastIndexOf('.') + 1); // Extract "y2024"
@@ -33,13 +40,13 @@ public class Reader {
         String className = callingClass.getSimpleName();
         String day = className.replaceAll("[^0-9]", ""); // Extract "01"
 
-        return readInput(year, day, inputType);
+        return readInput(year, day, inputType, file);
     }
 
-    private static <T> T readInput(String directory, String inputNumber, InputType inputType) {
+    private static <T> T readInput(String directory, String inputNumber, InputType inputType, InputFile file) {
         StringBuilder textString = new StringBuilder();
         ArrayList<String> textList = new ArrayList<>();
-        String inputFile = "input/%s/input-%s.txt".formatted(directory, inputNumber);
+        String inputFile = getInputFile(directory, inputNumber, file);
         InputStream inputStream = Reader.class.getClassLoader().getResourceAsStream(inputFile);
         if (inputStream == null) {
             throw new RuntimeException("Could not find input file: " + inputFile);
@@ -73,6 +80,13 @@ public class Reader {
         };
     }
 
+    private static String getInputFile(String directory, String inputNumber, InputFile file) {
+        return switch (file) {
+            case INPUT -> "input/%s/input-%s.txt".formatted(directory, inputNumber);
+            case EXAMPLE -> "input/%s/example-%s.txt".formatted(directory, inputNumber);
+        };
+    }
+
     private enum InputType {
         STRING,
         LIST,
@@ -83,5 +97,10 @@ public class Reader {
         }
 
         private int amountOfRows;
+    }
+
+    private enum InputFile {
+        INPUT,
+        EXAMPLE
     }
 }

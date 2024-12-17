@@ -5,6 +5,10 @@ import java.util.List;
 
 public class Converter {
 
+    public static List<String> convertInputToList(String input) {
+        return input.lines().toList();
+    }
+
     public static String[][] convertListInputToStringMatrix(List<String> input) {
         return convertListInputToStringMatrix(input, "");
     }
