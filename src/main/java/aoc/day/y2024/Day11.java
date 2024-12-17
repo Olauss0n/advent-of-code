@@ -3,26 +3,25 @@ package aoc.day.y2024;
 import java.util.HashMap;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
 
 public class Day11 implements AdventOfCodeSolver {
 
     private static HashMap<Stone, Long> cache = new HashMap<>();
 
     @Override
-    public Object solvePartOne() {
-        return commonPart(25);
+    public Object solvePartOne(String input) {
+        return commonPart(input, 25);
     }
 
     @Override
-    public Object solvePartTwo() {
-        return commonPart(75);
+    public Object solvePartTwo(String input) {
+        return commonPart(input, 75);
     }
 
-    private Object commonPart(int blinks) {
-        String[] input = Reader.readInputAsSingleString(this.getClass()).split(" ");
+    private Object commonPart(String input, int blinks) {
+        String[] inputArray = input.replace("\n", "").split(" ");
         long answer = 0;
-        for (String number : input) {
+        for (String number : inputArray) {
             answer += blink(new Stone(Long.parseLong(number), blinks));
         }
         return answer;

@@ -6,14 +6,13 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.Reader;
 
 public class Day14 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        List<String> input = Reader.readInputAsList(this.getClass());
-        String[][] matrix = Converter.convertListInputToStringMatrix(input);
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
+        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
 
         // Update matrix
         boolean shouldKeepTiltingMatrix = true;
@@ -27,9 +26,9 @@ public class Day14 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        List<String> input = Reader.readInputAsList(this.getClass());
-        String[][] matrix = Converter.convertListInputToStringMatrix(input);
+    public Object solvePartTwo(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
+        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
         ArrayList<String[][]> seenMatrixes = new ArrayList<>();
 
         int totalCycles = 1000000000;

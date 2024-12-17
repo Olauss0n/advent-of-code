@@ -8,4 +8,14 @@ public class Day05Test extends AdventOfCodeBaseTest {
     protected AdventOfCodeSolver getSolver() {
         return new Day05();
     }
+
+    @Override
+    protected Object getExampleSolutionPartOne() {
+        return 143;
+    }
+
+    @Override
+    protected Object getExampleSolutionPartTwo() {
+        return 123;
+    }
 }

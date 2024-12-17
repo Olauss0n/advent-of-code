@@ -5,20 +5,34 @@ import java.util.List;
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.MatrixUtil.Position;
-import aoc.util.Reader;
 
 import static aoc.util.MatrixUtil.isWithinBounds;
 
 public class Day04 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
 
         int result = 0;
         for (int y = 0; y < matrix.length; y++) {
             for (int x = 0; x < matrix[y].length; x++) {
                 result += findXMAS(matrix, new Position(x, y));
+            }
+        }
+        return result;
+    }
+
+    @Override
+    public Object solvePartTwo(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
+        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
+        int result = 0;
+        for (int x = 1; x < matrix.length - 1; x++) {
+            for (int y = 1; y < matrix[x].length - 1; y++) {
+                if (checkMAS(matrix, x, y)) {
+                    result++;
+                }
             }
         }
         return result;
@@ -72,21 +86,6 @@ public class Day04 implements AdventOfCodeSolver {
             index++;
         }
         return false;
-    }
-
-    @Override
-    public Object solvePartTwo() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
-        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
-        int result = 0;
-        for (int x = 1; x < matrix.length - 1; x++) {
-            for (int y = 1; y < matrix[x].length - 1; y++) {
-                if (checkMAS(matrix, x, y)) {
-                    result++;
-                }
-            }
-        }
-        return result;
     }
 
     private boolean checkMAS(String[][] matrix, int x, int y) {

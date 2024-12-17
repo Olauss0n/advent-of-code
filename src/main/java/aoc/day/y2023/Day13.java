@@ -5,26 +5,23 @@ import java.util.List;
 import java.util.Objects;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
 
 public class Day13 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        return runCommonPart(0);
+    public Object solvePartOne(String input) {
+        return runCommonPart(input, 0);
     }
 
     @Override
-    public Object solvePartTwo() {
-        return runCommonPart(1);
+    public Object solvePartTwo(String input) {
+        return runCommonPart(input, 1);
     }
 
-    private int runCommonPart(int targetDifference) {
-        List<String> input = Arrays.stream(
-                        Reader.readInputAsString(this.getClass()).split("\n\n"))
-                .toList();
+    private int runCommonPart(String input, int targetDifference) {
+        List<String> inputList = Arrays.stream(input.split("\n\n")).toList();
         Integer sum = 0;
-        for (String inputLine : input) {
+        for (String inputLine : inputList) {
             String[] pattern = inputLine.split("\n");
             String[][] matrix = new String[pattern.length][pattern[0].length()];
             for (int i = 0; i < pattern.length; i++) {

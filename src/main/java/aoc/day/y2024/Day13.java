@@ -7,23 +7,20 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
 
 public class Day13 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        return commonPart(false);
+    public Object solvePartOne(String input) {
+        return commonPart(input, false);
     }
 
     @Override
-    public Object solvePartTwo() {
-        return commonPart(true);
+    public Object solvePartTwo(String input) {
+        return commonPart(input, true);
     }
 
-    private Object commonPart(boolean isPartTwo) {
-        List<String> inputList = Arrays.stream(
-                        Reader.readInputAsString(this.getClass()).split("\n\n"))
-                .toList();
+    private Object commonPart(String input, boolean isPartTwo) {
+        List<String> inputList = Arrays.stream(input.split("\n\n")).toList();
         String regex = "X[+=](\\d+)|Y[+=](\\d+)";
         Pattern pattern = Pattern.compile(regex);
         long tokens = 0;

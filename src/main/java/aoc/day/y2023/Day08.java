@@ -6,20 +6,20 @@ import java.util.HashMap;
 import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
 
 public class Day08 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        List<String> input = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
 
-        List<String> instructions = List.of(input.getFirst().split(""));
+        List<String> instructions = List.of(inputList.getFirst().split(""));
 
         HashMap<String, Node> nodes = new HashMap<>();
 
-        for (int index = 2; index < input.size(); index++) {
-            String s = input.get(index);
+        for (int index = 2; index < inputList.size(); index++) {
+            String s = inputList.get(index);
             List<String> elements = Arrays.stream(s.replaceAll("\\W+", " ").split(" "))
                     .map(String::trim)
                     .toList();
@@ -43,15 +43,15 @@ public class Day08 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        List<String> input = Reader.readInputAsList(this.getClass());
+    public Object solvePartTwo(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
 
-        List<String> instructions = List.of(input.getFirst().split(""));
+        List<String> instructions = List.of(inputList.getFirst().split(""));
 
         HashMap<String, Node> nodes = new HashMap<>();
 
-        for (int index = 2; index < input.size(); index++) {
-            String s = input.get(index);
+        for (int index = 2; index < inputList.size(); index++) {
+            String s = inputList.get(index);
             List<String> elements = Arrays.stream(s.replaceAll("\\W+", " ").split(" "))
                     .map(String::trim)
                     .toList();

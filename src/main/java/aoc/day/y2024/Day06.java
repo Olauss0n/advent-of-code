@@ -8,12 +8,11 @@ import aoc.util.Converter;
 import aoc.util.MatrixUtil;
 import aoc.util.MatrixUtil.Direction;
 import aoc.util.MatrixUtil.Position;
-import aoc.util.Reader;
 
 public class Day06 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
 
         Position startPosition = getStartPosition(matrix);
@@ -37,8 +36,8 @@ public class Day06 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartTwo(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
 
         Position startPosition = getStartPosition(matrix);

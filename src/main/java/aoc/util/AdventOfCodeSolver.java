@@ -19,11 +19,11 @@ public interface AdventOfCodeSolver {
     }
 
     default void runPartOne(String input) {
-        System.out.println("Part one is: " + solvePartOne(input));
+        System.out.println("Part one: " + solvePartOne(input));
     }
 
     default void runPartTwo(String input) {
-        System.out.println("Part two is: " + solvePartTwo(input));
+        System.out.println("Part two: " + solvePartTwo(input));
     }
 
     private String getYearAndDay() {

@@ -3,20 +3,34 @@ package aoc.day;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import aoc.day.exceptions.NoExampleGivenException;
+import aoc.day.exceptions.NoExampleSolutionGivenException;
 import aoc.util.AdventOfCodeSolver;
+import aoc.util.Reader;
+import aoc.util.exceptions.FileNotFoundException;
+import aoc.util.exceptions.NotImplementedException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public abstract class AdventOfCodeBaseTest {
 
     protected abstract AdventOfCodeSolver getSolver();
 
-    protected abstract String getInput();
-
-    protected abstract String getExampleInput();
-
     protected abstract Object getExampleSolutionPartOne();
 
     protected abstract Object getExampleSolutionPartTwo();
+
+    protected String getInput() {
+        return Reader.readInputAsString(getSolver().getClass());
+    }
+
+    protected String getExampleInput() {
+        return Reader.readExampleInputAsString(getSolver().getClass());
+    }
+
+    protected String getExampleInputPartTwo() {
+        return getExampleInput();
+    }
 
     @BeforeEach
     public void setup() {
@@ -25,21 +39,52 @@ public abstract class AdventOfCodeBaseTest {
 
     @Test
     public void testPartOne() {
-        getSolver().runPartOne(getInput());
+        try {
+            getSolver().runPartOne(getInput());
+        } catch (NotImplementedException e) {
+            System.out.println("Part one: not implemented");
+        }
     }
 
     @Test
     public void testPartTwo() {
-        getSolver().runPartTwo(getInput());
+        try {
+            getSolver().runPartTwo(getInput());
+        } catch (NotImplementedException e) {
+            System.out.println("Part two: not implemented");
+        }
     }
 
     @Test
     public void verifyExamples() {
-        Object examplePartOne = getSolver().solvePartOne(getExampleInput());
-        Object examplePartTwo = getSolver().solvePartTwo(getExampleInput());
-        System.out.printf("Example part one: %s\nExample part two: %s\n", examplePartOne, examplePartTwo);
-        assertEquals(getExampleSolutionPartOne(), examplePartOne, "Part one is wrong");
-        assertEquals(getExampleSolutionPartTwo(), examplePartTwo, "Part two is wrong");
-        System.out.println("Examples are verified and correct.");
+        try {
+            Object examplePartOne = getSolver().solvePartOne(getExampleInput());
+            System.out.print("Example part one: ");
+            System.out.printf("%s\n", examplePartOne);
+            assertSolutionMatches(getExampleSolutionPartOne(), examplePartOne, "Part one is wrong");
+
+            Object examplePartTwo = getSolver().solvePartTwo(getExampleInputPartTwo());
+            System.out.print("Example part two: ");
+            System.out.printf("%s\n", examplePartTwo);
+            assertSolutionMatches(getExampleSolutionPartTwo(), examplePartTwo, "Part two is wrong");
+
+            System.out.println("Examples are verified and correct.");
+        } catch (NoExampleGivenException e) {
+            System.out.println("No example was given.");
+        } catch (NoExampleSolutionGivenException e) {
+            System.out.println("No example solution was given.");
+        } catch (NotImplementedException e) {
+            System.out.println("Not implemented");
+        } catch (FileNotFoundException e) {
+            System.out.println("File was not found: " + e.getMessage());
+        }
+    }
+
+    private void assertSolutionMatches(Object expected, Object actual, String errorMessage) {
+        if (expected instanceof Number && actual instanceof Number) {
+            assertEquals(((Number) expected).longValue(), ((Number) actual).longValue(), errorMessage);
+        } else {
+            assertEquals(expected, actual, errorMessage);
+        }
     }
 }

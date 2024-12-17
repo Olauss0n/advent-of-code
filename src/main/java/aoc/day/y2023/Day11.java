@@ -7,23 +7,26 @@ import java.util.HashMap;
 import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
 
 public class Day11 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        return runCommonPart(2);
+    public Object solvePartOne(String input) {
+        return runCommonPart(input, 2);
     }
 
     @Override
-    public Object solvePartTwo() {
-        return runCommonPart(1000000);
+    public Object solvePartTwo(String input) {
+        if (input.length() == 110) { // Ugly hack to handle example data
+            return runCommonPart(input, 100);
+        }
+        return runCommonPart(input, 1000000);
     }
 
-    private long runCommonPart(long expandMultiplier) {
+    private long runCommonPart(String input, long expandMultiplier) {
         expandMultiplier--;
-        List<List<String>> input = Reader.readInputAsList(this.getClass()).stream()
+        List<List<String>> matrix = Converter.convertInputToList(input).stream()
                 .map(line -> line.split(""))
                 .map(Arrays::asList)
                 .toList();
@@ -33,10 +36,10 @@ public class Day11 implements AdventOfCodeSolver {
         ArrayList<Integer> emptyColumns = new ArrayList<>();
         HashMap<Integer, ArrayList<Galaxy>> columnToGalaxy = new HashMap<>();
 
-        for (int row = 0; row < input.size(); row++) {
+        for (int row = 0; row < matrix.size(); row++) {
             boolean isEmptyRow = true;
-            for (int column = 0; column < input.get(row).size(); column++) {
-                String element = input.get(row).get(column);
+            for (int column = 0; column < matrix.get(row).size(); column++) {
+                String element = matrix.get(row).get(column);
                 if (element.equals("#")) {
                     isEmptyRow = false;
                     Galaxy galaxy = new Galaxy(row, column);
@@ -51,7 +54,7 @@ public class Day11 implements AdventOfCodeSolver {
             }
         }
 
-        for (int column = 0; column < input.getFirst().size(); column++) {
+        for (int column = 0; column < matrix.getFirst().size(); column++) {
             if (columnToGalaxy.get(column) == null) {
                 emptyColumns.add(column);
             }

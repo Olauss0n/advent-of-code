@@ -5,13 +5,13 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
 
 public class Day02 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         int counter = 0;
         for (String line : inputList) {
             int[] intList = Arrays.stream(line.split("\\s+"))
@@ -25,8 +25,8 @@ public class Day02 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartTwo(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         int counter = 0;
         for (String line : inputList) {
             int[] intList = Arrays.stream(line.split("\\s+"))

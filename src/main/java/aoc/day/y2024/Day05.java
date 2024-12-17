@@ -6,21 +6,21 @@ import java.util.HashMap;
 import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
 
 public class Day05 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        return commonPart(true);
+    public Object solvePartOne(String input) {
+        return commonPart(input, true);
     }
 
     @Override
-    public Object solvePartTwo() {
-        return commonPart(false);
+    public Object solvePartTwo(String input) {
+        return commonPart(input, false);
     }
 
-    private int commonPart(boolean isPartOne) {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    private int commonPart(String input, boolean isPartOne) {
+        List<String> inputList = Converter.convertInputToList(input);
         HashMap<Pair, Integer> cache = new HashMap<>();
         List<List<Integer>> updates = new ArrayList<>();
         for (String line : inputList) {

@@ -7,16 +7,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
+import aoc.util.exceptions.NotImplementedException;
 
 public class Day14 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
 
         Pattern pattern = Pattern.compile("-?\\d+");
-        int width = 101; // 11
-        int height = 103; // 7
+        int width =
+                inputList.size() == 12 ? 11 : 101; // Ugly hack to run with different width & height for example input
+        int height = inputList.size() == 12 ? 7 : 103;
         int[][] matrix = new int[height][width];
         for (int[] array : matrix) {
             Arrays.fill(array, 0);
@@ -74,7 +76,7 @@ public class Day14 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        return null;
+    public Object solvePartTwo(String input) {
+        throw new NotImplementedException();
     }
 }

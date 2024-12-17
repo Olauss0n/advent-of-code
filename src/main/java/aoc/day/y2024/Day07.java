@@ -4,21 +4,21 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
 
 public class Day07 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        return commonPart(false);
+    public Object solvePartOne(String input) {
+        return commonPart(input, false);
     }
 
     @Override
-    public Object solvePartTwo() {
-        return commonPart(true);
+    public Object solvePartTwo(String input) {
+        return commonPart(input, true);
     }
 
-    private Object commonPart(boolean isPartTwo) {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    private Object commonPart(String input, boolean isPartTwo) {
+        List<String> inputList = Converter.convertInputToList(input);
 
         long total = 0;
         for (String line : inputList) {

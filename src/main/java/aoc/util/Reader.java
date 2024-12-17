@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import aoc.util.exceptions.FileNotFoundException;
+
 public class Reader {
 
     public static String readInputAsSingleString(Class<?> callingClass) {
@@ -20,7 +22,6 @@ public class Reader {
     public static String readExampleInputAsString(Class<?> callingClass) {
         return readInput(callingClass, InputType.STRING, InputFile.EXAMPLE);
     }
-    ;
 
     public static List<String> readInputAsList(Class<?> callingClass) {
         return readInput(callingClass, InputType.LIST, InputFile.INPUT);
@@ -49,7 +50,7 @@ public class Reader {
         String inputFile = getInputFile(directory, inputNumber, file);
         InputStream inputStream = Reader.class.getClassLoader().getResourceAsStream(inputFile);
         if (inputStream == null) {
-            throw new RuntimeException("Could not find input file: " + inputFile);
+            throw new FileNotFoundException(inputFile);
         }
         Scanner scanner = new Scanner(inputStream);
         List<List<String>> matrix = new ArrayList<>();

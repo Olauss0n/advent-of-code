@@ -4,18 +4,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
 
 public class Day03 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        String input = Reader.readInputAsSingleString(this.getClass());
+    public Object solvePartOne(String input) {
         return commonPart(input);
     }
 
     @Override
-    public Object solvePartTwo() {
-        String input = Reader.readInputAsSingleString(this.getClass());
+    public Object solvePartTwo(String input) {
         String regexRemoval = "don't\\(\\)(?:(?!do\\(\\)).)*do\\(\\)";
         String filteredInput = input.replaceAll(regexRemoval, "");
         return commonPart(filteredInput);

@@ -8,16 +8,15 @@ import java.util.Map.Entry;
 import java.util.stream.IntStream;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
 
 public class Day09 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        String[] input = Reader.readInputAsSingleString(this.getClass()).split("");
+    public Object solvePartOne(String input) {
+        String[] inputArray = input.replace("\n", "").split("");
         int fileId = 0;
         ArrayList<String> disk = new ArrayList<>();
-        for (int i = 0; i < input.length; i++) {
-            int value = Integer.parseInt(input[i]);
+        for (int i = 0; i < inputArray.length; i++) {
+            int value = Integer.parseInt(inputArray[i]);
             if (i % 2 == 0) {
                 for (int j = 0; j < value; j++) {
                     disk.add(String.valueOf(fileId));
@@ -50,14 +49,14 @@ public class Day09 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        String[] input = Reader.readInputAsSingleString(this.getClass()).split("");
+    public Object solvePartTwo(String input) {
+        String[] inputArray = input.replace("\n", "").split("");
         int fileId = 0;
         int position = 0;
         Map<Integer, Data> disk = new HashMap<>();
         ArrayList<Data> spaces = new ArrayList<>();
-        for (int i = 0; i < input.length; i++) {
-            int value = Integer.parseInt(input[i]);
+        for (int i = 0; i < inputArray.length; i++) {
+            int value = Integer.parseInt(inputArray[i]);
             if (i % 2 == 0) {
                 disk.put(fileId, new Data(position, value));
                 fileId += 1;

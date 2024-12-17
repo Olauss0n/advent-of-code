@@ -9,21 +9,20 @@ import aoc.util.Converter;
 import aoc.util.MatrixUtil;
 import aoc.util.MatrixUtil.Direction;
 import aoc.util.MatrixUtil.Position;
-import aoc.util.Reader;
 
 public class Day10 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        return commonPart(false);
+    public Object solvePartOne(String input) {
+        return commonPart(input, false);
     }
 
     @Override
-    public Object solvePartTwo() {
-        return commonPart(true);
+    public Object solvePartTwo(String input) {
+        return commonPart(input, true);
     }
 
-    private Object commonPart(boolean isPartTwo) {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    private Object commonPart(String input, boolean isPartTwo) {
+        List<String> inputList = Converter.convertInputToList(input);
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
         List<Position> zeros = new ArrayList<>();
         for (int row = 0; row < matrix.length; row++) {

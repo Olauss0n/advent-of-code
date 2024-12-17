@@ -8,30 +8,27 @@ import java.util.List;
 import java.util.Optional;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
 
 public class Day01 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        ArrayList<Integer> calorieList = commonPart();
+    public Object solvePartOne(String input) {
+        ArrayList<Integer> calorieList = commonPart(input);
         Optional<Integer> maxValue = calorieList.stream().max(Comparator.naturalOrder());
 
-        return maxValue.orElseThrow().toString();
+        return maxValue.orElseThrow();
     }
 
     @Override
-    public Object solvePartTwo() {
-        ArrayList<Integer> calorieList = commonPart();
+    public Object solvePartTwo(String input) {
+        ArrayList<Integer> calorieList = commonPart(input);
 
         calorieList.sort(Collections.reverseOrder());
 
-        return calorieList.stream().limit(3).reduce(0, Integer::sum).toString();
+        return calorieList.stream().limit(3).reduce(0, Integer::sum);
     }
 
-    private ArrayList<Integer> commonPart() {
-        String input = Reader.readInputAsString(this.getClass());
-
+    private ArrayList<Integer> commonPart(String input) {
         ArrayList<Integer> calorieList = new ArrayList<>();
 
         for (String element : input.split("\n\n")) {

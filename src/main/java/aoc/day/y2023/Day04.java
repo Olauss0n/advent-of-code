@@ -5,24 +5,25 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
+import aoc.util.Converter;
 import aoc.util.Reader;
 
 public class Day04 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        List<String> input = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
 
-        List<Card> cards = input.stream().map(Card::new).toList();
+        List<Card> cards = inputList.stream().map(Card::new).toList();
 
         return cards.stream().map(card -> card.cardPoints).reduce(Integer::sum).orElseThrow();
     }
 
     @Override
-    public Object solvePartTwo() {
-        List<String> input = Reader.readInputAsList(this.getClass());
+    public Object solvePartTwo(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
 
-        List<Card> cards = input.stream().map(Card::new).toList();
+        List<Card> cards = inputList.stream().map(Card::new).toList();
 
         List<Card> cardPile = new ArrayList<>();
 

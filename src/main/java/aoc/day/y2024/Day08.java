@@ -8,14 +8,13 @@ import java.util.List;
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.MatrixUtil.Position;
-import aoc.util.Reader;
 
 import static aoc.util.MatrixUtil.isWithinBounds;
 
 public class Day08 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
 
         HashMap<String, List<Position>> antennas = getAntennas(matrix);
@@ -43,8 +42,8 @@ public class Day08 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartTwo(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
 
         HashMap<String, List<Position>> antennas = getAntennas(matrix);

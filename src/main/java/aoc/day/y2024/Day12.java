@@ -11,14 +11,14 @@ import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.MatrixUtil.Direction;
 import aoc.util.MatrixUtil.Position;
-import aoc.util.Reader;
+import aoc.util.exceptions.NotImplementedException;
 
 import static aoc.util.MatrixUtil.isWithinBounds;
 
 public class Day12 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
 
         List<HashMap<String, Set<Position>>> arrangements = new ArrayList<>();
@@ -76,7 +76,7 @@ public class Day12 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        return null;
+    public Object solvePartTwo(String input) {
+        throw new NotImplementedException();
     }
 }

@@ -6,12 +6,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
 
 public class Day03 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
         int result = 0;
         for (String line : inputList) {
             String firstHalf = line.substring(0, line.length() / 2);
@@ -25,8 +25,9 @@ public class Day03 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        List<List<String>> inputMatrix = Reader.readInputAsMatrix(this.getClass(), 3);
+    public Object solvePartTwo(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
+        List<List<String>> inputMatrix = Converter.convertListInputToListMatrix(inputList, 3);
 
         int result = 0;
         for (List<String> list : inputMatrix) {

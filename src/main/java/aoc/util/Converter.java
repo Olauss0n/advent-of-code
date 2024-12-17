@@ -1,5 +1,6 @@
 package aoc.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -11,6 +12,19 @@ public class Converter {
 
     public static String[][] convertListInputToStringMatrix(List<String> input) {
         return convertListInputToStringMatrix(input, "");
+    }
+
+    public static List<List<String>> convertListInputToListMatrix(List<String> input, int amountOfRows) {
+        List<List<String>> matrix = new ArrayList<>();
+        ArrayList<String> subList = new ArrayList<>();
+        for (String line : input) {
+            subList.add(line);
+            if (amountOfRows == subList.size()) {
+                matrix.add(new ArrayList<>(subList));
+                subList.clear();
+            }
+        }
+        return matrix;
     }
 
     public static String[][] convertListInputToStringMatrix(List<String> input, String delimiter) {

@@ -6,18 +6,18 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
 
 public class Day09 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        List<List<Long>> input = Reader.readInputAsList(this.getClass()).stream()
+    public Object solvePartOne(String input) {
+        List<List<Long>> inputList = Converter.convertInputToList(input).stream()
                 .map(line -> Arrays.stream(line.split(" ")).map(Long::parseLong).toList())
                 .toList();
 
         ArrayList<Long> extrapolatedValues = new ArrayList<>();
-        for (List<Long> digits : input) {
+        for (List<Long> digits : inputList) {
             extrapolatedValues.add(digits.getLast());
             while (digits.stream().anyMatch(value -> 0L != value)) {
                 digits = getDifferences(digits);
@@ -28,13 +28,13 @@ public class Day09 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        List<List<Long>> input = Reader.readInputAsList(this.getClass()).stream()
+    public Object solvePartTwo(String input) {
+        List<List<Long>> inputList = Converter.convertInputToList(input).stream()
                 .map(line -> Arrays.stream(line.split(" ")).map(Long::parseLong).toList())
                 .toList();
 
         ArrayList<Long> extrapolatedValues = new ArrayList<>();
-        for (List<Long> digits : input) {
+        for (List<Long> digits : inputList) {
             ArrayList<Long> firstValues = new ArrayList<>();
             firstValues.add(digits.getFirst());
             while (digits.stream().anyMatch(value -> 0L != value)) {

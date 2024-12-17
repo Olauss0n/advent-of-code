@@ -7,13 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
 
 public class Day07 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        ArrayList<HandPartOne> hands = new ArrayList<>(Reader.readInputAsList(this.getClass()).stream()
+    public Object solvePartOne(String input) {
+        ArrayList<HandPartOne> hands = new ArrayList<>(Converter.convertInputToList(input).stream()
                 .map(row -> new HandPartOne(
                         Arrays.asList(row.split(" ")).getFirst(),
                         Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))
@@ -32,8 +32,8 @@ public class Day07 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        ArrayList<HandPartTwo> hands = new ArrayList<>(Reader.readInputAsList(this.getClass()).stream()
+    public Object solvePartTwo(String input) {
+        ArrayList<HandPartTwo> hands = new ArrayList<>(Converter.convertInputToList(input).stream()
                 .map(row -> new HandPartTwo(
                         Arrays.asList(row.split(" ")).getFirst(),
                         Integer.parseInt(Arrays.asList(row.split(" ")).get(1))))

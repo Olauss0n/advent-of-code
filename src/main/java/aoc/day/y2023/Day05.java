@@ -5,13 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
 
 public class Day05 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne() {
-        String input = Reader.readInputAsString(this.getClass());
+    public Object solvePartOne(String input) {
         List<String> inputList = Arrays.asList(input.split("\n\n"));
         List<Long> seeds = new ArrayList<>(
                 Arrays.stream(inputList.getFirst().replaceAll("seeds: ", "").split(" "))
@@ -26,8 +24,7 @@ public class Day05 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        String input = Reader.readInputAsString(this.getClass());
+    public Object solvePartTwo(String input) {
         List<String> inputList = Arrays.asList(input.split("\n\n"));
         List<Long> seeds = new ArrayList<>(
                 Arrays.stream(inputList.getFirst().replaceAll("seeds: ", "").split(" "))

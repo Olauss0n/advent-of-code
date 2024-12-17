@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.Converter;
 
 public class Day02 implements AdventOfCodeSolver {
 
@@ -14,8 +14,8 @@ public class Day02 implements AdventOfCodeSolver {
     private static final Integer MAX_BLUE_CUBES = 14;
 
     @Override
-    public Object solvePartOne() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartOne(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
 
         List<String> approvedGameIds = new ArrayList<>();
 
@@ -62,8 +62,8 @@ public class Day02 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo() {
-        List<String> inputList = Reader.readInputAsList(this.getClass());
+    public Object solvePartTwo(String input) {
+        List<String> inputList = Converter.convertInputToList(input);
 
         List<Integer> minimumSetList = new ArrayList<>();
 
