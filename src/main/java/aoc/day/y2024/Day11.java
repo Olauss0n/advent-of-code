@@ -6,7 +6,7 @@ import aoc.util.AdventOfCodeSolver;
 
 public class Day11 implements AdventOfCodeSolver {
 
-    private static HashMap<Stone, Long> cache = new HashMap<>();
+    private final HashMap<Stone, Long> cache = new HashMap<>();
 
     @Override
     public Object solvePartOne(String input) {
