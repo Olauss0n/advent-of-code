@@ -1,5 +1,8 @@
 package aoc.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MatrixUtil {
 
     public static String[][] createStringMatrix(int xWidth, int yHeight) {
@@ -13,6 +16,29 @@ public class MatrixUtil {
     public static boolean isWithinBounds(String[][] matrix, Position position, Direction direction) {
         Position updatedPosition = position.move(direction);
         return isWithinBounds(matrix, updatedPosition);
+    }
+
+    public static Position findPosition(String[][] matrix, String searchExpression) {
+        for (int y = 0; y < matrix.length; y++) {
+            for (int x = 0; x < matrix[y].length; x++) {
+                if (matrix[y][x].equals(searchExpression)) {
+                    return new Position(x, y);
+                }
+            }
+        }
+        throw new IllegalStateException();
+    }
+
+    public static List<Position> findPositions(String[][] matrix, String searchExpression) {
+        List<Position> positions = new ArrayList<>();
+        for (int y = 0; y < matrix.length; y++) {
+            for (int x = 0; x < matrix[y].length; x++) {
+                if (matrix[y][x].equals(searchExpression)) {
+                    positions.add(new Position(x, y));
+                }
+            }
+        }
+        return positions;
     }
 
     public record Position(int xPos, int yPos) implements Comparable<Position> {
