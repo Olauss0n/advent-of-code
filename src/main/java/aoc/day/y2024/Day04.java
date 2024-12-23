@@ -28,8 +28,8 @@ public class Day04 implements AdventOfCodeSolver {
         List<String> inputList = Converter.convertInputToList(input);
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
         int result = 0;
-        for (int x = 1; x < matrix.length - 1; x++) {
-            for (int y = 1; y < matrix[x].length - 1; y++) {
+        for (int y = 1; y < matrix.length - 1; y++) {
+            for (int x = 1; x < matrix[y].length - 1; x++) {
                 if (checkMAS(matrix, x, y)) {
                     result++;
                 }
@@ -89,9 +89,9 @@ public class Day04 implements AdventOfCodeSolver {
     }
 
     private boolean checkMAS(String[][] matrix, int x, int y) {
-        return matrix[x][y].equals("A")
-                && isMS(matrix[x - 1][y - 1], matrix[x + 1][y + 1])
-                && isMS(matrix[x - 1][y + 1], matrix[x + 1][y - 1]);
+        return matrix[y][x].equals("A")
+                && isMS(matrix[y - 1][x - 1], matrix[y + 1][x + 1])
+                && isMS(matrix[y - 1][x + 1], matrix[y + 1][x - 1]);
     }
 
     private boolean isMS(String first, String second) {
