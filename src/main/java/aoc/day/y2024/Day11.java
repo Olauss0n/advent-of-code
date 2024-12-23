@@ -9,12 +9,12 @@ public class Day11 implements AdventOfCodeSolver {
     private final HashMap<Stone, Long> cache = new HashMap<>();
 
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         return commonPart(input, 25);
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         return commonPart(input, 75);
     }
 

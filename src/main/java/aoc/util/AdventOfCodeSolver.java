@@ -2,9 +2,9 @@ package aoc.util;
 
 public interface AdventOfCodeSolver {
 
-    Object solvePartOne(String input);
+    Object solvePartOne(String input, boolean isExample);
 
-    Object solvePartTwo(String input);
+    Object solvePartTwo(String input, boolean isExample);
 
     default void setup() {
         try {
@@ -18,12 +18,12 @@ public interface AdventOfCodeSolver {
         System.out.println("-".repeat(output.length()));
     }
 
-    default void runPartOne(String input) {
-        System.out.println("Part one: " + solvePartOne(input));
+    default void runPartOne(String input, boolean isExample) {
+        System.out.println("Part one: " + solvePartOne(input, isExample));
     }
 
-    default void runPartTwo(String input) {
-        System.out.println("Part two: " + solvePartTwo(input));
+    default void runPartTwo(String input, boolean isExample) {
+        System.out.println("Part two: " + solvePartTwo(input, isExample));
     }
 
     private String getYearAndDay() {

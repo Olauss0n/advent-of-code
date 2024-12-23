@@ -14,7 +14,7 @@ public class Day02 implements AdventOfCodeSolver {
     private static final Integer MAX_BLUE_CUBES = 14;
 
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
 
         List<String> approvedGameIds = new ArrayList<>();
@@ -62,7 +62,7 @@ public class Day02 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
 
         List<Integer> minimumSetList = new ArrayList<>();

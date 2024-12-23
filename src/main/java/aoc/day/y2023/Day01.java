@@ -15,7 +15,7 @@ import aoc.util.Reader;
 public class Day01 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         String newInput = input.replaceAll("[a-zA-Z]", "");
 
         List<String> inputList = Arrays.asList(newInput.split("\n"));
@@ -31,7 +31,7 @@ public class Day01 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         return runPartTwoWithOverlaps(input);
     }
 

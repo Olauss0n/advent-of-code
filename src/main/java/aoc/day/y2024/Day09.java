@@ -11,7 +11,7 @@ import aoc.util.AdventOfCodeSolver;
 
 public class Day09 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         String[] inputArray = input.replace("\n", "").split("");
         int fileId = 0;
         ArrayList<String> disk = new ArrayList<>();
@@ -49,7 +49,7 @@ public class Day09 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         String[] inputArray = input.replace("\n", "").split("");
         int fileId = 0;
         int position = 0;

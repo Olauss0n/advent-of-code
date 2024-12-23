@@ -20,7 +20,7 @@ public class Day02 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
         long score = 0;
         for (String line : inputList) {
@@ -34,7 +34,7 @@ public class Day02 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
         long score = 0;
         for (String line : inputList) {

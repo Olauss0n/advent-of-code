@@ -7,12 +7,12 @@ import aoc.util.AdventOfCodeSolver;
 
 public class Day03 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         return commonPart(input);
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         String regexRemoval = "don't\\(\\)(?:(?!do\\(\\)).)*do\\(\\)";
         String filteredInput = input.replaceAll(regexRemoval, "");
         return commonPart(filteredInput);

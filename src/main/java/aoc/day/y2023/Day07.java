@@ -12,7 +12,7 @@ import aoc.util.Converter;
 public class Day07 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         ArrayList<HandPartOne> hands = new ArrayList<>(Converter.convertInputToList(input).stream()
                 .map(row -> new HandPartOne(
                         Arrays.asList(row.split(" ")).getFirst(),
@@ -32,7 +32,7 @@ public class Day07 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         ArrayList<HandPartTwo> hands = new ArrayList<>(Converter.convertInputToList(input).stream()
                 .map(row -> new HandPartTwo(
                         Arrays.asList(row.split(" ")).getFirst(),

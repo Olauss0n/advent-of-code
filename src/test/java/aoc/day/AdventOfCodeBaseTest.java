@@ -40,7 +40,7 @@ public abstract class AdventOfCodeBaseTest {
     @Test
     public void testPartOne() {
         try {
-            getSolver().runPartOne(getInput());
+            getSolver().runPartOne(getInput(), false);
         } catch (NotImplementedException e) {
             System.out.println("Part one: Not implemented.");
         }
@@ -49,7 +49,7 @@ public abstract class AdventOfCodeBaseTest {
     @Test
     public void testPartTwo() {
         try {
-            getSolver().runPartTwo(getInput());
+            getSolver().runPartTwo(getInput(), false);
         } catch (NotImplementedException e) {
             System.out.println("Part two: Not implemented.");
         }
@@ -60,13 +60,13 @@ public abstract class AdventOfCodeBaseTest {
         boolean noExceptions = true;
         noExceptions &= runWithExceptionHandling(() -> {
             System.out.print("Example part one: ");
-            Object examplePartOne = getSolver().solvePartOne(getExampleInput());
+            Object examplePartOne = getSolver().solvePartOne(getExampleInput(), false);
             System.out.printf("%s\n", examplePartOne);
             assertSolutionMatches(getExampleSolutionPartOne(), examplePartOne, "Part one is wrong.");
         });
         noExceptions &= runWithExceptionHandling(() -> {
             System.out.print("Example part two: ");
-            Object examplePartTwo = getSolver().solvePartTwo(getExampleInputPartTwo());
+            Object examplePartTwo = getSolver().solvePartTwo(getExampleInputPartTwo(), false);
             System.out.printf("%s\n", examplePartTwo);
             assertSolutionMatches(getExampleSolutionPartTwo(), examplePartTwo, "Part two is wrong.");
         });

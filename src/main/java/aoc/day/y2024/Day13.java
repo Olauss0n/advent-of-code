@@ -10,12 +10,12 @@ import aoc.util.AdventOfCodeSolver;
 
 public class Day13 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         return commonPart(input, false);
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         return commonPart(input, true);
     }
 

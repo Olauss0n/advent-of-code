@@ -12,7 +12,7 @@ import aoc.util.AdventOfCodeSolver;
 public class Day01 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         ArrayList<Integer> calorieList = commonPart(input);
         Optional<Integer> maxValue = calorieList.stream().max(Comparator.naturalOrder());
 
@@ -20,7 +20,7 @@ public class Day01 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         ArrayList<Integer> calorieList = commonPart(input);
 
         calorieList.sort(Collections.reverseOrder());

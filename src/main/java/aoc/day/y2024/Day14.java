@@ -12,13 +12,12 @@ import aoc.util.exceptions.NotImplementedException;
 
 public class Day14 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
 
         Pattern pattern = Pattern.compile("-?\\d+");
-        int width =
-                inputList.size() == 12 ? 11 : 101; // Ugly hack to run with different width & height for example input
-        int height = inputList.size() == 12 ? 7 : 103;
+        int width = isExample ? 11 : 101;
+        int height = isExample ? 7 : 103;
         int[][] matrix = new int[height][width];
         for (int[] array : matrix) {
             Arrays.fill(array, 0);
@@ -76,7 +75,7 @@ public class Day14 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         throw new NotImplementedException();
     }
 }

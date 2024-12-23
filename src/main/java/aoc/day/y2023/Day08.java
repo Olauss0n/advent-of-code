@@ -11,7 +11,7 @@ import aoc.util.Converter;
 public class Day08 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
 
         List<String> instructions = List.of(inputList.getFirst().split(""));
@@ -43,7 +43,7 @@ public class Day08 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
 
         List<String> instructions = List.of(inputList.getFirst().split(""));

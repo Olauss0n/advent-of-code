@@ -11,7 +11,7 @@ import aoc.util.MatrixUtil.Position;
 
 public class Day06 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
 
@@ -36,7 +36,7 @@ public class Day06 implements AdventOfCodeSolver {
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
 

@@ -12,12 +12,12 @@ import aoc.util.Converter;
 public class Day11 implements AdventOfCodeSolver {
 
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         return runCommonPart(input, 2);
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         if (input.length() == 110) { // Ugly hack to handle example data
             return runCommonPart(input, 100);
         }

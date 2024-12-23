@@ -8,12 +8,12 @@ import aoc.util.Converter;
 
 public class Day07 implements AdventOfCodeSolver {
     @Override
-    public Object solvePartOne(String input) {
+    public Object solvePartOne(String input, boolean isExample) {
         return commonPart(input, false);
     }
 
     @Override
-    public Object solvePartTwo(String input) {
+    public Object solvePartTwo(String input, boolean isExample) {
         return commonPart(input, true);
     }
 
