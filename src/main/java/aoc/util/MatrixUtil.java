@@ -1,12 +1,24 @@
 package aoc.util;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Set;
 
 public class MatrixUtil {
 
     public static String[][] createStringMatrix(int xWidth, int yHeight) {
         return new String[yHeight][xWidth];
+    }
+
+    public static String[][] fillMatrix(String[][] matrix, String fillerChar) {
+        for (int y = 0; y < matrix.length; y++) {
+            for (int x = 0; x < matrix[0].length; x++) {
+                matrix[y][x] = fillerChar;
+            }
+        }
+        return matrix;
     }
 
     public static boolean isWithinBounds(String[][] matrix, Position pos) {
@@ -40,6 +52,49 @@ public class MatrixUtil {
         }
         return positions;
     }
+
+    // Dijkstra's Algorithm with potential turning cost
+    public static int calculateDistance(String[][] matrix, Position start, Position end, int movementCost) {
+        PriorityQueue<State> priorityQueue = new PriorityQueue<>();
+        priorityQueue.add(new State(start, Direction.RIGHT, 0));
+
+        Set<Orientation> visited = new HashSet<>();
+
+        while (!priorityQueue.isEmpty()) {
+            State currentState = priorityQueue.poll();
+            if (visited.contains(new Orientation(currentState.position(), currentState.direction()))) {
+                continue;
+            }
+            visited.add(new Orientation(currentState.position(), currentState.direction()));
+            if (currentState.position().equals(end)) {
+                return currentState.value();
+            }
+            Position nextPosition = currentState.position().move(currentState.direction());
+            if (MatrixUtil.isWithinBounds(matrix, nextPosition)
+                    && !matrix[nextPosition.yPos()][nextPosition.xPos()].equals("#")) {
+                priorityQueue.add(new State(nextPosition, currentState.direction(), currentState.value() + 1));
+            }
+            priorityQueue.add(new State(
+                    currentState.position(),
+                    currentState.direction().rotateClockwise(),
+                    currentState.value() + movementCost));
+            priorityQueue.add(new State(
+                    currentState.position(),
+                    currentState.direction().rotateCounterClockwise(),
+                    currentState.value() + movementCost));
+        }
+        throw new IllegalStateException();
+    }
+
+    public record State(Position position, Direction direction, int value) implements Comparable<State> {
+
+        @Override
+        public int compareTo(State o) {
+            return Integer.compare(this.value, o.value);
+        }
+    }
+
+    public record Orientation(Position position, Direction direction) {}
 
     public record Position(int xPos, int yPos) implements Comparable<Position> {
 
@@ -86,6 +141,15 @@ public class MatrixUtil {
                 case RIGHT -> DOWN;
                 case DOWN -> LEFT;
                 case LEFT -> UP;
+            };
+        }
+
+        public Direction rotateCounterClockwise() {
+            return switch (this) {
+                case UP -> LEFT;
+                case LEFT -> DOWN;
+                case DOWN -> RIGHT;
+                case RIGHT -> UP;
             };
         }
     }
