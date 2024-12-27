@@ -12,6 +12,10 @@ public class MatrixUtil {
         return new String[yHeight][xWidth];
     }
 
+    public static int[][] createIntMatrix(int xWidth, int yHeight) {
+        return new int[yHeight][xWidth];
+    }
+
     public static String[][] fillMatrix(String[][] matrix, String fillerChar) {
         for (int y = 0; y < matrix.length; y++) {
             for (int x = 0; x < matrix[0].length; x++) {
@@ -19,6 +23,14 @@ public class MatrixUtil {
             }
         }
         return matrix;
+    }
+
+    public static void fillMatrix(int[][] matrix, int fillerChar) {
+        for (int y = 0; y < matrix.length; y++) {
+            for (int x = 0; x < matrix[0].length; x++) {
+                matrix[y][x] = fillerChar;
+            }
+        }
     }
 
     public static boolean isWithinBounds(String[][] matrix, Position pos) {
