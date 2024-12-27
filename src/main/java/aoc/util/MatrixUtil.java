@@ -132,6 +132,19 @@ public class MatrixUtil {
             };
         }
 
+        public Position move(OctagonalDirection direction) {
+            return switch (direction) {
+                case NORTH -> new Position(xPos, yPos - 2);
+                case NORTH_WEST -> new Position(xPos - 1, yPos - 1);
+                case NORTH_EAST -> new Position(xPos + 1, yPos - 1);
+                case WEST -> new Position(xPos - 2, yPos);
+                case EAST -> new Position(xPos + 2, yPos);
+                case SOUTH -> new Position(xPos, yPos + 2);
+                case SOUTH_WEST -> new Position(xPos - 1, yPos + 1);
+                case SOUTH_EAST -> new Position(xPos + 1, yPos + 1);
+            };
+        }
+
         @Override
         public int compareTo(Position o) {
             if (this.xPos == o.xPos) {
@@ -164,5 +177,16 @@ public class MatrixUtil {
                 case RIGHT -> UP;
             };
         }
+    }
+
+    public enum OctagonalDirection {
+        NORTH,
+        NORTH_WEST,
+        NORTH_EAST,
+        WEST,
+        EAST,
+        SOUTH_WEST,
+        SOUTH,
+        SOUTH_EAST;
     }
 }
