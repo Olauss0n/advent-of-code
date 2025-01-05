@@ -51,7 +51,7 @@ public class Day20 implements AdventOfCodeSolver {
                     if (matrix[newPosition.yPos()][newPosition.xPos()].equals("#")) {
                         continue;
                     }
-                    if (distances[y][x] - distances[newPosition.yPos()][newPosition.xPos()] >= 102) {
+                    if (distances[y][x] - distances[newPosition.yPos()][newPosition.xPos()] >= (isExample ? 4 : 102)) {
                         result += 1;
                     }
                 }

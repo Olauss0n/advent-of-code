@@ -12,7 +12,7 @@ public class Day20Test extends AdventOfCodeBaseTest {
 
     @Override
     protected Object getExampleSolutionPartOne() {
-        return 6;
+        return 44;
     }
 
     @Override
