@@ -60,13 +60,13 @@ public abstract class AdventOfCodeBaseTest {
         boolean noExceptions = true;
         noExceptions &= runWithExceptionHandling(() -> {
             System.out.print("Example part one: ");
-            Object examplePartOne = getSolver().solvePartOne(getExampleInput(), false);
+            Object examplePartOne = getSolver().solvePartOne(getExampleInput(), true);
             System.out.printf("%s\n", examplePartOne);
             assertSolutionMatches(getExampleSolutionPartOne(), examplePartOne, "Part one is wrong.");
         });
         noExceptions &= runWithExceptionHandling(() -> {
             System.out.print("Example part two: ");
-            Object examplePartTwo = getSolver().solvePartTwo(getExampleInputPartTwo(), false);
+            Object examplePartTwo = getSolver().solvePartTwo(getExampleInputPartTwo(), true);
             System.out.printf("%s\n", examplePartTwo);
             assertSolutionMatches(getExampleSolutionPartTwo(), examplePartTwo, "Part two is wrong.");
         });
