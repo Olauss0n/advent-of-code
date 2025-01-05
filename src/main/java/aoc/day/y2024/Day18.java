@@ -5,7 +5,9 @@ import java.util.List;
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.MatrixUtil;
+import aoc.util.MatrixUtil.Direction;
 import aoc.util.MatrixUtil.Position;
+import aoc.util.MatrixUtil.State;
 
 public class Day18 implements AdventOfCodeSolver {
     @Override
@@ -25,7 +27,7 @@ public class Day18 implements AdventOfCodeSolver {
             stringMatrix[position.yPos()][position.xPos()] = "#";
             i++;
         }
-        return MatrixUtil.calculateDistance(stringMatrix, startPosition, endPosition, 0);
+        return MatrixUtil.calculateDistance(stringMatrix, new State(startPosition, Direction.RIGHT, 0), endPosition, 0);
     }
 
     @Override
@@ -40,7 +42,8 @@ public class Day18 implements AdventOfCodeSolver {
             position = new Position(Integer.parseInt(line.split(",")[0]), Integer.parseInt(line.split(",")[1]));
             try {
                 stringMatrix[position.yPos()][position.xPos()] = "#";
-                MatrixUtil.calculateDistance(stringMatrix, startPosition, endPosition, 0);
+                MatrixUtil.calculateDistance(
+                        stringMatrix, new State(startPosition, Direction.RIGHT, 0), endPosition, 0);
             } catch (Exception e) {
                 break;
             }

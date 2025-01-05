@@ -84,9 +84,9 @@ public class MatrixUtil {
     }
 
     // Dijkstra's Algorithm with potential turning cost
-    public static int calculateDistance(String[][] matrix, Position start, Position end, int movementCost) {
+    public static int calculateDistance(String[][] matrix, State startState, Position end, int movementCost) {
         PriorityQueue<State> priorityQueue = new PriorityQueue<>();
-        priorityQueue.add(new State(start, Direction.RIGHT, 0));
+        priorityQueue.add(new State(startState.position, startState.direction, startState.value));
 
         Set<Orientation> visited = new HashSet<>();
 
