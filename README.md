@@ -64,8 +64,9 @@ Day 9:
 
 #### Java
 
-- [SimonGirardSfeir](https://github.com/SimonGirardSfeir/AdventOfCode2023/tree/main/src/main/java/org/girardsimon)
-- [dirk527](https://github.com/dirk527/aoc2021/tree/main/src/aoc2023)
+- [SimonGirardSfeir](https://github.com/SimonGirardSfeir)
+- [dirk527](https://github.com/dirk527)
+- [zebalu](https://github.com/zebalu)
 
 #### Python
 - [hyper-neutrino](https://github.com/hyper-neutrino/advent-of-code/tree/main/2023)
