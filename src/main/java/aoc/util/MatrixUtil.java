@@ -8,6 +8,24 @@ import java.util.Set;
 
 public class MatrixUtil {
 
+    public static void printMatrix(String[][] matrix) {
+        for (String[] lines : matrix) {
+            for (int x = 0; x < matrix[0].length; x++) {
+                System.out.printf("%1s".formatted(lines[x]));
+            }
+            System.out.println();
+        }
+    }
+
+    public static void printMatrix(int[][] matrix) {
+        for (int[] lines : matrix) {
+            for (int x = 0; x < matrix[0].length; x++) {
+                System.out.print("%3d".formatted(lines[x]));
+            }
+            System.out.println();
+        }
+    }
+
     public static String[][] createStringMatrix(int xWidth, int yHeight) {
         return new String[yHeight][xWidth];
     }
