@@ -84,7 +84,7 @@ public class MatrixUtil {
     }
 
     // Dijkstra's Algorithm with potential turning cost
-    public static int calculateDistance(String[][] matrix, State startState, Position end, int movementCost) {
+    public static int calculateDistance(String[][] matrix, State startState, Position end, int turningCost) {
         PriorityQueue<State> priorityQueue = new PriorityQueue<>();
         priorityQueue.add(new State(startState.position, startState.direction, startState.value));
 
@@ -107,11 +107,11 @@ public class MatrixUtil {
             priorityQueue.add(new State(
                     currentState.position(),
                     currentState.direction().rotateClockwise(),
-                    currentState.value() + movementCost));
+                    currentState.value() + turningCost));
             priorityQueue.add(new State(
                     currentState.position(),
                     currentState.direction().rotateCounterClockwise(),
-                    currentState.value() + movementCost));
+                    currentState.value() + turningCost));
         }
         throw new IllegalStateException();
     }
