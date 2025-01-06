@@ -8,30 +8,26 @@ import java.util.Set;
 
 public class MatrixUtil {
 
-    public static void printMatrix(String[][] matrix) {
-        for (String[] lines : matrix) {
-            for (int x = 0; x < matrix[0].length; x++) {
-                System.out.printf("%1s".formatted(lines[x]));
+    public static <T> void printMatrix(T[][] matrix, String formatter) {
+        System.out.println();
+        for (T[] lines : matrix) {
+            for (T element : lines) {
+                System.out.printf(formatter, element);
             }
             System.out.println();
         }
     }
 
-    public static void printMatrix(int[][] matrix) {
-        for (int[] lines : matrix) {
-            for (int x = 0; x < matrix[0].length; x++) {
-                System.out.print("%3d".formatted(lines[x]));
-            }
-            System.out.println();
-        }
+    public static <T> void printMatrix(T[][] matrix) {
+        printMatrix(matrix, "%1s");
     }
 
     public static String[][] createStringMatrix(int xWidth, int yHeight) {
         return new String[yHeight][xWidth];
     }
 
-    public static int[][] createIntMatrix(int xWidth, int yHeight) {
-        return new int[yHeight][xWidth];
+    public static Integer[][] createIntMatrix(int xWidth, int yHeight) {
+        return new Integer[yHeight][xWidth];
     }
 
     public static String[][] fillMatrix(String[][] matrix, String fillerChar) {
@@ -43,7 +39,7 @@ public class MatrixUtil {
         return matrix;
     }
 
-    public static void fillMatrix(int[][] matrix, int fillerChar) {
+    public static void fillMatrix(Integer[][] matrix, int fillerChar) {
         for (int y = 0; y < matrix.length; y++) {
             for (int x = 0; x < matrix[0].length; x++) {
                 matrix[y][x] = fillerChar;
