@@ -26,34 +26,8 @@ public class Day25 implements AdventOfCodeSolver {
             }
         }
 
-        List<List<Integer>> lockPins = new ArrayList<>();
-        for (String[][] lock : locks) {
-            ArrayList<Integer> pins = new ArrayList<>();
-            for (int column = 0; column < lock[0].length; column++) {
-                int count = 0;
-                for (int row = 1; row < lock.length; row++) {
-                    if (lock[row][column].equals("#")) {
-                        count += 1;
-                    }
-                }
-                pins.add(count);
-            }
-            lockPins.add(pins);
-        }
-        List<List<Integer>> keyPins = new ArrayList<>();
-        for (String[][] key : keys) {
-            ArrayList<Integer> pins = new ArrayList<>();
-            for (int column = 0; column < key[0].length; column++) {
-                int count = 0;
-                for (int row = 0; row < key.length - 1; row++) {
-                    if (key[row][column].equals("#")) {
-                        count += 1;
-                    }
-                }
-                pins.add(count);
-            }
-            keyPins.add(pins);
-        }
+        List<List<Integer>> lockPins = getPins(locks, false);
+        List<List<Integer>> keyPins = getPins(keys, true);
 
         int result = 0;
         for (List<Integer> lockPin : lockPins) {
@@ -64,6 +38,26 @@ public class Day25 implements AdventOfCodeSolver {
             }
         }
         return result;
+    }
+
+    private static List<List<Integer>> getPins(List<String[][]> matrices, boolean countFromTop) {
+        List<List<Integer>> pinsList = new ArrayList<>();
+        for (String[][] matrix : matrices) {
+            List<Integer> pins = new ArrayList<>();
+            for (int column = 0; column < matrix[0].length; column++) {
+                int count = 0;
+                int startRow = countFromTop ? 0 : 1; // Start at row 0 or row 1
+                int endRow = countFromTop ? matrix.length - 1 : matrix.length; // Exclude or include last row
+                for (int row = startRow; row < endRow; row++) {
+                    if (matrix[row][column].equals("#")) {
+                        count += 1;
+                    }
+                }
+                pins.add(count);
+            }
+            pinsList.add(pins);
+        }
+        return pinsList;
     }
 
     private static boolean hasOverlap(List<Integer> lockPin, List<Integer> keyPin) {
