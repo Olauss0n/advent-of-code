@@ -92,26 +92,24 @@ public class MatrixUtil {
 
         while (!priorityQueue.isEmpty()) {
             State currentState = priorityQueue.poll();
-            if (visited.contains(new Orientation(currentState.position(), currentState.direction()))) {
+            if (visited.contains(new Orientation(currentState.position, currentState.direction))) {
                 continue;
             }
-            visited.add(new Orientation(currentState.position(), currentState.direction()));
-            if (currentState.position().equals(end)) {
-                return currentState.value();
+            visited.add(new Orientation(currentState.position, currentState.direction));
+            if (currentState.position.equals(end)) {
+                return currentState.value;
             }
-            Position nextPosition = currentState.position().move(currentState.direction());
+            Position nextPosition = currentState.position.move(currentState.direction);
             if (MatrixUtil.isWithinBounds(matrix, nextPosition)
-                    && !matrix[nextPosition.yPos()][nextPosition.xPos()].equals("#")) {
-                priorityQueue.add(new State(nextPosition, currentState.direction(), currentState.value() + 1));
+                    && !matrix[nextPosition.yPos][nextPosition.xPos].equals("#")) {
+                priorityQueue.add(new State(nextPosition, currentState.direction, currentState.value + 1));
             }
             priorityQueue.add(new State(
-                    currentState.position(),
-                    currentState.direction().rotateClockwise(),
-                    currentState.value() + turningCost));
+                    currentState.position, currentState.direction.rotateClockwise(), currentState.value + turningCost));
             priorityQueue.add(new State(
-                    currentState.position(),
-                    currentState.direction().rotateCounterClockwise(),
-                    currentState.value() + turningCost));
+                    currentState.position,
+                    currentState.direction.rotateCounterClockwise(),
+                    currentState.value + turningCost));
         }
         throw new IllegalStateException();
     }
