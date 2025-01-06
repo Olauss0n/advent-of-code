@@ -8,6 +8,7 @@ import aoc.util.MatrixUtil;
 import aoc.util.MatrixUtil.Direction;
 import aoc.util.MatrixUtil.OctagonalDirection;
 import aoc.util.MatrixUtil.Position;
+import aoc.util.exceptions.NotImplementedException;
 
 public class Day20 implements AdventOfCodeSolver {
     @Override
@@ -16,7 +17,7 @@ public class Day20 implements AdventOfCodeSolver {
         String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
         Position currentPosition = MatrixUtil.findPosition(matrix, "S");
         Position endPosition = MatrixUtil.findPosition(matrix, "E");
-        int[][] distances = MatrixUtil.createIntMatrix(matrix[0].length, matrix.length);
+        Integer[][] distances = MatrixUtil.createIntMatrix(matrix[0].length, matrix.length);
         MatrixUtil.fillMatrix(distances, -1);
         distances[currentPosition.yPos()][currentPosition.xPos()] = 0;
 
@@ -37,6 +38,8 @@ public class Day20 implements AdventOfCodeSolver {
                 currentPosition = nextPosition;
             }
         }
+        // MatrixUtil.printMatrix(matrix);
+        // MatrixUtil.printMatrix(distances, "%3d");
         int result = 0;
         for (int y = 0; y < matrix.length; y++) {
             for (int x = 0; x < matrix[y].length; x++) {
@@ -62,6 +65,6 @@ public class Day20 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        return null;
+        throw new NotImplementedException();
     }
 }

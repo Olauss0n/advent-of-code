@@ -12,8 +12,7 @@ public class Day25 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
         List<String[][]> matrices = Arrays.stream(input.split("\n\n"))
-                .map(Converter::convertInputToList)
-                .map(Converter::convertListInputToStringMatrix)
+                .map(Converter::convertInputToStringMatrix)
                 .toList();
 
         List<String[][]> locks = new ArrayList<>();

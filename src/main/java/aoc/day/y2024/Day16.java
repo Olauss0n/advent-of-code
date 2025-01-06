@@ -11,7 +11,7 @@ import aoc.util.exceptions.NotImplementedException;
 public class Day16 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        String[][] matrix = Converter.convertListInputToStringMatrix(Converter.convertInputToList(input));
+        String[][] matrix = Converter.convertInputToStringMatrix(input);
         Position start = MatrixUtil.findPosition(matrix, "S");
         Position end = MatrixUtil.findPosition(matrix, "E");
         return MatrixUtil.calculateDistance(matrix, new State(start, Direction.RIGHT, 0), end, 1000);

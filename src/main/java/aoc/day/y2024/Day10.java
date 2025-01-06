@@ -22,8 +22,7 @@ public class Day10 implements AdventOfCodeSolver {
     }
 
     private Object commonPart(String input, boolean isPartTwo) {
-        List<String> inputList = Converter.convertInputToList(input);
-        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
+        String[][] matrix = Converter.convertInputToStringMatrix(input);
         List<Position> zeros = new ArrayList<>();
         for (int row = 0; row < matrix.length; row++) {
             for (int col = 0; col < matrix[row].length; col++) {

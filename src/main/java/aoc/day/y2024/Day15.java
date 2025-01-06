@@ -14,35 +14,15 @@ public class Day15 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
         List<String> inputList = Arrays.stream(input.split("\n\n")).toList();
-        String[][] matrix =
-                Converter.convertListInputToStringMatrix(Converter.convertInputToList(inputList.getFirst()));
+        String[][] matrix = Converter.convertInputToStringMatrix(inputList.getFirst());
         List<String> moves =
                 Arrays.stream(inputList.getLast().replace("\n", "").split("")).toList();
         Position position = MatrixUtil.findPosition(matrix, "@");
-        /*
-        System.out.println("Start matrix:");
-        for (String[] line : matrix) {
-            System.out.println(Arrays.stream(line).toList());
-        }
-        System.out.println("---");
-
-         */
-        int index = 0;
         for (String move : moves) {
             if (canMoveTo(position, convertMoveToDirection(move), matrix)) {
-                // System.out.println("Moving, index: " + index + ", direction: " + convertMoveToDirection(move));
                 matrix = move(matrix, position, convertMoveToDirection(move));
-                /*
-                for (String[] line : matrix) {
-                    System.out.println(Arrays.stream(line).toList());
-                }
-
-                 */
-            } else {
-                // System.out.println("Not moving, index: " + index + ", direction: " + convertMoveToDirection(move));
             }
             position = MatrixUtil.findPosition(matrix, "@");
-            index += 1;
         }
         List<Position> boxes = MatrixUtil.findPositions(matrix, "O");
         long result = 0;

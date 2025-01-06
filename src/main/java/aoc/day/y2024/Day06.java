@@ -1,7 +1,6 @@
 package aoc.day.y2024;
 
 import java.util.HashSet;
-import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
@@ -12,8 +11,7 @@ import aoc.util.MatrixUtil.Position;
 public class Day06 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
-        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
+        String[][] matrix = Converter.convertInputToStringMatrix(input);
 
         Position startPosition = getStartPosition(matrix);
         HashSet<Position> visited = findPositions(startPosition, matrix);
@@ -37,8 +35,7 @@ public class Day06 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
-        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
+        String[][] matrix = Converter.convertInputToStringMatrix(input);
 
         Position startPosition = getStartPosition(matrix);
         HashSet<Position> visited = findPositions(startPosition, matrix);

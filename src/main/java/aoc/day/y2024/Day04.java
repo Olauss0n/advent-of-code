@@ -1,18 +1,14 @@
 package aoc.day.y2024;
 
-import java.util.List;
-
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.MatrixUtil.Position;
-
 import static aoc.util.MatrixUtil.isWithinBounds;
 
 public class Day04 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
-        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
+        String[][] matrix = Converter.convertInputToStringMatrix(input);
 
         int result = 0;
         for (int y = 0; y < matrix.length; y++) {
@@ -25,8 +21,7 @@ public class Day04 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
-        String[][] matrix = Converter.convertListInputToStringMatrix(inputList);
+        String[][] matrix = Converter.convertInputToStringMatrix(input);
         int result = 0;
         for (int y = 1; y < matrix.length - 1; y++) {
             for (int x = 1; x < matrix[y].length - 1; x++) {
