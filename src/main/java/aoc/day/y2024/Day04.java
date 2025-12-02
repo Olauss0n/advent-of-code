@@ -3,6 +3,7 @@ package aoc.day.y2024;
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.MatrixUtil.Position;
+
 import static aoc.util.MatrixUtil.isWithinBounds;
 
 public class Day04 implements AdventOfCodeSolver {

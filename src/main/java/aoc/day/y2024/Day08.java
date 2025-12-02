@@ -8,6 +8,7 @@ import java.util.List;
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.MatrixUtil.Position;
+
 import static aoc.util.MatrixUtil.isWithinBounds;
 
 public class Day08 implements AdventOfCodeSolver {

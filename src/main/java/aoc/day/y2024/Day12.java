@@ -11,8 +11,9 @@ import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.MatrixUtil.Direction;
 import aoc.util.MatrixUtil.Position;
-import static aoc.util.MatrixUtil.isWithinBounds;
 import aoc.util.exceptions.NotImplementedException;
+
+import static aoc.util.MatrixUtil.isWithinBounds;
 
 public class Day12 implements AdventOfCodeSolver {
     @Override
