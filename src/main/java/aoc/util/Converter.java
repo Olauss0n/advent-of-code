@@ -10,6 +10,10 @@ public class Converter {
         return input.lines().toList();
     }
 
+    public static List<String> convertInputToList(String input, String delimiter) {
+        return Arrays.stream(input.replaceAll("\n", "").split(delimiter)).toList();
+    }
+
     public static String[][] convertInputToStringMatrix(String input) {
         return convertListInputToStringMatrix(input.lines().toList());
     }
