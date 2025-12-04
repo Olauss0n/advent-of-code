@@ -120,6 +120,7 @@ public class MatrixUtil {
 
     public record Orientation(Position position, Direction direction) {}
 
+    // xPos = column, yPos = row
     public record Position(int xPos, int yPos) implements Comparable<Position> {
 
         public Position move(Direction direction) {
@@ -144,7 +145,20 @@ public class MatrixUtil {
             };
         }
 
-        public Position move(OctagonalDirection direction) {
+        public Position move1Step(OctagonalDirection direction) {
+            return switch (direction) {
+                case NORTH -> new Position(xPos, yPos - 1);
+                case NORTH_WEST -> new Position(xPos - 1, yPos - 1);
+                case NORTH_EAST -> new Position(xPos + 1, yPos - 1);
+                case WEST -> new Position(xPos - 1, yPos);
+                case EAST -> new Position(xPos + 1, yPos);
+                case SOUTH -> new Position(xPos, yPos + 1);
+                case SOUTH_WEST -> new Position(xPos - 1, yPos + 1);
+                case SOUTH_EAST -> new Position(xPos + 1, yPos + 1);
+            };
+        }
+
+        public Position move2Steps(OctagonalDirection direction) {
             return switch (direction) {
                 case NORTH -> new Position(xPos, yPos - 2);
                 case NORTH_WEST -> new Position(xPos - 1, yPos - 1);

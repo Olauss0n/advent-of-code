@@ -38,8 +38,6 @@ public class Day20 implements AdventOfCodeSolver {
                 currentPosition = nextPosition;
             }
         }
-        // MatrixUtil.printMatrix(matrix);
-        // MatrixUtil.printMatrix(distances, "%3d");
         int result = 0;
         for (int y = 0; y < matrix.length; y++) {
             for (int x = 0; x < matrix[y].length; x++) {
@@ -47,7 +45,7 @@ public class Day20 implements AdventOfCodeSolver {
                     continue;
                 }
                 for (OctagonalDirection direction : MatrixUtil.OctagonalDirection.values()) {
-                    Position newPosition = new Position(x, y).move(direction);
+                    Position newPosition = new Position(x, y).move2Steps(direction);
                     if (!MatrixUtil.isWithinBounds(matrix, newPosition)) {
                         continue;
                     }
