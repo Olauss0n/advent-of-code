@@ -37,7 +37,7 @@ public class Converter {
 
     public static String[][] convertListInputToStringMatrix(List<String> input, String delimiter) {
         List<List<String>> inputMatrix = input.stream()
-                .map(line -> Arrays.stream(line.split(delimiter)).toList())
+                .map(line -> Arrays.stream(line.trim().split(delimiter)).toList())
                 .toList();
 
         String[][] matrix =
