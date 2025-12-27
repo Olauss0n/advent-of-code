@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-public class MatrixUtil {
+public class GridUtil {
 
     public static <T> void printMatrix(T[][] matrix, String formatter) {
         System.out.println();
@@ -96,7 +96,7 @@ public class MatrixUtil {
                 return currentState.value;
             }
             Position nextPosition = currentState.position.move(currentState.direction);
-            if (MatrixUtil.isWithinBounds(matrix, nextPosition)
+            if (GridUtil.isWithinBounds(matrix, nextPosition)
                     && !matrix[nextPosition.yPos][nextPosition.xPos].equals("#")) {
                 priorityQueue.add(new State(nextPosition, currentState.direction, currentState.value + 1));
             }

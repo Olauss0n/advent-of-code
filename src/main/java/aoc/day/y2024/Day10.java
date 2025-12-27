@@ -6,9 +6,9 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.MatrixUtil;
-import aoc.util.MatrixUtil.Direction;
-import aoc.util.MatrixUtil.Position;
+import aoc.util.GridUtil;
+import aoc.util.GridUtil.Direction;
+import aoc.util.GridUtil.Position;
 
 public class Day10 implements AdventOfCodeSolver {
     @Override
@@ -50,7 +50,7 @@ public class Day10 implements AdventOfCodeSolver {
         }
         for (Direction direction : Direction.values()) {
             Position newPos = pos.move(direction);
-            if (MatrixUtil.isWithinBounds(matrix, newPos)
+            if (GridUtil.isWithinBounds(matrix, newPos)
                     && matrix[newPos.yPos()][newPos.xPos()].equals(String.valueOf(value))) {
                 visited = checkAdjacentPositions(matrix, newPos, value + 1, visited);
             }

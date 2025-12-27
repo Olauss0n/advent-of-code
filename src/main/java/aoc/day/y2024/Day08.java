@@ -7,9 +7,9 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.MatrixUtil.Position;
+import aoc.util.GridUtil.Position;
 
-import static aoc.util.MatrixUtil.isWithinBounds;
+import static aoc.util.GridUtil.isWithinBounds;
 
 public class Day08 implements AdventOfCodeSolver {
     @Override

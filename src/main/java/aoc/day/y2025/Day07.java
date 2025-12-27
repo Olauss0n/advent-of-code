@@ -6,15 +6,15 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.MatrixUtil;
-import aoc.util.MatrixUtil.Direction;
-import aoc.util.MatrixUtil.Position;
+import aoc.util.GridUtil;
+import aoc.util.GridUtil.Direction;
+import aoc.util.GridUtil.Position;
 
 public class Day07 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
         String[][] matrix = Converter.convertListInputToStringMatrix(Converter.convertInputToList(input));
-        Position current = MatrixUtil.findPosition(matrix, "S");
+        Position current = GridUtil.findPosition(matrix, "S");
         HashSet<Position> hits = new HashSet<>();
         traceBeams(matrix, current, hits);
         return hits.size();
@@ -23,7 +23,7 @@ public class Day07 implements AdventOfCodeSolver {
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
         String[][] matrix = Converter.convertListInputToStringMatrix(Converter.convertInputToList(input));
-        Position current = MatrixUtil.findPosition(matrix, "S");
+        Position current = GridUtil.findPosition(matrix, "S");
         traceBeams(matrix, current, new HashSet<>());
         HashMap<Integer, Long> timelines = new HashMap<>();
         for (int i = 0; i < matrix[0].length; i++) {
@@ -54,7 +54,7 @@ public class Day07 implements AdventOfCodeSolver {
             matrix[position.yPos()][position.xPos()] = "|";
         }
         position = position.move(Direction.DOWN);
-        if (!MatrixUtil.isWithinBounds(matrix, position)) {
+        if (!GridUtil.isWithinBounds(matrix, position)) {
             return;
         }
         if (matrix[position.yPos()][position.xPos()].equals(".")) {

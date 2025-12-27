@@ -5,9 +5,9 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.MatrixUtil;
-import aoc.util.MatrixUtil.Direction;
-import aoc.util.MatrixUtil.Position;
+import aoc.util.GridUtil;
+import aoc.util.GridUtil.Direction;
+import aoc.util.GridUtil.Position;
 import aoc.util.exceptions.NotImplementedException;
 
 public class Day15 implements AdventOfCodeSolver {
@@ -17,14 +17,14 @@ public class Day15 implements AdventOfCodeSolver {
         String[][] matrix = Converter.convertInputToStringMatrix(inputList.getFirst());
         List<String> moves =
                 Arrays.stream(inputList.getLast().replace("\n", "").split("")).toList();
-        Position position = MatrixUtil.findPosition(matrix, "@");
+        Position position = GridUtil.findPosition(matrix, "@");
         for (String move : moves) {
             if (canMoveTo(position, convertMoveToDirection(move), matrix)) {
                 matrix = move(matrix, position, convertMoveToDirection(move));
             }
-            position = MatrixUtil.findPosition(matrix, "@");
+            position = GridUtil.findPosition(matrix, "@");
         }
-        List<Position> boxes = MatrixUtil.findPositions(matrix, "O");
+        List<Position> boxes = GridUtil.findPositions(matrix, "O");
         long result = 0;
         for (Position box : boxes) {
             result += box.xPos() + 100L * box.yPos();
@@ -43,7 +43,7 @@ public class Day15 implements AdventOfCodeSolver {
 
     private boolean canMoveTo(Position position, Direction direction, String[][] matrix) {
         Position newPos = position.move(direction);
-        boolean isWithinBounds = MatrixUtil.isWithinBounds(matrix, newPos);
+        boolean isWithinBounds = GridUtil.isWithinBounds(matrix, newPos);
         if (!isWithinBounds) {
             return false;
         }

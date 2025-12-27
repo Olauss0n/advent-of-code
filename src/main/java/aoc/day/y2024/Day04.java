@@ -2,9 +2,9 @@ package aoc.day.y2024;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.MatrixUtil.Position;
+import aoc.util.GridUtil.Position;
 
-import static aoc.util.MatrixUtil.isWithinBounds;
+import static aoc.util.GridUtil.isWithinBounds;
 
 public class Day04 implements AdventOfCodeSolver {
     @Override

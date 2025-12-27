@@ -4,10 +4,10 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.MatrixUtil;
-import aoc.util.MatrixUtil.Direction;
-import aoc.util.MatrixUtil.Position;
-import aoc.util.MatrixUtil.State;
+import aoc.util.GridUtil;
+import aoc.util.GridUtil.Direction;
+import aoc.util.GridUtil.Position;
+import aoc.util.GridUtil.State;
 
 public class Day18 implements AdventOfCodeSolver {
     @Override
@@ -16,7 +16,7 @@ public class Day18 implements AdventOfCodeSolver {
         int size = isExample ? 7 : 71;
         Position startPosition = new Position(0, 0);
         Position endPosition = isExample ? new Position(6, 6) : new Position(70, 70);
-        String[][] stringMatrix = MatrixUtil.fillMatrix(MatrixUtil.createStringMatrix(size, size), ".");
+        String[][] stringMatrix = GridUtil.fillMatrix(GridUtil.createStringMatrix(size, size), ".");
         int i = 0;
         for (String line : inputList) {
             if ((i >= 12 && isExample) || i >= 1024) {
@@ -26,7 +26,7 @@ public class Day18 implements AdventOfCodeSolver {
             stringMatrix[position.yPos()][position.xPos()] = "#";
             i++;
         }
-        return MatrixUtil.calculateDistance(stringMatrix, new State(startPosition, Direction.RIGHT, 0), endPosition, 0);
+        return GridUtil.calculateDistance(stringMatrix, new State(startPosition, Direction.RIGHT, 0), endPosition, 0);
     }
 
     @Override
@@ -35,14 +35,13 @@ public class Day18 implements AdventOfCodeSolver {
         int size = isExample ? 7 : 71;
         Position startPosition = new Position(0, 0);
         Position endPosition = isExample ? new Position(6, 6) : new Position(70, 70);
-        String[][] stringMatrix = MatrixUtil.fillMatrix(MatrixUtil.createStringMatrix(size, size), ".");
+        String[][] stringMatrix = GridUtil.fillMatrix(GridUtil.createStringMatrix(size, size), ".");
         Position position = startPosition;
         for (String line : inputList) {
             position = new Position(line.split(","));
             try {
                 stringMatrix[position.yPos()][position.xPos()] = "#";
-                MatrixUtil.calculateDistance(
-                        stringMatrix, new State(startPosition, Direction.RIGHT, 0), endPosition, 0);
+                GridUtil.calculateDistance(stringMatrix, new State(startPosition, Direction.RIGHT, 0), endPosition, 0);
             } catch (Exception e) {
                 break;
             }

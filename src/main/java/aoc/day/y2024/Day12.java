@@ -9,11 +9,11 @@ import java.util.Set;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.MatrixUtil.Direction;
-import aoc.util.MatrixUtil.Position;
+import aoc.util.GridUtil.Direction;
+import aoc.util.GridUtil.Position;
 import aoc.util.exceptions.NotImplementedException;
 
-import static aoc.util.MatrixUtil.isWithinBounds;
+import static aoc.util.GridUtil.isWithinBounds;
 
 public class Day12 implements AdventOfCodeSolver {
     @Override

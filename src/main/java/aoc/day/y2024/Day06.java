@@ -4,9 +4,9 @@ import java.util.HashSet;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.MatrixUtil;
-import aoc.util.MatrixUtil.Direction;
-import aoc.util.MatrixUtil.Position;
+import aoc.util.GridUtil;
+import aoc.util.GridUtil.Direction;
+import aoc.util.GridUtil.Position;
 
 public class Day06 implements AdventOfCodeSolver {
     @Override
@@ -67,7 +67,7 @@ public class Day06 implements AdventOfCodeSolver {
         Direction currentDirection = Direction.UP;
         while (true) {
             visited.add(currentPosition);
-            if (!MatrixUtil.isWithinBounds(matrix, currentPosition, currentDirection)) {
+            if (!GridUtil.isWithinBounds(matrix, currentPosition, currentDirection)) {
                 break;
             }
             while (matrix[currentPosition.move(currentDirection).yPos()][
@@ -84,7 +84,7 @@ public class Day06 implements AdventOfCodeSolver {
         Direction currentDirection = Direction.UP;
         while (true) {
             visited.add(new Pair(currentPosition, currentDirection));
-            if (!MatrixUtil.isWithinBounds(matrix, currentPosition, currentDirection)) {
+            if (!GridUtil.isWithinBounds(matrix, currentPosition, currentDirection)) {
                 return false;
             }
             while (matrix[currentPosition.move(currentDirection).yPos()][

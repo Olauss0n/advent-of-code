@@ -5,9 +5,9 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.MatrixUtil;
-import aoc.util.MatrixUtil.OctagonalDirection;
-import aoc.util.MatrixUtil.Position;
+import aoc.util.GridUtil;
+import aoc.util.GridUtil.OctagonalDirection;
+import aoc.util.GridUtil.Position;
 
 public class Day04 implements AdventOfCodeSolver {
     @Override
@@ -19,9 +19,9 @@ public class Day04 implements AdventOfCodeSolver {
                 int occurrences = 0;
                 Position currentPosition = new Position(column, row);
                 if (matrix[row][column].equals("@")) {
-                    for (OctagonalDirection direction : MatrixUtil.OctagonalDirection.values()) {
+                    for (OctagonalDirection direction : GridUtil.OctagonalDirection.values()) {
                         Position newPosition = currentPosition.move1Step(direction);
-                        if (MatrixUtil.isWithinBounds(matrix, newPosition)) {
+                        if (GridUtil.isWithinBounds(matrix, newPosition)) {
                             if (matrix[newPosition.yPos()][newPosition.xPos()].equals("@")) {
                                 occurrences += 1;
                             }
@@ -48,9 +48,9 @@ public class Day04 implements AdventOfCodeSolver {
                     int occurrences = 0;
                     Position currentPosition = new Position(column, row);
                     if (matrix[row][column].equals("@")) {
-                        for (OctagonalDirection direction : MatrixUtil.OctagonalDirection.values()) {
+                        for (OctagonalDirection direction : GridUtil.OctagonalDirection.values()) {
                             Position newPosition = currentPosition.move1Step(direction);
-                            if (MatrixUtil.isWithinBounds(matrix, newPosition)) {
+                            if (GridUtil.isWithinBounds(matrix, newPosition)) {
                                 if (matrix[newPosition.yPos()][newPosition.xPos()].equals("@")) {
                                     occurrences += 1;
                                 }
