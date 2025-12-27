@@ -22,8 +22,7 @@ public class Day18 implements AdventOfCodeSolver {
             if ((i >= 12 && isExample) || i >= 1024) {
                 break;
             }
-            Position position =
-                    new Position(Integer.parseInt(line.split(",")[0]), Integer.parseInt(line.split(",")[1]));
+            Position position = new Position(line.split(","));
             stringMatrix[position.yPos()][position.xPos()] = "#";
             i++;
         }
@@ -39,7 +38,7 @@ public class Day18 implements AdventOfCodeSolver {
         String[][] stringMatrix = MatrixUtil.fillMatrix(MatrixUtil.createStringMatrix(size, size), ".");
         Position position = startPosition;
         for (String line : inputList) {
-            position = new Position(Integer.parseInt(line.split(",")[0]), Integer.parseInt(line.split(",")[1]));
+            position = new Position(line.split(","));
             try {
                 stringMatrix[position.yPos()][position.xPos()] = "#";
                 MatrixUtil.calculateDistance(

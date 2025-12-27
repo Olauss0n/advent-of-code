@@ -123,6 +123,10 @@ public class MatrixUtil {
     // xPos = column, yPos = row
     public record Position(int xPos, int yPos) implements Comparable<Position> {
 
+        public Position(String[] elements) {
+            this(Integer.parseInt(elements[0]), Integer.parseInt(elements[1]));
+        }
+
         public Position move(Direction direction) {
             return switch (direction) {
                 case UP -> new Position(xPos, yPos - 1);
