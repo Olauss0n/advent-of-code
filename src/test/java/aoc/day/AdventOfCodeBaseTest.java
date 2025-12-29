@@ -8,6 +8,7 @@ import aoc.day.exceptions.NoExampleSolutionGivenException;
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 import aoc.util.exceptions.FileNotFoundException;
+import aoc.util.exceptions.NoPuzzleAvailableException;
 import aoc.util.exceptions.NotImplementedException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -52,6 +53,8 @@ public abstract class AdventOfCodeBaseTest {
             getSolver().runPartTwo(getInput(), false);
         } catch (NotImplementedException e) {
             System.out.println("Part two: Not implemented.");
+        } catch (NoPuzzleAvailableException e) {
+            System.out.println("Part two: No puzzle is available for this part.");
         }
     }
 
@@ -85,6 +88,8 @@ public abstract class AdventOfCodeBaseTest {
             System.out.println("No example solution was given.");
         } catch (NotImplementedException e) {
             System.out.println("Not implemented.");
+        } catch (NoPuzzleAvailableException e) {
+            System.out.println("No puzzle is available for this part.");
         } catch (FileNotFoundException e) {
             System.out.println("File was not found: " + e.getMessage());
         }
