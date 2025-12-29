@@ -92,8 +92,8 @@ public abstract class AdventOfCodeBaseTest {
     }
 
     private void assertSolutionMatches(Object expected, Object actual, String errorMessage) {
-        if (expected instanceof Number && actual instanceof Number) {
-            assertEquals(((Number) expected).longValue(), ((Number) actual).longValue(), errorMessage);
+        if (expected instanceof Number expectedNumber && actual instanceof Number actualNumber) {
+            assertEquals(expectedNumber.longValue(), actualNumber.longValue(), errorMessage);
         } else {
             assertEquals(expected, actual, errorMessage);
         }
