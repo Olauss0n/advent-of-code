@@ -1,10 +1,9 @@
 package aoc.util;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Set;
+
+import aoc.util.SearchUtil.Edge;
 
 public class GridUtil {
 
@@ -79,35 +78,20 @@ public class GridUtil {
         return positions;
     }
 
-    // Dijkstra's Algorithm with potential turning cost
-    public static int calculateDistance(String[][] matrix, State startState, Position end, int turningCost) {
-        PriorityQueue<State> priorityQueue = new PriorityQueue<>();
-        priorityQueue.add(new State(startState.position, startState.direction, startState.value));
+    public static List<Edge<Orientation>> getGridEdges(String[][] matrix, Orientation current, int turnCost) {
+        List<Edge<Orientation>> edges = new ArrayList<>();
 
-        Set<Orientation> visited = new HashSet<>();
-
-        while (!priorityQueue.isEmpty()) {
-            State currentState = priorityQueue.poll();
-            if (visited.contains(new Orientation(currentState.position, currentState.direction))) {
-                continue;
-            }
-            visited.add(new Orientation(currentState.position, currentState.direction));
-            if (currentState.position.equals(end)) {
-                return currentState.value;
-            }
-            Position nextPosition = currentState.position.move(currentState.direction);
-            if (GridUtil.isWithinBounds(matrix, nextPosition)
-                    && !matrix[nextPosition.yPos][nextPosition.xPos].equals("#")) {
-                priorityQueue.add(new State(nextPosition, currentState.direction, currentState.value + 1));
-            }
-            priorityQueue.add(new State(
-                    currentState.position, currentState.direction.rotateClockwise(), currentState.value + turningCost));
-            priorityQueue.add(new State(
-                    currentState.position,
-                    currentState.direction.rotateCounterClockwise(),
-                    currentState.value + turningCost));
+        // Move Forward
+        Position next = current.position.move(current.direction);
+        if (isWithinBounds(matrix, next) && !matrix[next.yPos][next.xPos].equals("#")) {
+            edges.add(new SearchUtil.Edge<>(new Orientation(next, current.direction), 1));
         }
-        throw new IllegalStateException();
+
+        // Turns
+        edges.add(new Edge<>(new Orientation(current.position, current.direction.rotateClockwise()), turnCost));
+        edges.add(new Edge<>(new Orientation(current.position, current.direction.rotateCounterClockwise()), turnCost));
+
+        return edges;
     }
 
     public record State(Position position, Direction direction, int value) implements Comparable<State> {

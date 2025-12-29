@@ -6,8 +6,9 @@ import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.GridUtil;
 import aoc.util.GridUtil.Direction;
+import aoc.util.GridUtil.Orientation;
 import aoc.util.GridUtil.Position;
-import aoc.util.GridUtil.State;
+import aoc.util.SearchUtil;
 
 public class Day18 implements AdventOfCodeSolver {
     @Override
@@ -26,7 +27,11 @@ public class Day18 implements AdventOfCodeSolver {
             stringMatrix[position.yPos()][position.xPos()] = "#";
             i++;
         }
-        return GridUtil.calculateDistance(stringMatrix, new State(startPosition, Direction.RIGHT, 0), endPosition, 0);
+        return SearchUtil.dijkstra(
+                        new Orientation(startPosition, Direction.RIGHT),
+                        state -> state.position().equals(endPosition),
+                        current -> GridUtil.getGridEdges(stringMatrix, current, 0))
+                .distance();
     }
 
     @Override
@@ -41,7 +46,10 @@ public class Day18 implements AdventOfCodeSolver {
             position = new Position(line.split(","));
             try {
                 stringMatrix[position.yPos()][position.xPos()] = "#";
-                GridUtil.calculateDistance(stringMatrix, new State(startPosition, Direction.RIGHT, 0), endPosition, 0);
+                SearchUtil.dijkstra(
+                        new Orientation(startPosition, Direction.RIGHT),
+                        state -> state.position().equals(endPosition),
+                        current -> GridUtil.getGridEdges(stringMatrix, current, 0));
             } catch (Exception e) {
                 break;
             }
