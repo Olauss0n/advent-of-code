@@ -1,5 +1,11 @@
 ### Links for troubleshooting/test examples
 
+#### 2025
+
+Day 10:
+
+[Part 2 strategy](https://www.reddit.com/r/adventofcode/comments/1pk87hl/2025_day_10_part_2_bifurcate_your_way_to_victory/)
+
 #### 2024
 
 Day 6:
@@ -63,6 +69,7 @@ Day 9:
 - [SimonGirardSfeir](https://github.com/SimonGirardSfeir)
 - [dirk527](https://github.com/dirk527)
 - [zebalu](https://github.com/zebalu)
+- [EugenPaul](https://github.com/eugen-paul/Adventofcode/tree/master/src/main/java/net/eugenpaul/adventofcode)
 
 #### Python
-- [hyper-neutrino](https://github.com/hyper-neutrino/advent-of-code/tree/main/2023)
+- [hyper-neutrino](https://github.com/hyper-neutrino/advent-of-code/tree/main)
