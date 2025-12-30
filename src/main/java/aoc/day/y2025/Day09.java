@@ -9,7 +9,7 @@ import java.util.Set;
 
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.GridUtil.Position;
+import aoc.util.grid.Position;
 
 public class Day09 implements AdventOfCodeSolver {
     @Override

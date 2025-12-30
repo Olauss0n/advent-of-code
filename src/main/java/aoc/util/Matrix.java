@@ -8,8 +8,8 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 import aoc.util.GridUtil.Orientation;
-import aoc.util.GridUtil.Position;
 import aoc.util.SearchUtil.Edge;
+import aoc.util.grid.Position;
 
 public class Matrix<T> {
     private final T[][] grid;

@@ -5,8 +5,8 @@ import java.util.HashSet;
 
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.GridUtil.Position;
 import aoc.util.Matrix;
+import aoc.util.grid.Position;
 
 public class Day03 implements AdventOfCodeSolver {
 

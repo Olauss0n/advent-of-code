@@ -5,9 +5,9 @@ import aoc.util.Converter;
 import aoc.util.GridUtil;
 import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.OctagonalDirection;
-import aoc.util.GridUtil.Position;
 import aoc.util.Matrix;
 import aoc.util.exceptions.NotImplementedException;
+import aoc.util.grid.Position;
 
 public class Day20 implements AdventOfCodeSolver {
     @Override
