@@ -8,21 +8,22 @@ import aoc.util.Converter;
 import aoc.util.GridUtil;
 import aoc.util.GridUtil.OctagonalDirection;
 import aoc.util.GridUtil.Position;
+import aoc.util.Matrix;
 
 public class Day04 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        String[][] matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
         int result = 0;
-        for (int row = 0; row < matrix.length; row++) {
-            for (int column = 0; column < matrix[row].length; column++) {
+        for (int row = 0; row < matrix.rows(); row++) {
+            for (int column = 0; column < matrix.columns(); column++) {
                 int occurrences = 0;
                 Position currentPosition = new Position(column, row);
-                if (matrix[row][column].equals("@")) {
+                if (matrix.get(currentPosition).equals("@")) {
                     for (OctagonalDirection direction : GridUtil.OctagonalDirection.values()) {
                         Position newPosition = currentPosition.move1Step(direction);
-                        if (GridUtil.isWithinBounds(matrix, newPosition)) {
-                            if (matrix[newPosition.yPos()][newPosition.xPos()].equals("@")) {
+                        if (matrix.isWithinBounds(newPosition)) {
+                            if (matrix.get(newPosition).equals("@")) {
                                 occurrences += 1;
                             }
                         }
@@ -38,20 +39,20 @@ public class Day04 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        String[][] matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
         int result = 0;
         int removals;
         do {
             List<Position> positions = new ArrayList<>();
-            for (int row = 0; row < matrix.length; row++) {
-                for (int column = 0; column < matrix[row].length; column++) {
+            for (int row = 0; row < matrix.rows(); row++) {
+                for (int column = 0; column < matrix.columns(); column++) {
                     int occurrences = 0;
                     Position currentPosition = new Position(column, row);
-                    if (matrix[row][column].equals("@")) {
+                    if (matrix.get(currentPosition).equals("@")) {
                         for (OctagonalDirection direction : GridUtil.OctagonalDirection.values()) {
                             Position newPosition = currentPosition.move1Step(direction);
-                            if (GridUtil.isWithinBounds(matrix, newPosition)) {
-                                if (matrix[newPosition.yPos()][newPosition.xPos()].equals("@")) {
+                            if (matrix.isWithinBounds(newPosition)) {
+                                if (matrix.get(newPosition).equals("@")) {
                                     occurrences += 1;
                                 }
                             }
@@ -63,7 +64,7 @@ public class Day04 implements AdventOfCodeSolver {
                 }
             }
             for (Position position : positions) {
-                matrix[position.yPos()][position.xPos()] = ".";
+                matrix.set(position, ".");
             }
             removals = positions.size();
             result += removals;

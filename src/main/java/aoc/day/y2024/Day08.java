@@ -8,13 +8,12 @@ import java.util.List;
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.GridUtil.Position;
-
-import static aoc.util.GridUtil.isWithinBounds;
+import aoc.util.Matrix;
 
 public class Day08 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        String[][] matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
 
         HashMap<String, List<Position>> antennas = getAntennas(matrix);
         HashSet<Position> antinodes = new HashSet<>();
@@ -28,10 +27,10 @@ public class Day08 implements AdventOfCodeSolver {
                     Position secondAntinode =
                             new Position(2 * second.xPos() - first.xPos(), 2 * second.yPos() - first.yPos());
 
-                    if (isWithinBounds(matrix, firstAntinode)) {
+                    if (matrix.isWithinBounds(firstAntinode)) {
                         antinodes.add(firstAntinode);
                     }
-                    if (isWithinBounds(matrix, secondAntinode)) {
+                    if (matrix.isWithinBounds(secondAntinode)) {
                         antinodes.add(secondAntinode);
                     }
                 }
@@ -42,7 +41,7 @@ public class Day08 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        String[][] matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
 
         HashMap<String, List<Position>> antennas = getAntennas(matrix);
         HashSet<Position> antinodes = new HashSet<>();
@@ -54,11 +53,11 @@ public class Day08 implements AdventOfCodeSolver {
                     int xDelta = second.xPos() - first.xPos();
                     int yDelta = second.yPos() - first.yPos();
 
-                    while (isWithinBounds(matrix, first)) {
+                    while (matrix.isWithinBounds(first)) {
                         antinodes.add(first);
                         first = first.move(xDelta, yDelta);
                     }
-                    while (isWithinBounds(matrix, second)) {
+                    while (matrix.isWithinBounds(second)) {
                         antinodes.add(second);
                         second = second.move(-xDelta, -yDelta);
                     }
@@ -68,15 +67,16 @@ public class Day08 implements AdventOfCodeSolver {
         return antinodes.size();
     }
 
-    private static HashMap<String, List<Position>> getAntennas(String[][] matrix) {
+    private static HashMap<String, List<Position>> getAntennas(Matrix<String> matrix) {
         HashMap<String, List<Position>> antennas = new HashMap<>();
-        for (int row = 0; row < matrix.length; row++) {
-            for (int col = 0; col < matrix[row].length; col++) {
-                if (!matrix[row][col].equals(".")) {
-                    if (!antennas.containsKey(matrix[row][col])) {
-                        antennas.put(matrix[row][col], new ArrayList<>());
+        for (int row = 0; row < matrix.rows(); row++) {
+            for (int col = 0; col < matrix.columns(); col++) {
+                Position position = new Position(col, row);
+                if (!matrix.get(position).equals(".")) {
+                    if (!antennas.containsKey(matrix.get(position))) {
+                        antennas.put(matrix.get(position), new ArrayList<>());
                     }
-                    antennas.get(matrix[row][col]).add(new Position(row, col));
+                    antennas.get(matrix.get(position)).add(new Position(row, col));
                 }
             }
         }

@@ -6,9 +6,9 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.GridUtil;
 import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.Position;
+import aoc.util.Matrix;
 
 public class Day10 implements AdventOfCodeSolver {
     @Override
@@ -22,12 +22,13 @@ public class Day10 implements AdventOfCodeSolver {
     }
 
     private Object commonPart(String input, boolean isPartTwo) {
-        String[][] matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
         List<Position> zeros = new ArrayList<>();
-        for (int row = 0; row < matrix.length; row++) {
-            for (int col = 0; col < matrix[row].length; col++) {
-                if (matrix[row][col].equals("0")) {
-                    zeros.add(new Position(col, row));
+        for (int row = 0; row < matrix.rows(); row++) {
+            for (int col = 0; col < matrix.columns(); col++) {
+                Position position = new Position(col, row);
+                if (matrix.get(position).equals("0")) {
+                    zeros.add(position);
                 }
             }
         }
@@ -43,15 +44,15 @@ public class Day10 implements AdventOfCodeSolver {
         return counter;
     }
 
-    private List<Position> checkAdjacentPositions(String[][] matrix, Position pos, int value, List<Position> visited) {
-        if (matrix[pos.yPos()][pos.xPos()].equals("9")) {
+    private List<Position> checkAdjacentPositions(
+            Matrix<String> matrix, Position pos, int value, List<Position> visited) {
+        if (matrix.get(pos).equals("9")) {
             visited.add(pos);
             return visited;
         }
         for (Direction direction : Direction.values()) {
             Position newPos = pos.move(direction);
-            if (GridUtil.isWithinBounds(matrix, newPos)
-                    && matrix[newPos.yPos()][newPos.xPos()].equals(String.valueOf(value))) {
+            if (matrix.isWithinBounds(newPos) && matrix.get(newPos).equals(String.valueOf(value))) {
                 visited = checkAdjacentPositions(matrix, newPos, value + 1, visited);
             }
         }

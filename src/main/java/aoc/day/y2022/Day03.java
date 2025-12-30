@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
+import aoc.util.Matrix;
 
 public class Day03 implements AdventOfCodeSolver {
     @Override
@@ -27,13 +28,13 @@ public class Day03 implements AdventOfCodeSolver {
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
-        List<List<String>> inputMatrix = Converter.convertListInputToListMatrix(inputList, 3);
+        Matrix<String> matrix = Converter.convertListInputToStringMatrix(inputList, 3);
 
         int result = 0;
-        for (List<String> list : inputMatrix) {
-            String first = list.get(0);
-            String second = list.get(1);
-            String third = list.get(2);
+        for (List<String> row : matrix.getRows()) {
+            String first = row.get(0);
+            String second = row.get(1);
+            String third = row.get(2);
 
             HashSet<Character> firstThirdSet = new HashSet<>();
             for (char c : first.toCharArray()) {

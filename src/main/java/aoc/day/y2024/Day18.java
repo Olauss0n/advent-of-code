@@ -4,10 +4,10 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.GridUtil;
 import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.Orientation;
 import aoc.util.GridUtil.Position;
+import aoc.util.Matrix;
 import aoc.util.SearchUtil;
 
 public class Day18 implements AdventOfCodeSolver {
@@ -17,20 +17,20 @@ public class Day18 implements AdventOfCodeSolver {
         int size = isExample ? 7 : 71;
         Position startPosition = new Position(0, 0);
         Position endPosition = isExample ? new Position(6, 6) : new Position(70, 70);
-        String[][] stringMatrix = GridUtil.fillMatrix(GridUtil.createStringMatrix(size, size), ".");
+        Matrix<String> matrix = Matrix.createStringMatrix(size, size).fill(".");
         int i = 0;
         for (String line : inputList) {
             if ((i >= 12 && isExample) || i >= 1024) {
                 break;
             }
             Position position = new Position(line.split(","));
-            stringMatrix[position.yPos()][position.xPos()] = "#";
+            matrix.set(position, "#");
             i++;
         }
         return SearchUtil.dijkstra(
                         new Orientation(startPosition, Direction.RIGHT),
                         state -> state.position().equals(endPosition),
-                        current -> GridUtil.getGridEdges(stringMatrix, current, 0))
+                        current -> matrix.getGridEdges(current, 0))
                 .distance();
     }
 
@@ -40,20 +40,20 @@ public class Day18 implements AdventOfCodeSolver {
         int size = isExample ? 7 : 71;
         Position startPosition = new Position(0, 0);
         Position endPosition = isExample ? new Position(6, 6) : new Position(70, 70);
-        String[][] stringMatrix = GridUtil.fillMatrix(GridUtil.createStringMatrix(size, size), ".");
+        Matrix<String> matrix = Matrix.createStringMatrix(size, size).fill(".");
         Position position = startPosition;
         for (String line : inputList) {
             position = new Position(line.split(","));
             try {
-                stringMatrix[position.yPos()][position.xPos()] = "#";
+                matrix.set(position, "#");
                 SearchUtil.dijkstra(
                         new Orientation(startPosition, Direction.RIGHT),
                         state -> state.position().equals(endPosition),
-                        current -> GridUtil.getGridEdges(stringMatrix, current, 0));
+                        current -> matrix.getGridEdges(current, 0));
             } catch (Exception e) {
                 break;
             }
         }
-        return position.xPos() + "," + position.yPos();
+        return position.toString();
     }
 }

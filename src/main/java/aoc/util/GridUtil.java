@@ -1,106 +1,6 @@
 package aoc.util;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import aoc.util.SearchUtil.Edge;
-
 public class GridUtil {
-
-    public static <T> void printMatrix(T[][] matrix, String formatter) {
-        System.out.println();
-        for (T[] lines : matrix) {
-            for (T element : lines) {
-                System.out.printf(formatter, element);
-            }
-            System.out.println();
-        }
-    }
-
-    public static <T> void printMatrix(T[][] matrix) {
-        printMatrix(matrix, "%1s");
-    }
-
-    public static String[][] createStringMatrix(int xWidth, int yHeight) {
-        return new String[yHeight][xWidth];
-    }
-
-    public static Integer[][] createIntMatrix(int xWidth, int yHeight) {
-        return new Integer[yHeight][xWidth];
-    }
-
-    public static String[][] fillMatrix(String[][] matrix, String fillerChar) {
-        for (int y = 0; y < matrix.length; y++) {
-            for (int x = 0; x < matrix[0].length; x++) {
-                matrix[y][x] = fillerChar;
-            }
-        }
-        return matrix;
-    }
-
-    public static void fillMatrix(Integer[][] matrix, int fillerChar) {
-        for (int y = 0; y < matrix.length; y++) {
-            for (int x = 0; x < matrix[0].length; x++) {
-                matrix[y][x] = fillerChar;
-            }
-        }
-    }
-
-    public static boolean isWithinBounds(String[][] matrix, Position pos) {
-        return pos.xPos >= 0 && pos.yPos >= 0 && pos.yPos < matrix.length && pos.xPos < matrix[0].length;
-    }
-
-    public static boolean isWithinBounds(String[][] matrix, Position position, Direction direction) {
-        Position updatedPosition = position.move(direction);
-        return isWithinBounds(matrix, updatedPosition);
-    }
-
-    public static Position findPosition(String[][] matrix, String searchExpression) {
-        for (int y = 0; y < matrix.length; y++) {
-            for (int x = 0; x < matrix[y].length; x++) {
-                if (matrix[y][x].equals(searchExpression)) {
-                    return new Position(x, y);
-                }
-            }
-        }
-        throw new IllegalStateException();
-    }
-
-    public static List<Position> findPositions(String[][] matrix, String searchExpression) {
-        List<Position> positions = new ArrayList<>();
-        for (int y = 0; y < matrix.length; y++) {
-            for (int x = 0; x < matrix[y].length; x++) {
-                if (matrix[y][x].equals(searchExpression)) {
-                    positions.add(new Position(x, y));
-                }
-            }
-        }
-        return positions;
-    }
-
-    public static List<Edge<Orientation>> getGridEdges(String[][] matrix, Orientation current, int turnCost) {
-        List<Edge<Orientation>> edges = new ArrayList<>();
-
-        // Move Forward
-        Position next = current.position.move(current.direction);
-        if (isWithinBounds(matrix, next) && !matrix[next.yPos][next.xPos].equals("#")) {
-            edges.add(new SearchUtil.Edge<>(new Orientation(next, current.direction), 1));
-        }
-
-        // Turns
-        edges.add(new Edge<>(new Orientation(current.position, current.direction.rotateClockwise()), turnCost));
-        edges.add(new Edge<>(new Orientation(current.position, current.direction.rotateCounterClockwise()), turnCost));
-
-        return edges;
-    }
-
-    public record State(Position position, Direction direction, int value) implements Comparable<State> {
-
-        @Override
-        public int compareTo(State o) {
-            return Integer.compare(this.value, o.value);
-        }
-    }
 
     public record Orientation(Position position, Direction direction) {}
 
@@ -112,12 +12,7 @@ public class GridUtil {
         }
 
         public Position move(Direction direction) {
-            return switch (direction) {
-                case UP -> new Position(xPos, yPos - 1);
-                case RIGHT -> new Position(xPos + 1, yPos);
-                case DOWN -> new Position(xPos, yPos + 1);
-                case LEFT -> new Position(xPos - 1, yPos);
-            };
+            return move(direction, 1);
         }
 
         public Position move(int xPos, int yPos) {
@@ -157,6 +52,11 @@ public class GridUtil {
                 case SOUTH_WEST -> new Position(xPos - 1, yPos + 1);
                 case SOUTH_EAST -> new Position(xPos + 1, yPos + 1);
             };
+        }
+
+        @Override
+        public String toString() {
+            return xPos + "," + yPos;
         }
 
         @Override

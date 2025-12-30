@@ -6,19 +6,21 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
+import aoc.util.GridUtil.Position;
+import aoc.util.Matrix;
 import aoc.util.exceptions.NotImplementedException;
 
 public class Day25 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String[][]> matrices = Arrays.stream(input.split("\n\n"))
+        List<Matrix<String>> matrices = Arrays.stream(input.split("\n\n"))
                 .map(Converter::convertInputToStringMatrix)
                 .toList();
 
-        List<String[][]> locks = new ArrayList<>();
-        List<String[][]> keys = new ArrayList<>();
-        for (String[][] matrix : matrices) {
-            if (matrix[0][0].equals("#")) {
+        List<Matrix<String>> locks = new ArrayList<>();
+        List<Matrix<String>> keys = new ArrayList<>();
+        for (Matrix<String> matrix : matrices) {
+            if (matrix.get(new Position(0, 0)).equals("#")) {
                 locks.add(matrix);
             } else {
                 keys.add(matrix);
@@ -39,16 +41,16 @@ public class Day25 implements AdventOfCodeSolver {
         return result;
     }
 
-    private static List<List<Integer>> getPins(List<String[][]> matrices, boolean countFromTop) {
+    private static List<List<Integer>> getPins(List<Matrix<String>> matrices, boolean countFromTop) {
         List<List<Integer>> pinsList = new ArrayList<>();
-        for (String[][] matrix : matrices) {
+        for (Matrix<String> matrix : matrices) {
             List<Integer> pins = new ArrayList<>();
-            for (int column = 0; column < matrix[0].length; column++) {
+            for (int column = 0; column < matrix.columns(); column++) {
                 int count = 0;
                 int startRow = countFromTop ? 0 : 1; // Start at row 0 or row 1
-                int endRow = countFromTop ? matrix.length - 1 : matrix.length; // Exclude or include last row
+                int endRow = countFromTop ? matrix.rows() - 1 : matrix.rows(); // Exclude or include last row
                 for (int row = startRow; row < endRow; row++) {
-                    if (matrix[row][column].equals("#")) {
+                    if (matrix.get(new Position(column, row)).equals("#")) {
                         count += 1;
                     }
                 }

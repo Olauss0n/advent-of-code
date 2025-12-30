@@ -1,17 +1,17 @@
 package aoc.day.y2023;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
+import aoc.util.Matrix;
 
 public class Day14 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        String[][] matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
 
         // Update matrix
         boolean shouldKeepTiltingMatrix = true;
@@ -26,8 +26,8 @@ public class Day14 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        String[][] matrix = Converter.convertInputToStringMatrix(input);
-        ArrayList<String[][]> seenMatrixes = new ArrayList<>();
+        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        ArrayList<Matrix<String>> seenMatrixes = new ArrayList<>();
 
         int totalCycles = 1000000000;
         int indexForSeenMatrixes = 0;
@@ -40,8 +40,7 @@ public class Day14 implements AdventOfCodeSolver {
                 }
                 rotateMatrixClockwise(matrix);
             }
-            String[][] matrixCopy = new String[matrix.length][];
-            for (int index = 0; index < matrix.length; index++) matrixCopy[index] = matrix[index].clone();
+            Matrix<String> matrixCopy = matrix.copy();
             long indexMatrixContains = contains(seenMatrixes, matrixCopy);
             if (indexMatrixContains != -1) {
                 long cycleLength = i - indexMatrixContains;
@@ -51,20 +50,19 @@ public class Day14 implements AdventOfCodeSolver {
             }
             seenMatrixes.add(matrixCopy);
         }
-        String[][] finalMatrix = seenMatrixes.get(indexForSeenMatrixes);
+        Matrix<String> finalMatrix = seenMatrixes.get(indexForSeenMatrixes);
 
         // Calculate weight
-        long weight = calculateWeight(finalMatrix);
-        return weight;
+        return calculateWeight(finalMatrix);
     }
 
-    private static boolean tiltMatrixNorth(String[][] matrix) {
+    private static boolean tiltMatrixNorth(Matrix<String> matrix) {
         boolean hasMoved = false;
-        for (int i = 1; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                if (matrix[i - 1][j].equals(".") && matrix[i][j].equals("O")) {
-                    matrix[i - 1][j] = matrix[i][j];
-                    matrix[i][j] = ".";
+        for (int y = 1; y < matrix.rows(); y++) {
+            for (int x = 0; x < matrix.columns(); x++) {
+                if (matrix.get(x, y - 1).equals(".") && matrix.get(x, y).equals("O")) {
+                    matrix.set(x, y - 1, matrix.get(x, y));
+                    matrix.set(x, y, ".");
                     hasMoved = true;
                 }
             }
@@ -114,17 +112,17 @@ public class Day14 implements AdventOfCodeSolver {
         return hasMoved;
     }
 
-    private static void rotateMatrixClockwise(String[][] matrix) {
+    private static void rotateMatrixClockwise(Matrix<String> matrix) {
         // Traverse each cycle
-        for (int i = 0; i < matrix.length / 2; i++) {
-            for (int j = i; j < matrix.length - i - 1; j++) {
+        for (int i = 0; i < matrix.rows() / 2; i++) {
+            for (int j = i; j < matrix.rows() - i - 1; j++) {
                 // Swap elements of each cycle
                 // in clockwise direction
-                String temp = matrix[i][j];
-                matrix[i][j] = matrix[matrix.length - 1 - j][i];
-                matrix[matrix.length - 1 - j][i] = matrix[matrix.length - 1 - i][matrix.length - 1 - j];
-                matrix[matrix.length - 1 - i][matrix.length - 1 - j] = matrix[j][matrix.length - 1 - i];
-                matrix[j][matrix.length - 1 - i] = temp;
+                String temp = matrix.get(j, i);
+                matrix.set(j, i, matrix.get(i, matrix.rows() - 1 - j));
+                matrix.set(i, matrix.rows() - 1 - j, matrix.get(matrix.rows() - 1 - j, matrix.rows() - 1 - i));
+                matrix.set(matrix.rows() - 1 - j, matrix.rows() - 1 - i, matrix.get(matrix.rows() - 1 - i, j));
+                matrix.set(matrix.rows() - 1 - i, j, temp);
             }
         }
     }
@@ -138,10 +136,10 @@ public class Day14 implements AdventOfCodeSolver {
         }
     }
 
-    private static long contains(List<String[][]> l, String[][] arr) {
+    private static long contains(List<Matrix<String>> l, Matrix<String> arr) {
         long i = 0;
-        for (String[][] array : l) {
-            if (Arrays.deepEquals(array, arr)) {
+        for (Matrix<String> array : l) {
+            if (array.equals(arr)) {
                 return i;
             }
             i++;
@@ -149,13 +147,13 @@ public class Day14 implements AdventOfCodeSolver {
         return -1;
     }
 
-    private static long calculateWeight(String[][] matrix) {
+    private static long calculateWeight(Matrix<String> matrix) {
         long weight = 0;
-        for (int i = 0; i < matrix.length; i++) {
-            weight += Arrays.stream(matrix[i])
+        for (int i = 0; i < matrix.rows(); i++) {
+            weight += matrix.getRow(i).stream()
                             .filter(element -> element.equals("O"))
                             .count()
-                    * (matrix.length - i);
+                    * (matrix.rows() - i);
         }
         return weight;
     }

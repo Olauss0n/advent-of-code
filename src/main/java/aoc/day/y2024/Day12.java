@@ -11,21 +11,20 @@ import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.Position;
+import aoc.util.Matrix;
 import aoc.util.exceptions.NotImplementedException;
-
-import static aoc.util.GridUtil.isWithinBounds;
 
 public class Day12 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        String[][] matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
 
         List<HashMap<String, Set<Position>>> arrangements = new ArrayList<>();
         HashMap<Position, Boolean> visited = new HashMap<>();
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[i].length; j++) {
-                String type = matrix[i][j];
+        for (int i = 0; i < matrix.rows(); i++) {
+            for (int j = 0; j < matrix.columns(); j++) {
                 Position position = new Position(i, j);
+                String type = matrix.get(position);
 
                 HashMap<String, Set<Position>> arrangement = new HashMap<>();
 
@@ -45,7 +44,7 @@ public class Day12 implements AdventOfCodeSolver {
                 for (Position position : positions) {
                     for (Direction direction : Direction.values()) {
                         Position newPos = position.move(direction);
-                        if (isWithinBounds(matrix, newPos) && positions.contains(newPos)) {
+                        if (matrix.isWithinBounds(newPos) && positions.contains(newPos)) {
                             value -= 1;
                         }
                     }
@@ -57,7 +56,7 @@ public class Day12 implements AdventOfCodeSolver {
     }
 
     private Set<Position> checkAdjacentPositions(
-            String[][] matrix, Position pos, HashMap<Position, Boolean> visited, Set<Position> set) {
+            Matrix<String> matrix, Position pos, HashMap<Position, Boolean> visited, Set<Position> set) {
         if (visited.containsKey(pos)) {
             return set;
         }
@@ -65,8 +64,7 @@ public class Day12 implements AdventOfCodeSolver {
         set.add(pos);
         for (Direction direction : Direction.values()) {
             Position newPos = pos.move(direction);
-            if (isWithinBounds(matrix, newPos)
-                    && matrix[newPos.yPos()][newPos.xPos()].equals(matrix[pos.yPos()][pos.xPos()])) {
+            if (matrix.isWithinBounds(newPos) && matrix.get(newPos).equals(matrix.get(pos))) {
                 set.add(newPos);
                 set = checkAdjacentPositions(matrix, newPos, visited, set);
             }

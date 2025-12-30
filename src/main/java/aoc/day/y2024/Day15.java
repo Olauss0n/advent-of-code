@@ -5,26 +5,26 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.GridUtil;
 import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.Position;
+import aoc.util.Matrix;
 import aoc.util.exceptions.NotImplementedException;
 
 public class Day15 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
         List<String> inputList = Arrays.stream(input.split("\n\n")).toList();
-        String[][] matrix = Converter.convertInputToStringMatrix(inputList.getFirst());
+        Matrix<String> matrix = Converter.convertInputToStringMatrix(inputList.getFirst());
         List<String> moves =
                 Arrays.stream(inputList.getLast().replace("\n", "").split("")).toList();
-        Position position = GridUtil.findPosition(matrix, "@");
+        Position position = matrix.findPosition("@");
         for (String move : moves) {
             if (canMoveTo(position, convertMoveToDirection(move), matrix)) {
                 matrix = move(matrix, position, convertMoveToDirection(move));
             }
-            position = GridUtil.findPosition(matrix, "@");
+            position = matrix.findPosition("@");
         }
-        List<Position> boxes = GridUtil.findPositions(matrix, "O");
+        List<Position> boxes = matrix.findPositions("O");
         long result = 0;
         for (Position box : boxes) {
             result += box.xPos() + 100L * box.yPos();
@@ -41,36 +41,36 @@ public class Day15 implements AdventOfCodeSolver {
         };
     }
 
-    private boolean canMoveTo(Position position, Direction direction, String[][] matrix) {
+    private boolean canMoveTo(Position position, Direction direction, Matrix<String> matrix) {
         Position newPos = position.move(direction);
-        boolean isWithinBounds = GridUtil.isWithinBounds(matrix, newPos);
+        boolean isWithinBounds = matrix.isWithinBounds(newPos);
         if (!isWithinBounds) {
             return false;
         }
-        boolean isNewPosAWall = matrix[newPos.yPos()][newPos.xPos()].equals("#");
+        boolean isNewPosAWall = matrix.get(newPos).equals("#");
         if (isNewPosAWall) {
             return false;
         }
-        boolean isNewPosADot = matrix[newPos.yPos()][newPos.xPos()].equals(".");
+        boolean isNewPosADot = matrix.get(newPos).equals(".");
         boolean canMoveToNextPos = canMoveTo(newPos, direction, matrix);
-        boolean isNewPosAZero = matrix[newPos.yPos()][newPos.xPos()].equals("O");
+        boolean isNewPosAZero = matrix.get(newPos).equals("O");
         return isNewPosADot || (isNewPosAZero && canMoveToNextPos);
     }
 
-    private String[][] move(String[][] matrix, Position position, Direction direction) {
+    private Matrix<String> move(Matrix<String> matrix, Position position, Direction direction) {
         Position newPos = position.move(direction);
         Position nextPos = newPos.move(direction);
 
-        if (matrix[newPos.yPos()][newPos.xPos()].equals(".")) {
-            matrix[newPos.yPos()][newPos.xPos()] = "@";
-            matrix[position.yPos()][position.xPos()] = ".";
-        } else if (matrix[nextPos.yPos()][nextPos.xPos()].equals("#")) {
+        if (matrix.get(newPos).equals(".")) {
+            matrix.set(newPos, "@");
+            matrix.set(position, ".");
+        } else if (matrix.get(nextPos).equals("#")) {
             return matrix;
-        } else if (matrix[newPos.yPos()][newPos.xPos()].equals("O")) {
+        } else if (matrix.get(newPos).equals("O")) {
             matrix = move(matrix, newPos, direction);
-            matrix[nextPos.yPos()][nextPos.xPos()] = "O";
-            matrix[newPos.yPos()][newPos.xPos()] = "@";
-            matrix[position.yPos()][position.xPos()] = ".";
+            matrix.set(nextPos, "O");
+            matrix.set(newPos, "@");
+            matrix.set(position, ".");
         }
         return matrix;
     }

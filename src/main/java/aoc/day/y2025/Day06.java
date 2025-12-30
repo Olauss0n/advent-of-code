@@ -6,6 +6,7 @@ import java.util.List;
 
 import aoc.util.AdventOfCodeSolver;
 import aoc.util.Converter;
+import aoc.util.Matrix;
 
 public class Day06 implements AdventOfCodeSolver {
     @Override
@@ -13,14 +14,14 @@ public class Day06 implements AdventOfCodeSolver {
         List<String> inputList = Converter.convertInputToList(input);
         List<String> operations =
                 Arrays.stream(inputList.getLast().trim().split("\\s+")).toList();
-        String[][] matrix =
+        Matrix<String> matrix =
                 Converter.convertListInputToStringMatrix(inputList.subList(0, inputList.size() - 1), "\\s+");
         long result = 0;
         int index = 0;
-        for (int col = 0; col < matrix[0].length; col++) {
+        for (int col = 0; col < matrix.columns(); col++) {
             List<Long> problems = new ArrayList<>();
-            for (int row = 0; row < matrix.length; row++) {
-                problems.add(Long.parseLong(matrix[row][col]));
+            for (int row = 0; row < matrix.rows(); row++) {
+                problems.add(Long.parseLong(matrix.get(col, row)));
             }
             if (operations.get(index).equals("+")) {
                 result += problems.stream().reduce(0L, Long::sum);
@@ -35,35 +36,37 @@ public class Day06 implements AdventOfCodeSolver {
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
         List<String> inputList = Converter.convertInputToList(input);
-        List<String> operations =
-                Arrays.stream(inputList.getLast().trim().split("\\s+")).toList();
-        char[][] charMatrix = Converter.convertListInputToCharMatrix(inputList.subList(0, inputList.size() - 1));
+        List<String> operations = Arrays.asList(inputList.getLast().trim().split("\\s+"));
+        Matrix<String> matrix =
+                Converter.convertListInputToStringMatrixWithoutTrim(inputList.subList(0, inputList.size() - 1));
+
         long result = 0;
-        int index = 0;
-        List<Long> problems = new ArrayList<>();
-        for (int col = 0; col < charMatrix[0].length; col++) {
-            boolean columnEmpty = true;
-            List<String> problemNumbers = new ArrayList<>();
-            for (int row = 0; row < charMatrix.length; row++) {
-                if (charMatrix[row][col] != ' ') {
-                    problemNumbers.add(String.valueOf(charMatrix[row][col]));
-                    columnEmpty = false;
-                }
-            }
-            if (!problemNumbers.isEmpty()) {
-                Long problemNumber = Long.parseLong(String.join("", problemNumbers));
-                problems.add(problemNumber);
-            }
-            if (columnEmpty || col == charMatrix[0].length - 1) {
-                if (operations.get(index).equals("+")) {
-                    result += problems.stream().reduce(Long::sum).orElse(0L);
-                } else {
-                    result += problems.stream().reduce((a, b) -> a * b).orElse(0L);
-                }
-                index += 1;
-                problems = new ArrayList<>();
+        int operationIndex = operations.size() - 1;
+        List<Long> problemNumbers = new ArrayList<>();
+        List<List<String>> columns = matrix.getColumns();
+
+        for (int columnIndex = columns.size() - 1; columnIndex >= 0; columnIndex--) {
+            List<String> column = columns.get(columnIndex);
+            String verticalNumber = String.join("", column);
+            if (verticalNumber.isBlank()) {
+                result += performOperation(problemNumbers, operations.get(operationIndex));
+                problemNumbers.clear();
+                operationIndex -= 1;
+            } else {
+                problemNumbers.add(Long.parseLong(verticalNumber.replaceAll(" ", "")));
             }
         }
+        if (!problemNumbers.isEmpty()) {
+            result += performOperation(problemNumbers, operations.get(operationIndex));
+        }
         return result;
+    }
+
+    private long performOperation(List<Long> numbers, String operation) {
+        if (operation.equals("+")) {
+            return numbers.stream().mapToLong(Long::longValue).sum();
+        } else {
+            return numbers.stream().reduce(1L, (a, b) -> a * b);
+        }
     }
 }

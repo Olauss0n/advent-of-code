@@ -1,6 +1,5 @@
 package aoc.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,28 +13,11 @@ public class Converter {
         return Arrays.stream(input.replaceAll("\n", "").split(delimiter)).toList();
     }
 
-    public static String[][] convertInputToStringMatrix(String input) {
-        return convertListInputToStringMatrix(input.lines().toList());
+    public static Matrix<String> convertInputToStringMatrix(String input) {
+        return convertListInputToStringMatrix(input.lines().toList(), "");
     }
 
-    public static String[][] convertListInputToStringMatrix(List<String> input) {
-        return convertListInputToStringMatrix(input, "");
-    }
-
-    public static List<List<String>> convertListInputToListMatrix(List<String> input, int amountOfRows) {
-        List<List<String>> matrix = new ArrayList<>();
-        ArrayList<String> subList = new ArrayList<>();
-        for (String line : input) {
-            subList.add(line);
-            if (amountOfRows == subList.size()) {
-                matrix.add(new ArrayList<>(subList));
-                subList.clear();
-            }
-        }
-        return matrix;
-    }
-
-    public static String[][] convertListInputToStringMatrix(List<String> input, String delimiter) {
+    public static Matrix<String> convertListInputToStringMatrix(List<String> input, String delimiter) {
         List<List<String>> inputMatrix = input.stream()
                 .map(line -> Arrays.stream(line.trim().split(delimiter)).toList())
                 .toList();
@@ -48,16 +30,24 @@ public class Converter {
                 matrix[row][column] = inputMatrix.get(row).get(column);
             }
         }
-        return matrix;
+        return new Matrix<>(matrix);
     }
 
-    public static char[][] convertListInputToCharMatrix(List<String> input) {
-        char[][] matrix = new char[input.size()][input.getFirst().length()];
-
+    public static Matrix<String> convertListInputToStringMatrix(List<String> input, int amountOfRows) {
+        String[][] grid = new String[input.size() / amountOfRows][amountOfRows];
         for (int i = 0; i < input.size(); i++) {
-            matrix[i] = input.get(i).toCharArray();
+            grid[i / amountOfRows][i % amountOfRows] = input.get(i);
         }
+        return new Matrix<>(grid);
+    }
 
-        return matrix;
+    public static Matrix<String> convertListInputToStringMatrixWithoutTrim(List<String> input) {
+        String[][] matrix = new String[input.size()][input.getFirst().length()];
+        for (int line = 0; line < input.size(); line++) {
+            for (int index = 0; index < matrix[line].length; index++) {
+                matrix[line][index] = String.valueOf(input.get(line).charAt(index));
+            }
+        }
+        return new Matrix<>(matrix);
     }
 }
