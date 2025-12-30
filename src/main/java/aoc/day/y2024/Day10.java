@@ -6,7 +6,7 @@ import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.GridUtil.Direction;
+import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
 

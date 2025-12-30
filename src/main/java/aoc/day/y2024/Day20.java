@@ -3,9 +3,9 @@ package aoc.day.y2024;
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.GridUtil;
-import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.OctagonalDirection;
 import aoc.util.exceptions.NotImplementedException;
+import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
 
@@ -19,7 +19,7 @@ public class Day20 implements AdventOfCodeSolver {
         distances.set(currentPosition, 0);
 
         while (!currentPosition.equals(endPosition)) {
-            for (Direction direction : GridUtil.Direction.values()) {
+            for (Direction direction : Direction.values()) {
                 Position nextPosition = currentPosition.move(direction);
                 if (!matrix.isWithinBounds(nextPosition)) {
                     continue;

@@ -1,6 +1,5 @@
 package aoc.util.grid;
 
-import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.OctagonalDirection;
 
 // xPos = column, yPos = row

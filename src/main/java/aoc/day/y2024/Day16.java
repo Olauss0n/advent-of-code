@@ -2,10 +2,10 @@ package aoc.day.y2024;
 
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.Orientation;
 import aoc.util.SearchUtil;
 import aoc.util.exceptions.NotImplementedException;
+import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
 
