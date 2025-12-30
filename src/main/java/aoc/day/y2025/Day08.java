@@ -8,7 +8,7 @@ import java.util.List;
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.DisjointSet;
-import aoc.util.SpaceUtil.Connection;
+import aoc.util.grid.Connection3D;
 import aoc.util.grid.Position3D;
 
 public class Day08 implements AdventOfCodeSolver {
@@ -16,7 +16,7 @@ public class Day08 implements AdventOfCodeSolver {
     public Object solvePartOne(String input, boolean isExample) {
         List<Position3D> positions = parsePositions(input);
         DisjointSet<Position3D> circuits = new DisjointSet<>(positions);
-        List<Connection> connections = buildConnections(positions);
+        List<Connection3D> connections = buildConnections(positions);
 
         int limit = isExample ? 10 : 1000;
         connections.stream().sorted().limit(limit).forEach(c -> circuits.union(c.start(), c.stop()));
@@ -32,10 +32,10 @@ public class Day08 implements AdventOfCodeSolver {
     public Object solvePartTwo(String input, boolean isExample) {
         List<Position3D> positions = parsePositions(input);
         DisjointSet<Position3D> circuits = new DisjointSet<>(positions);
-        List<Connection> connections = buildConnections(positions);
+        List<Connection3D> connections = buildConnections(positions);
         Collections.sort(connections);
 
-        for (Connection connection : connections) {
+        for (Connection3D connection : connections) {
             if (circuits.union(connection.start(), connection.stop())) {
                 // Check if this merger resulted in the final single circuit
                 if (circuits.getComponentCount() == 1) {
@@ -54,13 +54,13 @@ public class Day08 implements AdventOfCodeSolver {
                 .toList();
     }
 
-    private static List<Connection> buildConnections(List<Position3D> positions) {
-        List<Connection> connections = new ArrayList<>();
+    private static List<Connection3D> buildConnections(List<Position3D> positions) {
+        List<Connection3D> connections = new ArrayList<>();
         for (int i = 0; i < positions.size(); i++) {
             for (int j = i + 1; j < positions.size(); j++) {
                 Position3D p1 = positions.get(i);
                 Position3D p2 = positions.get(j);
-                connections.add(new Connection(p1, p2, p1.squaredDistanceTo(p2)));
+                connections.add(new Connection3D(p1, p2, p1.squaredDistanceTo(p2)));
             }
         }
         return connections;
