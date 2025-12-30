@@ -6,10 +6,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.DisjointSet;
 import aoc.util.grid.Connection3D;
 import aoc.util.grid.Position3D;
 import aoc.util.parse.Parser;
+import aoc.util.path.DisjointSet;
 
 public class Day08 implements AdventOfCodeSolver {
     @Override

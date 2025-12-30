@@ -1,13 +1,13 @@
 package aoc.day.y2024;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.SearchUtil;
 import aoc.util.exceptions.NotImplementedException;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Orientation;
 import aoc.util.grid.Position;
 import aoc.util.parse.Parser;
+import aoc.util.path.SearchUtil;
 
 public class Day16 implements AdventOfCodeSolver {
     @Override

@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.SearchUtil;
 import aoc.util.parse.Parser;
+import aoc.util.path.SearchUtil;
 
 public class Day10 implements AdventOfCodeSolver {
     @Override

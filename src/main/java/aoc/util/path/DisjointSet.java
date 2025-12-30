@@ -1,4 +1,4 @@
-package aoc.util;
+package aoc.util.path;
 
 import java.util.Collection;
 import java.util.HashMap;
