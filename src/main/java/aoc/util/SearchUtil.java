@@ -12,6 +12,10 @@ import java.util.Queue;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import aoc.util.grid.Matrix;
+import aoc.util.grid.Orientation;
+import aoc.util.grid.Position;
+
 public class SearchUtil {
 
     /**
@@ -78,6 +82,29 @@ public class SearchUtil {
             }
         }
         throw new IllegalStateException("No path found to a target matching the condition.");
+    }
+
+    public static <T> List<Edge<Orientation>> getGridEdges(Matrix<T> matrix, Orientation current, int turnCost) {
+        return getGridEdges(matrix, current, turnCost, 1, cell -> !cell.equals("#"));
+    }
+
+    public static <T> List<Edge<Orientation>> getGridEdges(
+            Matrix<T> matrix, Orientation current, int turnCost, int moveCost, Predicate<T> isPassable) {
+        List<Edge<Orientation>> edges = new ArrayList<>();
+
+        // Move Forward
+        Position next = current.position().move(current.direction());
+        if (matrix.isWithinBounds(next) && isPassable.test(matrix.get(next))) {
+            edges.add(new Edge<>(new Orientation(next, current.direction()), moveCost));
+        }
+
+        // Turns
+        edges.add(new Edge<>(
+                new Orientation(current.position(), current.direction().rotateClockwise()), turnCost));
+        edges.add(new Edge<>(
+                new Orientation(current.position(), current.direction().rotateCounterClockwise()), turnCost));
+
+        return edges;
     }
 
     private record Node<T>(T state, int cost) {}

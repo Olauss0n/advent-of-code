@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Function;
-import java.util.function.Predicate;
-
-import aoc.util.SearchUtil.Edge;
 
 public class Matrix<T> {
     private final T[][] grid;
@@ -104,28 +101,6 @@ public class Matrix<T> {
 
     public void set(int xPos, int yPos, T value) {
         this.grid[yPos][xPos] = value;
-    }
-
-    public List<Edge<Orientation>> getGridEdges(Orientation current, int turnCost) {
-        return getGridEdges(current, turnCost, cell -> !cell.equals("#"));
-    }
-
-    public List<Edge<Orientation>> getGridEdges(Orientation current, int turnCost, Predicate<T> isPassable) {
-        List<Edge<Orientation>> edges = new ArrayList<>();
-
-        // Move Forward
-        Position next = current.position().move(current.direction());
-        if (isWithinBounds(next) && isPassable.test(this.get(next))) {
-            edges.add(new Edge<>(new Orientation(next, current.direction()), 1));
-        }
-
-        // Turns
-        edges.add(new Edge<>(
-                new Orientation(current.position(), current.direction().rotateClockwise()), turnCost));
-        edges.add(new Edge<>(
-                new Orientation(current.position(), current.direction().rotateCounterClockwise()), turnCost));
-
-        return edges;
     }
 
     public boolean isWithinBounds(Position position) {

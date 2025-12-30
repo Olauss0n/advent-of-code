@@ -30,7 +30,7 @@ public class Day18 implements AdventOfCodeSolver {
         return SearchUtil.dijkstra(
                         new Orientation(startPosition, Direction.RIGHT),
                         state -> state.position().equals(endPosition),
-                        current -> matrix.getGridEdges(current, 0))
+                        current -> SearchUtil.getGridEdges(matrix, current, 0))
                 .distance();
     }
 
@@ -49,7 +49,7 @@ public class Day18 implements AdventOfCodeSolver {
                 SearchUtil.dijkstra(
                         new Orientation(startPosition, Direction.RIGHT),
                         state -> state.position().equals(endPosition),
-                        current -> matrix.getGridEdges(current, 0));
+                        current -> SearchUtil.getGridEdges(matrix, current, 0));
             } catch (Exception e) {
                 break;
             }

@@ -18,7 +18,7 @@ public class Day16 implements AdventOfCodeSolver {
         return SearchUtil.dijkstra(
                         new Orientation(start, Direction.RIGHT),
                         state -> state.position().equals(end),
-                        current -> matrix.getGridEdges(current, 1000))
+                        current -> SearchUtil.getGridEdges(matrix, current, 1000))
                 .distance();
     }
 
