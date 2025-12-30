@@ -50,6 +50,10 @@ public record Position(int xPos, int yPos) implements Comparable<Position> {
         };
     }
 
+    public int manhattanDistance(Position other) {
+        return Math.abs(this.xPos - other.xPos) + Math.abs(this.yPos - other.yPos);
+    }
+
     @Override
     public String toString() {
         return xPos + "," + yPos;
