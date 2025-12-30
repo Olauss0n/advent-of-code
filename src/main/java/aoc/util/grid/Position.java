@@ -1,7 +1,5 @@
 package aoc.util.grid;
 
-import aoc.util.GridUtil.OctagonalDirection;
-
 // xPos = column, yPos = row
 public record Position(int xPos, int yPos) implements Comparable<Position> {
 

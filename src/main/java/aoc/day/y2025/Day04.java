@@ -5,9 +5,8 @@ import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.GridUtil;
-import aoc.util.GridUtil.OctagonalDirection;
 import aoc.util.grid.Matrix;
+import aoc.util.grid.OctagonalDirection;
 import aoc.util.grid.Position;
 
 public class Day04 implements AdventOfCodeSolver {
@@ -20,7 +19,7 @@ public class Day04 implements AdventOfCodeSolver {
                 int occurrences = 0;
                 Position currentPosition = new Position(column, row);
                 if (matrix.get(currentPosition).equals("@")) {
-                    for (OctagonalDirection direction : GridUtil.OctagonalDirection.values()) {
+                    for (OctagonalDirection direction : OctagonalDirection.values()) {
                         Position newPosition = currentPosition.move1Step(direction);
                         if (matrix.isWithinBounds(newPosition)) {
                             if (matrix.get(newPosition).equals("@")) {
@@ -49,7 +48,7 @@ public class Day04 implements AdventOfCodeSolver {
                     int occurrences = 0;
                     Position currentPosition = new Position(column, row);
                     if (matrix.get(currentPosition).equals("@")) {
-                        for (OctagonalDirection direction : GridUtil.OctagonalDirection.values()) {
+                        for (OctagonalDirection direction : OctagonalDirection.values()) {
                             Position newPosition = currentPosition.move1Step(direction);
                             if (matrix.isWithinBounds(newPosition)) {
                                 if (matrix.get(newPosition).equals("@")) {

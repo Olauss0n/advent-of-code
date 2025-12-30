@@ -2,11 +2,10 @@ package aoc.day.y2024;
 
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.GridUtil;
-import aoc.util.GridUtil.OctagonalDirection;
 import aoc.util.exceptions.NotImplementedException;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
+import aoc.util.grid.OctagonalDirection;
 import aoc.util.grid.Position;
 
 public class Day20 implements AdventOfCodeSolver {
@@ -40,7 +39,7 @@ public class Day20 implements AdventOfCodeSolver {
                 if (matrix.get(new Position(x, y)).equals("#")) {
                     continue;
                 }
-                for (OctagonalDirection direction : GridUtil.OctagonalDirection.values()) {
+                for (OctagonalDirection direction : OctagonalDirection.values()) {
                     Position newPosition = new Position(x, y).move2Steps(direction);
                     if (!matrix.isWithinBounds(newPosition)) {
                         continue;
