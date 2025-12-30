@@ -3,7 +3,7 @@ package aoc.day.y2022;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -21,7 +21,7 @@ public class Day02 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         long score = 0;
         for (String line : inputList) {
             String opponent = line.split(" ")[0];
@@ -35,7 +35,7 @@ public class Day02 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         long score = 0;
         for (String line : inputList) {
             String opponent = line.split(" ")[0];

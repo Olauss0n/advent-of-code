@@ -5,12 +5,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day03 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         long result = 0;
         for (String line : inputList) {
             int digitsToPick = 2;
@@ -21,7 +21,7 @@ public class Day03 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         long result = 0;
         for (String line : inputList) {
             int digitsToPick = 12;

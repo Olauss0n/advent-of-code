@@ -5,10 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day10 implements AdventOfCodeSolver {
     @Override
@@ -22,7 +22,7 @@ public class Day10 implements AdventOfCodeSolver {
     }
 
     private Object commonPart(String input, boolean isPartTwo) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
         List<Position> zeros = new ArrayList<>();
         for (int row = 0; row < matrix.rows(); row++) {
             for (int col = 0; col < matrix.columns(); col++) {

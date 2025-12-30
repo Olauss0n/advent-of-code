@@ -8,16 +8,16 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.exceptions.NotImplementedException;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day12 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
 
         List<HashMap<String, Set<Position>>> arrangements = new ArrayList<>();
         HashMap<Position, Boolean> visited = new HashMap<>();

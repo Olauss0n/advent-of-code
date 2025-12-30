@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day05 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> rangeList = Converter.convertInputToList(input.split("\n\n")[0]);
-        List<Long> ingredients = Converter.convertInputToList(input.split("\n\n")[1]).stream()
+        List<String> rangeList = Parser.toList(input.split("\n\n")[0]);
+        List<Long> ingredients = Parser.toList(input.split("\n\n")[1]).stream()
                 .map(Long::parseLong)
                 .toList();
         List<Range> ranges = rangeList.stream()
@@ -32,7 +32,7 @@ public class Day05 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> rangeList = Converter.convertInputToList(input.split("\n\n")[0]);
+        List<String> rangeList = Parser.toList(input.split("\n\n")[0]);
         List<Range> ranges = rangeList.stream()
                 .map(range -> range.split("-"))
                 .map(range -> new Range(Long.parseLong(range[0]), Long.parseLong(range[1])))

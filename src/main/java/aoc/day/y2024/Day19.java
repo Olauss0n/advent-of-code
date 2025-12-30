@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day19 implements AdventOfCodeSolver {
     @Override
@@ -22,7 +22,7 @@ public class Day19 implements AdventOfCodeSolver {
     private final HashMap<String, Long> cache = new HashMap<>();
 
     private Stream<Long> commonPart(String input) {
-        List<String> inputList = Converter.convertInputToList(input).stream()
+        List<String> inputList = Parser.toList(input).stream()
                 .filter(element -> !element.isBlank())
                 .toList();
         List<String> towelPatterns =

@@ -3,14 +3,14 @@ package aoc.day.y2025;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day01 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
         int dial = 50;
         int password = 0;
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         for (String row : inputList) {
             String rotation = row.substring(0, 1);
             int distance = Integer.parseInt(row.substring(1));
@@ -31,7 +31,7 @@ public class Day01 implements AdventOfCodeSolver {
     public Object solvePartTwo(String input, boolean isExample) {
         int dial = 50;
         int password = 0;
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         for (String row : inputList) {
             String rotation = row.substring(0, 1);
             int distance = Integer.parseInt(row.substring(1));

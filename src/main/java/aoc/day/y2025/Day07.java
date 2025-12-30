@@ -5,15 +5,15 @@ import java.util.HashSet;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day07 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
         Position current = matrix.findPosition("S");
         HashSet<Position> hits = new HashSet<>();
         traceBeams(matrix, current, hits);
@@ -22,7 +22,7 @@ public class Day07 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
         Position current = matrix.findPosition("S");
         traceBeams(matrix, current, new HashSet<>());
         HashMap<Integer, Long> timelines = new HashMap<>();

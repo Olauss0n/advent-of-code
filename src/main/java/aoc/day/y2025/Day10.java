@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Map;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.SearchUtil;
+import aoc.util.parse.Parser;
 
 public class Day10 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         int result = 0;
         for (String line : inputList) {
             String indicatorLights = line.split(" ")[0].replaceAll("[\\[\\]]", "");
@@ -59,7 +59,7 @@ public class Day10 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         long totalPresses = 0;
         for (String line : inputList) {
             List<Integer> joltages = parseJoltages(line);

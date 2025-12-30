@@ -5,13 +5,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day04 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
 
         List<Card> cards = inputList.stream().map(Card::new).toList();
 
@@ -20,7 +20,7 @@ public class Day04 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
 
         List<Card> cards = inputList.stream().map(Card::new).toList();
 
@@ -33,7 +33,7 @@ public class Day04 implements AdventOfCodeSolver {
     }
 
     private int runPartOneWithOutCardClass(String input) {
-        List<String> cards = Converter.convertInputToList(input);
+        List<String> cards = Parser.toList(input);
 
         List<Integer> cardPoints = new ArrayList<>();
 

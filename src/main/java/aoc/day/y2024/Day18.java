@@ -3,17 +3,17 @@ package aoc.day.y2024;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.SearchUtil;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Orientation;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day18 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         int size = isExample ? 7 : 71;
         Position startPosition = new Position(0, 0);
         Position endPosition = isExample ? new Position(6, 6) : new Position(70, 70);
@@ -36,7 +36,7 @@ public class Day18 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         int size = isExample ? 7 : 71;
         Position startPosition = new Position(0, 0);
         Position endPosition = isExample ? new Position(6, 6) : new Position(70, 70);

@@ -6,13 +6,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.grid.Matrix;
+import aoc.util.parse.Parser;
 
 public class Day03 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         int result = 0;
         for (String line : inputList) {
             String firstHalf = line.substring(0, line.length() / 2);
@@ -27,8 +27,8 @@ public class Day03 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
-        Matrix<String> matrix = Converter.convertListInputToStringMatrix(inputList, 3);
+        List<String> inputList = Parser.toList(input);
+        Matrix<String> matrix = Parser.toStringMatrix(inputList, 3);
 
         int result = 0;
         for (List<String> row : matrix.getRows()) {

@@ -7,13 +7,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.exceptions.NotImplementedException;
+import aoc.util.parse.Parser;
 
 public class Day14 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
 
         Pattern pattern = Pattern.compile("-?\\d+");
         int width = isExample ? 11 : 101;

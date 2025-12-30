@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day05 implements AdventOfCodeSolver {
     @Override
@@ -20,7 +20,7 @@ public class Day05 implements AdventOfCodeSolver {
     }
 
     private int commonPart(String input, boolean isPartOne) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         HashMap<Pair, Integer> cache = new HashMap<>();
         List<List<Integer>> updates = new ArrayList<>();
         for (String line : inputList) {

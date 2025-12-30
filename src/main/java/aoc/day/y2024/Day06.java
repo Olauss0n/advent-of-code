@@ -3,16 +3,16 @@ package aoc.day.y2024;
 import java.util.HashSet;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Orientation;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day06 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
 
         Position startPosition = matrix.findPosition("^");
         HashSet<Position> visited = findPositions(startPosition, matrix);
@@ -21,7 +21,7 @@ public class Day06 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
 
         Position startPosition = matrix.findPosition("^");
         HashSet<Position> visited = findPositions(startPosition, matrix);

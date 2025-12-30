@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.HashMap;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day11 implements AdventOfCodeSolver {
 
@@ -23,7 +23,7 @@ public class Day11 implements AdventOfCodeSolver {
 
     private long runCommonPart(String input, long expandMultiplier) {
         expandMultiplier--;
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
 
         ArrayList<Position> galaxies = new ArrayList<>();
         ArrayList<Integer> emptyRows = new ArrayList<>();

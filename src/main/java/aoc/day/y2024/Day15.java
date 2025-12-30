@@ -4,17 +4,17 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.exceptions.NotImplementedException;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day15 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
         List<String> inputList = Arrays.stream(input.split("\n\n")).toList();
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(inputList.getFirst());
+        Matrix<String> matrix = Parser.toStringMatrix(inputList.getFirst());
         List<String> moves =
                 Arrays.stream(inputList.getLast().replace("\n", "").split("")).toList();
         Position position = matrix.findPosition("@");

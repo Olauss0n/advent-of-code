@@ -6,14 +6,14 @@ import java.util.HashSet;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day08 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
 
         HashMap<String, List<Position>> antennas = getAntennas(matrix);
         HashSet<Position> antinodes = new HashSet<>();
@@ -41,7 +41,7 @@ public class Day08 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
 
         HashMap<String, List<Position>> antennas = getAntennas(matrix);
         HashSet<Position> antinodes = new HashSet<>();

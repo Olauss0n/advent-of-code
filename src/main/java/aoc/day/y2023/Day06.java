@@ -6,13 +6,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day06 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
 
         List<Integer> times = Arrays.stream(
                         inputList.getFirst().replaceAll("Time: +", "").split(" +"))
@@ -41,7 +41,7 @@ public class Day06 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
 
         BigInteger time = BigInteger.valueOf(Long.parseLong(inputList.getFirst().replaceAll("Time: +| +", "")));
         BigInteger distance = BigInteger.valueOf(Long.parseLong(inputList.get(1).replaceAll("Distance: +| +", "")));

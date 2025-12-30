@@ -5,17 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.exceptions.NotImplementedException;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day25 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<Matrix<String>> matrices = Arrays.stream(input.split("\n\n"))
-                .map(Converter::convertInputToStringMatrix)
-                .toList();
+        List<Matrix<String>> matrices =
+                Arrays.stream(input.split("\n\n")).map(Parser::toStringMatrix).toList();
 
         List<Matrix<String>> locks = new ArrayList<>();
         List<Matrix<String>> keys = new ArrayList<>();

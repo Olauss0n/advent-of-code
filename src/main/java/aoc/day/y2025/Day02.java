@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day02 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input, ",");
+        List<String> inputList = Parser.toList(input, ",");
         long result = 0;
         for (String line : inputList) {
             String start = line.split("-")[0];
@@ -29,7 +29,7 @@ public class Day02 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input, ",");
+        List<String> inputList = Parser.toList(input, ",");
         long result = 0;
         for (String line : inputList) {
             String start = line.split("-")[0];

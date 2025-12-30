@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.stream.IntStream;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day09 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<List<Long>> inputList = Converter.convertInputToList(input).stream()
+        List<List<Long>> inputList = Parser.toList(input).stream()
                 .map(line -> Arrays.stream(line.split(" ")).map(Long::parseLong).toList())
                 .toList();
 
@@ -29,7 +29,7 @@ public class Day09 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<List<Long>> inputList = Converter.convertInputToList(input).stream()
+        List<List<Long>> inputList = Parser.toList(input).stream()
                 .map(line -> Arrays.stream(line.split(" ")).map(Long::parseLong).toList())
                 .toList();
 

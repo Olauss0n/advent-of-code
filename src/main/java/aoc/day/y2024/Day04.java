@@ -1,15 +1,15 @@
 package aoc.day.y2024;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.OctagonalDirection;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day04 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
 
         int result = 0;
         for (int y = 0; y < matrix.rows(); y++) {
@@ -22,7 +22,7 @@ public class Day04 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
         int result = 0;
         for (int y = 1; y < matrix.rows() - 1; y++) {
             for (int x = 1; x < matrix.columns() - 1; x++) {

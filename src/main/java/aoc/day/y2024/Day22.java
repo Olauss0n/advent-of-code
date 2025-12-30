@@ -3,13 +3,13 @@ package aoc.day.y2024;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.exceptions.NotImplementedException;
+import aoc.util.parse.Parser;
 
 public class Day22 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         long result = 0;
         for (String line : inputList) {
             long secretNumber = Long.parseLong(line);

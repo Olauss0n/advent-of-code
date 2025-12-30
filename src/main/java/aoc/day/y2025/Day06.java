@@ -5,17 +5,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.grid.Matrix;
+import aoc.util.parse.Parser;
 
 public class Day06 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         List<String> operations =
                 Arrays.stream(inputList.getLast().trim().split("\\s+")).toList();
-        Matrix<String> matrix =
-                Converter.convertListInputToStringMatrix(inputList.subList(0, inputList.size() - 1), "\\s+");
+        Matrix<String> matrix = Parser.toStringMatrix(inputList.subList(0, inputList.size() - 1), "\\s+");
         long result = 0;
         int index = 0;
         for (int col = 0; col < matrix.columns(); col++) {
@@ -35,10 +34,9 @@ public class Day06 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         List<String> operations = Arrays.asList(inputList.getLast().trim().split("\\s+"));
-        Matrix<String> matrix =
-                Converter.convertListInputToStringMatrixWithoutTrim(inputList.subList(0, inputList.size() - 1));
+        Matrix<String> matrix = Parser.toStringMatrixRaw(inputList.subList(0, inputList.size() - 1));
 
         long result = 0;
         int operationIndex = operations.size() - 1;

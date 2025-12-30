@@ -7,12 +7,12 @@ import java.util.Map;
 import java.util.Optional;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day11 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         Map<String, List<String>> map = new HashMap<>();
         for (String line : inputList) {
             String parent = line.split(": ")[0];
@@ -24,7 +24,7 @@ public class Day11 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         Map<String, List<String>> map = new HashMap<>();
         for (String line : inputList) {
             String parent = line.split(": ")[0];

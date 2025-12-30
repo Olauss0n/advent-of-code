@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Set;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.exceptions.NotImplementedException;
+import aoc.util.parse.Parser;
 
 public class Day23 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
         HashMap<String, Set<String>> connections = new HashMap<>();
         for (String line : inputList) {
             String first = line.split("-")[0];

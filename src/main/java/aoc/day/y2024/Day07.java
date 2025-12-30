@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
+import aoc.util.parse.Parser;
 
 public class Day07 implements AdventOfCodeSolver {
     @Override
@@ -18,7 +18,7 @@ public class Day07 implements AdventOfCodeSolver {
     }
 
     private Object commonPart(String input, boolean isPartTwo) {
-        List<String> inputList = Converter.convertInputToList(input);
+        List<String> inputList = Parser.toList(input);
 
         long total = 0;
         for (String line : inputList) {

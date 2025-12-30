@@ -8,13 +8,13 @@ import java.util.List;
 import java.util.Set;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.grid.Position;
+import aoc.util.parse.Parser;
 
 public class Day09 implements AdventOfCodeSolver {
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        List<Position> positions = Converter.convertInputToList(input).stream()
+        List<Position> positions = Parser.toList(input).stream()
                 .map(line -> line.split(","))
                 .map(Position::new)
                 .toList();
@@ -36,7 +36,7 @@ public class Day09 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        List<Position> positions = Converter.convertInputToList(input).stream()
+        List<Position> positions = Parser.toList(input).stream()
                 .map(line -> line.split(","))
                 .map(Position::new)
                 .toList();

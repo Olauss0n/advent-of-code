@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.grid.Matrix;
+import aoc.util.parse.Parser;
 
 public class Day14 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
 
         // Update matrix
         boolean shouldKeepTiltingMatrix = true;
@@ -26,7 +26,7 @@ public class Day14 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartTwo(String input, boolean isExample) {
-        Matrix<String> matrix = Converter.convertInputToStringMatrix(input);
+        Matrix<String> matrix = Parser.toStringMatrix(input);
         ArrayList<Matrix<String>> seenMatrixes = new ArrayList<>();
 
         int totalCycles = 1000000000;

@@ -6,10 +6,10 @@ import java.util.Comparator;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Converter;
 import aoc.util.DisjointSet;
 import aoc.util.grid.Connection3D;
 import aoc.util.grid.Position3D;
+import aoc.util.parse.Parser;
 
 public class Day08 implements AdventOfCodeSolver {
     @Override
@@ -48,7 +48,7 @@ public class Day08 implements AdventOfCodeSolver {
     }
 
     private static List<Position3D> parsePositions(String input) {
-        return Converter.convertInputToList(input).stream()
+        return Parser.toList(input).stream()
                 .map(line -> line.split(","))
                 .map(Position3D::new)
                 .toList();
