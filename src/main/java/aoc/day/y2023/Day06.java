@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 
 public class Day06 implements AdventOfCodeSolver {

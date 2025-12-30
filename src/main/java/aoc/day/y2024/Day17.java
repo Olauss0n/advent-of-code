@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 import aoc.util.exceptions.NotImplementedException;
 
 public class Day17 implements AdventOfCodeSolver {

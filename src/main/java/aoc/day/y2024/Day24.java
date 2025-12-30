@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 import aoc.util.exceptions.NotImplementedException;
 
 public class Day24 implements AdventOfCodeSolver {

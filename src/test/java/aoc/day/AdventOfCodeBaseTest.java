@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 
 import aoc.day.exceptions.NoExampleGivenException;
 import aoc.day.exceptions.NoExampleSolutionGivenException;
-import aoc.util.AdventOfCodeSolver;
 import aoc.util.Reader;
 import aoc.util.exceptions.FileNotFoundException;
 import aoc.util.exceptions.NoPuzzleAvailableException;

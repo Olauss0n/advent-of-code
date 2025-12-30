@@ -2,7 +2,7 @@ package aoc.day.y2022;
 
 import java.util.List;
 
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

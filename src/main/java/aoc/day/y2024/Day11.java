@@ -2,7 +2,7 @@ package aoc.day.y2024;
 
 import java.util.HashMap;
 
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 
 public class Day11 implements AdventOfCodeSolver {
 

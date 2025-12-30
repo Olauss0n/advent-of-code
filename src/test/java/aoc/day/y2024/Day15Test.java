@@ -1,8 +1,8 @@
 package aoc.day.y2024;
 
 import aoc.day.AdventOfCodeBaseTest;
+import aoc.day.AdventOfCodeSolver;
 import aoc.day.exceptions.NoExampleSolutionGivenException;
-import aoc.util.AdventOfCodeSolver;
 
 public class Day15Test extends AdventOfCodeBaseTest {
     @Override

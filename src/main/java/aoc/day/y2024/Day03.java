@@ -3,7 +3,7 @@ package aoc.day.y2024;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 
 public class Day03 implements AdventOfCodeSolver {
     @Override

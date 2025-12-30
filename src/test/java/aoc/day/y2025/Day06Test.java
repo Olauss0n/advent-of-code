@@ -1,7 +1,7 @@
 package aoc.day.y2025;
 
 import aoc.day.AdventOfCodeBaseTest;
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 
 public class Day06Test extends AdventOfCodeBaseTest {
     @Override

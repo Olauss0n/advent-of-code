@@ -1,7 +1,7 @@
 package aoc.day.y2023;
 
 import aoc.day.AdventOfCodeBaseTest;
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 import aoc.util.Reader;
 
 public class Day01Test extends AdventOfCodeBaseTest {

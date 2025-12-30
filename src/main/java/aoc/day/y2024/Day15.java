@@ -3,7 +3,7 @@ package aoc.day.y2024;
 import java.util.Arrays;
 import java.util.List;
 
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.Position;

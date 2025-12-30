@@ -1,6 +1,6 @@
 package aoc.day.y2024;
 
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.Orientation;

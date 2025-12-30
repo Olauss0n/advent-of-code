@@ -3,7 +3,7 @@ package aoc.day.y2023;
 import java.util.ArrayList;
 import java.util.List;
 
-import aoc.util.AdventOfCodeSolver;
+import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.Matrix;
 
