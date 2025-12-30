@@ -1,6 +1,6 @@
 package aoc.day;
 
-import aoc.util.InputFetcher;
+import aoc.util.io.InputFetcher;
 
 public interface AdventOfCodeSolver {
 

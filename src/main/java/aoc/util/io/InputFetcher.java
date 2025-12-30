@@ -1,4 +1,4 @@
-package aoc.util;
+package aoc.util.io;
 
 import java.io.IOException;
 import java.net.URI;

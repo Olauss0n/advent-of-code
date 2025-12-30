@@ -2,7 +2,7 @@ package aoc.day.y2025;
 
 import aoc.day.AdventOfCodeBaseTest;
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.Reader;
+import aoc.util.io.Reader;
 
 public class Day11Test extends AdventOfCodeBaseTest {
     @Override

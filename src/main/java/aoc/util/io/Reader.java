@@ -1,4 +1,4 @@
-package aoc.util;
+package aoc.util.io;
 
 import java.io.InputStream;
 import java.util.ArrayList;

@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.Reader;
 
 public class Day01 implements AdventOfCodeSolver {
 
@@ -59,7 +58,7 @@ public class Day01 implements AdventOfCodeSolver {
         return combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).orElseThrow();
     }
 
-    private Integer runPartTwoWithoutOverlaps() {
+    private Integer runPartTwoWithoutOverlaps(String input) {
         Map<String, String> replacements = new HashMap<>() {
             {
                 put("one", "1");
@@ -74,7 +73,7 @@ public class Day01 implements AdventOfCodeSolver {
             }
         };
 
-        List<String> inputList = Converter.convertInputToList(Reader.readInput(this.getClass()));
+        List<String> inputList = Converter.convertInputToList(input);
         List<String> combinedList = new ArrayList<>();
 
         for (String line : inputList) {
