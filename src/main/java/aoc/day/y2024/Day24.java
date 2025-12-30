@@ -9,7 +9,7 @@ import java.util.regex.MatchResult;
 import java.util.regex.Pattern;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.exceptions.NotImplementedException;
+import aoc.util.exception.NotImplementedException;
 
 public class Day24 implements AdventOfCodeSolver {
     @Override

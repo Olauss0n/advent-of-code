@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.exceptions.NotImplementedException;
+import aoc.util.exception.NotImplementedException;
 import aoc.util.parse.Parser;
 
 public class Day14 implements AdventOfCodeSolver {

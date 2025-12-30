@@ -2,7 +2,7 @@ package aoc.day.y2025;
 
 import aoc.day.AdventOfCodeBaseTest;
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.exceptions.NotImplementedException;
+import aoc.util.exception.NotImplementedException;
 
 public class Day12Test extends AdventOfCodeBaseTest {
     @Override

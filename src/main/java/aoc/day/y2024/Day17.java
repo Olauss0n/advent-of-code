@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.exceptions.NotImplementedException;
+import aoc.util.exception.NotImplementedException;
 
 public class Day17 implements AdventOfCodeSolver {
     @Override

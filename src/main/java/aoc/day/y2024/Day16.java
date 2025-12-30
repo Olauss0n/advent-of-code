@@ -1,7 +1,7 @@
 package aoc.day.y2024;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.exceptions.NotImplementedException;
+import aoc.util.exception.NotImplementedException;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Orientation;

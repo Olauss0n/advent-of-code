@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 
 import aoc.day.exceptions.NoExampleGivenException;
 import aoc.day.exceptions.NoExampleSolutionGivenException;
-import aoc.util.exceptions.FileNotFoundException;
-import aoc.util.exceptions.NoPuzzleAvailableException;
-import aoc.util.exceptions.NotImplementedException;
+import aoc.util.exception.FileNotFoundException;
+import aoc.util.exception.NoPuzzleAvailableException;
+import aoc.util.exception.NotImplementedException;
 import aoc.util.io.Reader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.exceptions.NotImplementedException;
+import aoc.util.exception.NotImplementedException;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;

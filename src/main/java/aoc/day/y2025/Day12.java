@@ -7,7 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import aoc.day.AdventOfCodeSolver;
-import aoc.util.exceptions.NoPuzzleAvailableException;
+import aoc.util.exception.NoPuzzleAvailableException;
 
 public class Day12 implements AdventOfCodeSolver {
     @Override
