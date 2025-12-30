@@ -4,9 +4,9 @@ import java.util.HashSet;
 
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.GridUtil.Orientation;
 import aoc.util.grid.Direction;
 import aoc.util.grid.Matrix;
+import aoc.util.grid.Orientation;
 import aoc.util.grid.Position;
 
 public class Day06 implements AdventOfCodeSolver {

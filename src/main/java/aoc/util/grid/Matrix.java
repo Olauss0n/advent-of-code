@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import aoc.util.GridUtil.Orientation;
 import aoc.util.SearchUtil.Edge;
 
 public class Matrix<T> {
