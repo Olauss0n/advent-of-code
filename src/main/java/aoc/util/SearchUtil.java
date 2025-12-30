@@ -19,7 +19,10 @@ import aoc.util.grid.Position;
 public class SearchUtil {
 
     /**
-     * Complete BFS: Finds the shortest distance and can reconstruct the path.
+     * Breadth-First Search (BFS):
+     * Finds the shortest path in an unweighted graph (all edges cost 1).
+     * Best for: Finding the minimum number of steps in a grid or state-machine.
+     * Can reconstruct the path.
      */
     public static <T> SearchResult<T> bfs(T start, Predicate<T> isTarget, Function<T, Iterable<T>> getNeighbors) {
         Queue<T> queue = new LinkedList<>();
@@ -50,7 +53,9 @@ public class SearchUtil {
     }
 
     /**
-     * Complete Dijkstra: Handles weighted edges and complex target conditions.
+     * Dijkstra's Algorithm:
+     * Finds the shortest path in a weighted graph (edges have different costs).
+     * Best for: Puzzles with turn costs, terrain difficulty, or fuel consumption.
      */
     public static <T> SearchResult<T> dijkstra(
             T start, Predicate<T> isTarget, Function<T, Iterable<Edge<T>>> getEdges) {
@@ -88,6 +93,11 @@ public class SearchUtil {
         return getGridEdges(matrix, current, turnCost, 1, cell -> !cell.equals("#"));
     }
 
+    /**
+     * Grid Edge Factory:
+     * Generates standard transitions for orientation-based movement (forward + turns).
+     * Connects a Matrix state to Dijkstra's weighted search.
+     */
     public static <T> List<Edge<Orientation>> getGridEdges(
             Matrix<T> matrix, Orientation current, int turnCost, int moveCost, Predicate<T> isPassable) {
         List<Edge<Orientation>> edges = new ArrayList<>();
