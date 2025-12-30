@@ -9,7 +9,7 @@ import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.DisjointSet;
 import aoc.util.SpaceUtil.Connection;
-import aoc.util.SpaceUtil.Position3D;
+import aoc.util.grid.Position3D;
 
 public class Day08 implements AdventOfCodeSolver {
     @Override
