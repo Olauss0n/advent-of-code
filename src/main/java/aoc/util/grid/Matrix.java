@@ -1,4 +1,4 @@
-package aoc.util;
+package aoc.util.grid;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -9,7 +9,6 @@ import java.util.function.Predicate;
 
 import aoc.util.GridUtil.Orientation;
 import aoc.util.SearchUtil.Edge;
-import aoc.util.grid.Position;
 
 public class Matrix<T> {
     private final T[][] grid;
@@ -118,7 +117,7 @@ public class Matrix<T> {
         // Move Forward
         Position next = current.position().move(current.direction());
         if (isWithinBounds(next) && isPassable.test(this.get(next))) {
-            edges.add(new SearchUtil.Edge<>(new Orientation(next, current.direction()), 1));
+            edges.add(new Edge<>(new Orientation(next, current.direction()), 1));
         }
 
         // Turns

@@ -7,7 +7,7 @@ import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.GridUtil;
 import aoc.util.GridUtil.OctagonalDirection;
-import aoc.util.Matrix;
+import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
 
 public class Day04 implements AdventOfCodeSolver {

@@ -3,6 +3,8 @@ package aoc.util;
 import java.util.Arrays;
 import java.util.List;
 
+import aoc.util.grid.Matrix;
+
 public class Converter {
 
     public static List<String> convertInputToList(String input) {

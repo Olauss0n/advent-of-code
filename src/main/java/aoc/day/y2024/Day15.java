@@ -6,8 +6,8 @@ import java.util.List;
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.GridUtil.Direction;
-import aoc.util.Matrix;
 import aoc.util.exceptions.NotImplementedException;
+import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
 
 public class Day15 implements AdventOfCodeSolver {

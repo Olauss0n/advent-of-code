@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
-import aoc.util.Matrix;
+import aoc.util.grid.Matrix;
 
 public class Day03 implements AdventOfCodeSolver {
     @Override

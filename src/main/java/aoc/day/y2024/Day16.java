@@ -4,9 +4,9 @@ import aoc.day.AdventOfCodeSolver;
 import aoc.util.Converter;
 import aoc.util.GridUtil.Direction;
 import aoc.util.GridUtil.Orientation;
-import aoc.util.Matrix;
 import aoc.util.SearchUtil;
 import aoc.util.exceptions.NotImplementedException;
+import aoc.util.grid.Matrix;
 import aoc.util.grid.Position;
 
 public class Day16 implements AdventOfCodeSolver {
