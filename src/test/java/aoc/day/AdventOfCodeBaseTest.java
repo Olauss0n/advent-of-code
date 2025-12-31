@@ -9,6 +9,7 @@ import aoc.util.exception.FileNotFoundException;
 import aoc.util.exception.NoPuzzleAvailableException;
 import aoc.util.exception.NotImplementedException;
 import aoc.util.io.Reader;
+import lombok.RequiredArgsConstructor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -58,41 +59,50 @@ public abstract class AdventOfCodeBaseTest {
     }
 
     @Test
-    public void verifyExamples() {
-        boolean noExceptions = true;
-        noExceptions &= runWithExceptionHandling(() -> {
-            System.out.print("Example part one: \n");
-            Object examplePartOne = getSolver().solvePartOne(getExampleInput(), true);
-            System.out.printf("%s\n", examplePartOne);
-            assertSolutionMatches(getExampleSolutionPartOne(), examplePartOne, "Part one is wrong.");
-        });
-        noExceptions &= runWithExceptionHandling(() -> {
-            System.out.print("Example part two: \n");
-            Object examplePartTwo = getSolver().solvePartTwo(getExampleInputPartTwo(), true);
-            System.out.printf("%s\n", examplePartTwo);
-            assertSolutionMatches(getExampleSolutionPartTwo(), examplePartTwo, "Part two is wrong.");
-        });
-        if (noExceptions) {
-            System.out.println("Examples are verified and correct.");
-        }
+    public void verifyExamplePartOne() {
+        verifyExample(Part.ONE);
     }
 
-    private boolean runWithExceptionHandling(Runnable runnable) {
+    @Test
+    public void verifyExamplePartTwo() {
+        verifyExample(Part.TWO);
+    }
+
+    private void verifyExample(Part part) {
         try {
-            runnable.run();
-            return true;
+            String input =
+                    switch (part) {
+                        case ONE -> getExampleInput();
+                        case TWO -> getExampleInputPartTwo();
+                    };
+            Object expected =
+                    switch (part) {
+                        case ONE -> getExampleSolutionPartOne();
+                        case TWO -> getExampleSolutionPartTwo();
+                    };
+            if (expected == null) {
+                System.out.printf("Example part %d: No solution provided to verify against.", part.number);
+                return;
+            }
+            Object actual =
+                    switch (part) {
+                        case ONE -> getSolver().solvePartOne(input, true);
+                        case TWO -> getSolver().solvePartTwo(input, true);
+                    };
+
+            System.out.printf("Example part %d: %s\n", part.number, actual);
+            assertSolutionMatches(expected, actual, "Part " + part + " example solution mismatch.");
         } catch (NoExampleGivenException e) {
-            System.out.println("No example was given.");
+            System.out.printf("No example was given for part %d. \n", part.number);
         } catch (NoExampleSolutionGivenException e) {
-            System.out.println("No example solution was given.");
+            System.out.printf("No example solution was given for part %d.\n", part.number);
         } catch (NotImplementedException e) {
-            System.out.println("Not implemented.");
+            System.out.printf("Part %d is not implemented.\n", part.number);
         } catch (NoPuzzleAvailableException e) {
-            System.out.println("No puzzle is available for this part.");
+            System.out.printf("No puzzle is available for part %d.\n", part.number);
         } catch (FileNotFoundException e) {
-            System.out.println("File was not found: " + e.getMessage());
+            System.out.printf("File was not found: %s.\n", e.getMessage());
         }
-        return false;
     }
 
     private void assertSolutionMatches(Object expected, Object actual, String errorMessage) {
@@ -101,5 +111,13 @@ public abstract class AdventOfCodeBaseTest {
         } else {
             assertEquals(expected, actual, errorMessage);
         }
+    }
+
+    @RequiredArgsConstructor
+    private enum Part {
+        ONE(1),
+        TWO(2);
+
+        private final int number;
     }
 }
