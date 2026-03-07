@@ -20,8 +20,7 @@ public class Day14 implements AdventOfCodeSolver {
         }
 
         // Calculate weight
-        long weight = calculateWeight(matrix);
-        return weight;
+        return calculateWeight(matrix);
     }
 
     @Override
@@ -124,15 +123,6 @@ public class Day14 implements AdventOfCodeSolver {
                 matrix.set(matrix.rows() - 1 - j, matrix.rows() - 1 - i, matrix.get(matrix.rows() - 1 - i, j));
                 matrix.set(matrix.rows() - 1 - i, j, temp);
             }
-        }
-    }
-
-    private static void printMatrix(String[][] matrix) {
-        for (String[] row : matrix) {
-            for (String column : row) {
-                System.out.print(column + " ");
-            }
-            System.out.println("");
         }
     }
 

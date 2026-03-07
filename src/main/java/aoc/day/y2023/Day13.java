@@ -40,9 +40,9 @@ public class Day13 implements AdventOfCodeSolver {
                 if (column - j < 0 || column + j > matrix[0].length) {
                     break;
                 }
-                for (int i = 0; i < matrix.length; i++) {
-                    String leftReflection = matrix[i][column - j];
-                    String rightReflection = matrix[i][column + j - 1];
+                for (String[] rows : matrix) {
+                    String leftReflection = rows[column - j];
+                    String rightReflection = rows[column + j - 1];
                     if (!Objects.equals(leftReflection, rightReflection)) {
                         difference++;
                     }

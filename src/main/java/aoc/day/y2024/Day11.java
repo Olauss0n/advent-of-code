@@ -40,7 +40,7 @@ public class Day11 implements AdventOfCodeSolver {
         } else {
             int digits = (int) Math.log10(stone.number) + 1;
             if (digits % 2 == 0) {
-                long divider = (long) Math.pow(10, digits / 2);
+                long divider = (long) Math.pow(10, (double) digits / 2);
                 result = blink(new Stone(stone.number / divider, stone.blinksLeft - 1))
                         + blink(new Stone(stone.number % divider, stone.blinksLeft - 1));
             } else {

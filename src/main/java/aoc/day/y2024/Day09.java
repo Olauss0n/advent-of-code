@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.stream.IntStream;
 
 import aoc.day.AdventOfCodeSolver;
@@ -103,43 +102,5 @@ public class Day09 implements AdventOfCodeSolver {
             }
             return this.position - o.position;
         }
-    }
-
-    private void printOut(Map<Integer, Data> disk, ArrayList<Data> spaces) {
-        int counter = 0;
-        int spaceCounter = 0;
-        StringBuilder sb = new StringBuilder();
-        for (Entry<Integer, Data> entry : disk.entrySet()) {
-            if (counter == entry.getValue().position) {
-                sb.append(String.valueOf(entry.getKey()).repeat(entry.getValue().size()));
-                counter += entry.getValue().size();
-            } else {
-                Data space = spaces.get(spaceCounter);
-                sb.append(".".repeat(space.size));
-                spaceCounter += 1;
-                counter += space.size();
-
-                sb.append(String.valueOf(entry.getKey()).repeat(entry.getValue().size()));
-                counter += entry.getValue().size();
-            }
-        }
-        System.out.println(sb);
-    }
-
-    private void printOut(Map<Integer, Data> disk) {
-        int counter = 0;
-        List<Entry<Integer, Data>> sortedEntryList =
-                disk.entrySet().stream().sorted(Entry.comparingByValue()).toList();
-        StringBuilder sb = new StringBuilder();
-
-        for (Entry<Integer, Data> entry : sortedEntryList) {
-            if (counter != entry.getValue().position) {
-                sb.append(".".repeat(entry.getValue().position - counter));
-                counter += entry.getValue().position - counter;
-            }
-            sb.append(String.valueOf(entry.getKey()).repeat(entry.getValue().size()));
-            counter += entry.getValue().size();
-        }
-        System.out.println(sb);
     }
 }

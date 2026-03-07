@@ -72,7 +72,6 @@ public class Day02 implements AdventOfCodeSolver {
             int greenMaxAmount = 0;
             int blueMaxAmount = 0;
             List<String> gameIdAndCubes = Arrays.asList(game.split(":"));
-            String gameId = gameIdAndCubes.getFirst().replaceAll("Game ", "");
             String[] sets = gameIdAndCubes.get(1).split(";");
 
             for (String set : sets) {

@@ -1,7 +1,6 @@
 package aoc.day.y2023;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +14,9 @@ public class Day01 implements AdventOfCodeSolver {
 
     @Override
     public Object solvePartOne(String input, boolean isExample) {
-        String newInput = input.replaceAll("[a-zA-Z]", "");
-
-        List<String> inputList = Arrays.asList(newInput.split("\n"));
         List<String> combinedList = new ArrayList<>();
 
-        for (String line : inputList) {
+        for (String line : input.replaceAll("[a-zA-Z]", "").split("\n")) {
             String firstDigit = line.substring(0, 1);
             String lastDigit = line.substring(line.length() - 1);
             String wantedNumber = firstDigit + lastDigit;
@@ -35,7 +31,19 @@ public class Day01 implements AdventOfCodeSolver {
     }
 
     private Integer runPartTwoWithOverlaps(String input) {
-        String newInput = input.replaceAll("one", "o1e")
+        List<String> combinedList = new ArrayList<>();
+
+        for (String line : filterNonDigits(input).split("\n")) {
+            String firstDigit = line.substring(0, 1);
+            String lastDigit = line.substring(line.length() - 1);
+            String wantedNumber = firstDigit + lastDigit;
+            combinedList.add(wantedNumber);
+        }
+        return combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).orElseThrow();
+    }
+
+    private static String filterNonDigits(String input) {
+        return input.replaceAll("one", "o1e")
                 .replaceAll("two", "t2o")
                 .replaceAll("three", "t3e")
                 .replaceAll("four", "f4r")
@@ -45,17 +53,6 @@ public class Day01 implements AdventOfCodeSolver {
                 .replaceAll("eight", "e8t")
                 .replaceAll("nine", "n9e")
                 .replaceAll("[a-zA-Z]", "");
-
-        List<String> inputList = Arrays.asList(newInput.split("\n"));
-        List<String> combinedList = new ArrayList<>();
-
-        for (String line : inputList) {
-            String firstDigit = line.substring(0, 1);
-            String lastDigit = line.substring(line.length() - 1);
-            String wantedNumber = firstDigit + lastDigit;
-            combinedList.add(wantedNumber);
-        }
-        return combinedList.stream().map(Integer::parseInt).reduce(Integer::sum).orElseThrow();
     }
 
     private Integer runPartTwoWithoutOverlaps(String input) {

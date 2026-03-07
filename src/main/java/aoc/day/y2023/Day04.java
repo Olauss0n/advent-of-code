@@ -39,7 +39,6 @@ public class Day04 implements AdventOfCodeSolver {
 
         for (String card : cards) {
             List<String> cardList = Arrays.asList(card.split(":|\\|"));
-            String id = cardList.getFirst().replace("Card", "").strip();
             List<String> winningNumbers = Arrays.asList(cardList.get(1).strip().split(" +"));
             List<String> yourNumbers = Arrays.asList(cardList.get(2).strip().split(" +"));
 
