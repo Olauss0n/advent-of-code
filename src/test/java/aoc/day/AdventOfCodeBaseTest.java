@@ -43,7 +43,7 @@ public abstract class AdventOfCodeBaseTest {
         try {
             getSolver().runPartOne(getInput(), false);
         } catch (NotImplementedException e) {
-            System.out.println("Part one: Not implemented.");
+            System.out.println("Part 1: \nNot implemented.");
         }
     }
 
@@ -52,9 +52,9 @@ public abstract class AdventOfCodeBaseTest {
         try {
             getSolver().runPartTwo(getInput(), false);
         } catch (NotImplementedException e) {
-            System.out.println("Part two: Not implemented.");
+            System.out.println("Part 2: \nNot implemented.");
         } catch (NoPuzzleAvailableException e) {
-            System.out.println("Part two: No puzzle is available for this part.");
+            System.out.println("Part 2: \nNo puzzle is available for this part.");
         }
     }
 
@@ -90,7 +90,7 @@ public abstract class AdventOfCodeBaseTest {
                         case TWO -> getSolver().solvePartTwo(input, true);
                     };
 
-            System.out.printf("Example part %d: %s\n", part.number, actual);
+            System.out.printf("Example part %d: \n%s\n", part.number, actual);
             assertSolutionMatches(expected, actual, "Part " + part + " example solution mismatch.");
         } catch (NoExampleGivenException e) {
             System.out.printf("No example was given for part %d. \n", part.number);

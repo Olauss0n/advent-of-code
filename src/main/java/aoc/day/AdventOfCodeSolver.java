@@ -21,11 +21,11 @@ public interface AdventOfCodeSolver {
     }
 
     default void runPartOne(String input, boolean isExample) {
-        System.out.println("Part one: " + solvePartOne(input, isExample));
+        System.out.println("Part 1: \n" + solvePartOne(input, isExample));
     }
 
     default void runPartTwo(String input, boolean isExample) {
-        System.out.println("Part two: " + solvePartTwo(input, isExample));
+        System.out.println("Part 2: \n" + solvePartTwo(input, isExample));
     }
 
     private String getYearAndDay() {
