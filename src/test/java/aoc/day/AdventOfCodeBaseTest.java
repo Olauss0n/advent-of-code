@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import aoc.day.exceptions.NoExampleGivenException;
 import aoc.day.exceptions.NoExampleSolutionGivenException;
 import aoc.util.exception.FileNotFoundException;
+import aoc.util.exception.IncorrectExampleException;
 import aoc.util.exception.NoPuzzleAvailableException;
 import aoc.util.exception.NotImplementedException;
 import aoc.util.io.Reader;
@@ -100,6 +101,8 @@ public abstract class AdventOfCodeBaseTest {
             System.out.printf("Part %d is not implemented.\n", part.number);
         } catch (NoPuzzleAvailableException e) {
             System.out.printf("No puzzle is available for part %d.\n", part.number);
+        } catch (IncorrectExampleException e) {
+            System.out.printf("There is no correct example solution for part %d.\n", part.number);
         } catch (FileNotFoundException e) {
             System.out.printf("File was not found: %s.\n", e.getMessage());
         }

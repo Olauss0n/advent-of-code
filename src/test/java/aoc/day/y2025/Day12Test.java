@@ -2,6 +2,7 @@ package aoc.day.y2025;
 
 import aoc.day.AdventOfCodeBaseTest;
 import aoc.day.AdventOfCodeSolver;
+import aoc.util.exception.IncorrectExampleException;
 import aoc.util.exception.NotImplementedException;
 
 public class Day12Test extends AdventOfCodeBaseTest {
@@ -12,7 +13,7 @@ public class Day12Test extends AdventOfCodeBaseTest {
 
     @Override
     protected Object getExampleSolutionPartOne() {
-        return 2;
+        throw new IncorrectExampleException();
     }
 
     @Override
